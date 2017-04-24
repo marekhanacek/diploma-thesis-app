@@ -1,0 +1,77 @@
+{% extends 'web/base.html' %}
+
+{% load i18n %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="colored-box">
+                    <h1>{% trans 'Create new offer' %}</h1>
+                    <hr class="darker">
+                    <form action="{% url 'offer_new' %}" method="post" id="map-form-new-offer">
+                        {% csrf_token %}
+                        {{ form.lat }}
+                        {{ form.lng }}
+                        <div class="form-group col-md-6">
+                            <label for="">{% trans 'I have' %} <span class="text-danger">*</span></label>
+                            <div>
+                                <div class="input-group">
+                                    {{ form.amount_from }}
+                                    <span class="input-group-btn" style="width:0px;"></span>
+                                    {{ form.currency_from }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="">{% trans 'and want to change to' %} <span class="text-danger">*</span></label>
+                            <div>
+                                <div class="input-group">
+                                    {{ form.amount_to }}
+                                    <span class="input-group-btn" style="width:0px;"></span>
+                                    {{ form.currency_to }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="">{% trans 'Address' %} <span class="text-danger">*</span></label>
+                            <div>
+                                {{ form.address }}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="">{% trans 'Radius' %} <span class="text-danger">*</span></label>
+                            <div>
+                                {{ form.radius }}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="">{% trans 'Comment' %}</label>
+                            <div>
+                                {{ form.comment }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input type="submit" class="btn btn-my pull-right" value="{% trans 'Create offer' %}"/>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="colored-box">
+                    <div id="map-new-offer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

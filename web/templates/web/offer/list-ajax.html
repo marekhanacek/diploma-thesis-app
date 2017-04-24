@@ -1,0 +1,143 @@
+{% load offer %}
+{% load i18n %}
+
+<div class="colored-box">
+    <h1>
+        {% trans 'Offers' %}
+        <a href="{% url 'offer_new' %}" class="btn btn-my pull-right">
+            <span class="glyphicon glyphicon-plus"></span>
+            {% trans 'New offer' %}
+        </a>
+    </h1>
+    <hr/>
+    <div class="filter">
+        <form class="form-inline" id="offer-frm" action="/" method="POST">{% csrf_token %}
+            <div class="form-group">
+                <label>
+                    <span class="hidden-xs">{% trans 'Exchange currencies' %}</span>
+                    <span class="visible-xs">{% trans 'Change currency from' %}</span>
+                </label>
+                {{ form.currency_from }}
+            </div>
+            <div class="form-group">
+                <label>
+                    <span class="glyphicon glyphicon-arrow-right hidden-xs"></span>
+                    <span class="visible-xs">{% trans 'To' %}</span>
+                </label>
+                {{ form.currency_to }}
+            </div>
+            <br class="hidden-xs"/><br class="hidden-xs"/>
+            <div class="form-group">
+                <label>
+                    <span class="hidden-xs">{% trans 'Filter by price interval:' %}</span>
+                    <span class="visible-xs">{% trans 'In interval:' %}</span>
+                </label>
+                <br class="visible-xs"/>
+                {% format_price input_offer.amount_from input_offer.currency_from as currency_from %}
+                {% format_price input_offer.amount_to input_offer.currency_from as currency_to %}
+                <strong id="slider-currency-from">
+                    {% autoescape off %}{{ currency_from }}{% endautoescape %}
+                </strong>&nbsp;&nbsp;
+                <input id="offer-slider" name="amount" type="text" value="" data-slider-min="{{ currency_minimum }}"
+                       data-slider-max="{{ currency_maximum }}"
+                       data-slider-step="1"
+                       data-slider-value="[{{ input_offer.amount_from }},{{ input_offer.amount_to }}]"/>
+                &nbsp;&nbsp;
+                <strong id="slider-currency-to">
+                    {% autoescape off %}{{ currency_to }}{% endautoescape %}
+                </strong>
+            </div>
+        </form>
+    </div>
+
+    <hr/>
+
+    <div id="offers-box">
+        <p id="offers-loading" style="display: none">loading ...</p>
+        <p class="pull-right">
+            Sort by:
+
+            {% if input_offer.sort == 'default' %}
+                {% trans 'Default' %} |
+            {% else %}
+                <a href="{% url 'offer_sort' 'default' %}">{% trans 'Default' %}</a> |
+            {% endif %}
+
+            {% if input_offer.sort == 'stars' %}
+                {% trans 'Stars' %} |
+            {% else %}
+                <a href="{% url 'offer_sort' 'stars' %}">{% trans 'Rating' %}</a> |
+            {% endif %}
+
+            {% if input_offer.sort == 'amount' %}
+                {% trans 'Amount' %} |
+            {% else %}
+                <a href="{% url 'offer_sort' 'amount' %}">{% trans 'Amount' %}</a> |
+            {% endif %}
+
+            {% if input_offer.sort == 'distance' %}
+                {% trans 'Distance' %}
+            {% else %}
+                <a href="{% url 'offer_sort' 'distance' %}">{% trans 'Distance' %}</a>
+            {% endif %}
+        </p>
+
+        <table class="offer-table">
+            <thead>
+            <th>{% trans 'Offer' %}</th>
+            <th>{% trans 'User' %}</th>
+            <th>{% trans 'Distance from your location' %}</th>
+            </thead>
+            {% for offer in offers %}
+                <tr data-href="{% url 'offer_detail' offer.id %}" class="map-offer-ajax" data-offer-id="{{ offer.id }}"
+                    {% if forloop.counter > 10 %}style="display: none;" {% endif %}>
+                    <td>
+                        <a href="{% url 'offer_detail' offer.id %}" class="map-offer-ajax"
+                           data-offer-id="{{ offer.id }}">
+                            {{ offer|format_offer_currency_from }} to {{ offer|format_offer_currency_to }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'user_detail' offer.user_created.id %}" class="map-ajax" data-history="true">
+                            {{ offer.user_created.username }}
+                            {{ offer.user_created|print_verified }}
+                        </a>
+                    </td>
+                    <td>
+                        {% get_offer_distance_from offer input_offer.lat input_offer.lng as distance %}
+                        {{ distance|floatformat:0 }} km
+{#                        {{ offer.distance_from_user|floatformat:0 }} km#}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% if offers|length > 10 %}
+            <br/>
+            <div class="text-center">
+                <a href="" id="show-all-offers" class="btn btn-my">
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                    {% trans 'Show all offers' %}
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var mapOffers = [];
+    {% for offer in offers %}
+        {% is_user_verified offer.user_created as is_verified %}
+        mapOffers.push({
+            'id': {{ offer.id }},
+            'lat': {{ offer.lat|stringformat:".10f" }},
+            'lng': {{ offer.lng|stringformat:".10f" }},
+            'amountFrom': '{{ offer|format_offer_currency_from }}',
+            'amountTo': '{{ offer|format_offer_currency_to }}',
+            'user': '{{ offer.user_created.get_full_name }}',
+            'detailUrl': '{% url 'offer_detail' offer.id %}',
+            'userVerified': {{ is_verified|yesno:"true,false" }}
+        });
+    {% endfor %}
+</script>

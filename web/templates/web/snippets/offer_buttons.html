@@ -1,0 +1,83 @@
+{% load i18n %}
+
+<div class="buttons">
+    {% if offer.status.is_awaiting_acceptance %}
+        {% if offer.user_created.id == user.id %}
+            <form method="post" action="{% url 'offer_delete' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger pull-right">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    {% trans 'Delete offer' %}
+                </button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'offer_accept' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-my pull-right">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {% trans 'Accept offer' %}
+                </button>
+            </form>
+        {% endif %}
+
+    {% elif offer.status.is_awaiting_approval %}
+        {% if offer.user_created.id == user.id %}
+            <form method="post" action="{% url 'offer_approve' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-my pull-right">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {% trans 'Approve user' %}
+                </button>
+            </form>
+            <form method="post" action="{% url 'offer_refuse' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-my pull-right">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {% trans 'Refuse user' %}
+                </button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'offer_already_not_interested' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger pull-right">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    {% trans 'I am already not interested' %}
+                </button>
+            </form>
+        {% endif %}
+
+    {% elif offer.status.is_ready_to_exchange %}
+        {% if offer.user_created.id == user.id %}
+            <div class="clearfix"></div>
+            <form method="post" action="{% url 'offer_offer_again' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger pull-right">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    {% trans 'Offer was not completed. Offer it again.' %}
+                </button>
+            </form>
+            <form method="post" action="{% url 'offer_complete' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-my pull-right">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {% trans 'Finish offer' %}
+                </button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'offer_offer_again' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger pull-right">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    {% trans 'Offer was not completed.' %}
+                </button>
+            </form>
+            <form method="post" action="{% url 'offer_complete' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-my pull-right">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {% trans 'Finish offer' %}
+                </button>
+            </form>
+        {% endif %}
+    {% endif %}
+</div>

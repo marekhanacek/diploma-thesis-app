@@ -1,0 +1,35 @@
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-euro"></span> MicroXChange</a>
+</div>
+<div id="navbar" class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="" data-toggle="modal" data-target="#addressModal" title="Click to change your address">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                {% trans 'Change your address' %}
+            </a>
+        </li>
+        {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'user_profile' %}">
+                    <img class="img-circle" src="{{ user.userprofile.profile_photo|thumbnail_url:'header_avatar' }}" />
+                    {{ user.first_name }} {{ user.last_name }}
+                </a>
+            </li>
+            <li><a href="{% url 'logout' %}">{% trans 'Logout' %}</a></li>
+        {% else %}
+            <li><a href="#" data-toggle="modal" data-target="#loginModal">{% trans 'Login' %}</a></li>
+        {% endif %}
+    </ul>
+</div>

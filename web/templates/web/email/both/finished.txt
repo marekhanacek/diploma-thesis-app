@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% blocktrans %}
+User {{ user.get_full_name }} marker offer for money exchange as Complete.
+
+Now, you can insert feedback on this user in your user profile on web exchange.com.
+
+Thank you for using our services.
+Exchange.com
+{% endblocktrans %}

@@ -1,0 +1,643 @@
+[
+  {
+    "model": "web.language",
+    "pk": 1,
+    "fields": {
+      "identificator": "en",
+      "name": "English"
+    }
+  },
+  {
+    "model": "web.language",
+    "pk": 2,
+    "fields": {
+      "identificator": "cs",
+      "name": "Cestina"
+    }
+  },
+    {
+    "model": "web.offerstatus",
+    "pk": 1,
+    "fields": {
+      "title": "Awaiting acceptance",
+      "description": "Awaiting acceptance"
+    }
+  },
+  {
+    "model": "web.offerstatus",
+    "pk": 2,
+    "fields": {
+      "title": "Awaiting approval",
+      "description": "Awaiting approval"
+    }
+  },
+  {
+    "model": "web.offerstatus",
+    "pk": 3,
+    "fields": {
+      "title": "Ready to exchange",
+      "description": "Ready to exchange"
+    }
+  },
+  {
+    "model": "web.offerstatus",
+    "pk": 4,
+    "fields": {
+      "title": "Finished",
+      "description": "Finished"
+    }
+  },
+  {
+    "model": "web.offerstatus",
+    "pk": 5,
+    "fields": {
+      "title": "Deleted",
+      "description": "Deleted"
+    }
+  },
+
+  {
+    "model": "web.currency",
+    "pk": 1,
+    "fields": {
+      "name": "Ceska koruna",
+      "identificator": "CZK",
+      "prefix": "",
+      "postfix": " K\u010d"
+    }
+  },
+  {
+    "model": "web.currency",
+    "pk": 2,
+    "fields": {
+      "name": "Euro",
+      "identificator": "EUR",
+      "prefix": "",
+      "postfix": " \u20ac"
+    }
+  },
+  {
+    "model": "web.currency",
+    "pk": 3,
+    "fields": {
+      "name": "Americky dolar",
+      "identificator": "USD",
+      "prefix": "$",
+      "postfix": ""
+    }
+  },
+  {
+    "model": "web.currency",
+    "pk": 4,
+    "fields": {
+      "name": "Britska libra",
+      "identificator": "GBP",
+      "prefix": "\u00a3",
+      "postfix": ""
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 49,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 4,
+      "rate": 0.032168
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 50,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "rate": 0.037696
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 51,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 3,
+      "rate": 0.039875
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 52,
+    "fields": {
+      "currency_from": 2,
+      "currency_to": 4,
+      "rate": 0.85335
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 53,
+    "fields": {
+      "currency_from": 2,
+      "currency_to": 3,
+      "rate": 1.0578
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 54,
+    "fields": {
+      "currency_from": 2,
+      "currency_to": 1,
+      "rate": 26.528
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 55,
+    "fields": {
+      "currency_from": 3,
+      "currency_to": 4,
+      "rate": 0.80672
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 56,
+    "fields": {
+      "currency_from": 3,
+      "currency_to": 2,
+      "rate": 0.94536
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 57,
+    "fields": {
+      "currency_from": 3,
+      "currency_to": 1,
+      "rate": 25.078
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 58,
+    "fields": {
+      "currency_from": 4,
+      "currency_to": 2,
+      "rate": 1.1719
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 59,
+    "fields": {
+      "currency_from": 4,
+      "currency_to": 3,
+      "rate": 1.2396
+    }
+  },
+  {
+    "model": "web.currencyrates",
+    "pk": 60,
+    "fields": {
+      "currency_from": 4,
+      "currency_to": 1,
+      "rate": 31.087
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 1,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 4,
+      "user_created": 1,
+      "user_responded": 2,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 37.0,
+      "lat": 43.6184484,
+      "lng": -8.6317621,
+      "amount": 3822,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 2,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 1,
+      "user_created": 3,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 1986,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 3,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 1,
+      "user_created": 1,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 8845,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 4,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 2,
+      "user_created": 2,
+      "user_responded": 3,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 5432,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 5,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 3,
+      "user_created": 1,
+      "user_responded": 3,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 7000,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 6,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 4,
+      "user_created": 3,
+      "user_responded": 1,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 5500,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 7,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 1,
+      "user_created": 1,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 4300,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 8,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 4,
+      "user_created": 3,
+      "user_responded": 2,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 9000,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 9,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 1,
+      "user_created": 1,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 9999,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 10,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 1,
+      "user_created": 1,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 850,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 11,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 1,
+      "user_created": 2,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 1000,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 12,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 1,
+      "user_created": 3,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 1200,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 13,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 1,
+      "user_created": 2,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 1500,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 14,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 1,
+      "user_created": 1,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 2500,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.offer",
+    "pk": 15,
+    "fields": {
+      "currency_from": 1,
+      "currency_to": 2,
+      "status": 5,
+      "user_created": 1,
+      "user_responded": null,
+      "address": "Komenskeho 318, Dvorce, Cesko",
+      "radius": 62.7,
+      "lat": 55.7740584,
+      "lng": -10.9756421,
+      "amount": 9500,
+      "exchange_rate": 0.039072,
+      "comment": "",
+      "created_at": "2017-04-03T19:30:54Z",
+      "updated_at": "2017-04-03T19:30:54Z"
+    }
+  },
+  {
+    "model": "web.feedback",
+    "pk": 1,
+    "fields": {
+      "offer": 1,
+      "user_created": 1,
+      "comment": "Komentar test",
+      "stars": 4,
+      "created_at": "2017-04-11T18:12:13.564Z"
+    }
+  },
+  {
+    "model": "web.feedback",
+    "pk": 2,
+    "fields": {
+      "offer": 8,
+      "user_created": 3,
+      "comment": "Komentar test muj",
+      "stars": 5,
+      "created_at": "2017-04-11T18:12:13.564Z"
+    }
+  },
+    {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "123",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "Muhammad Sawayn",
+      "first_name": "Muhammad",
+      "last_name": "Sawayn",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2017-11-11T00:00:01Z",
+      "groups": [
+      ],
+      "user_permissions": [
+      ]
+    }
+  },
+  {
+    "model": "web.userprofile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "profile_photo": "uploads/profile_photos/100.jpg",
+      "home_currency": 1,
+      "exchange_currency": 2,
+      "language": 2,
+      "basic_information": "Ahoj ja jsem Marek. Marek Parek.",
+      "email": "marekhanacek1@gmail.com",
+      "phone": "+420 601 392 291",
+      "address": "Dobraticka, Letnany, Praha, Cesko",
+      "radius": 20.0,
+      "lat": 50.1308307,
+      "lng": 14.5087313
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "123",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "Weston Hagenes",
+      "first_name": "Weston",
+      "last_name": "Hagenes",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2017-11-11T00:00:01Z",
+      "groups": [
+      ],
+      "user_permissions": [
+      ]
+    }
+  },
+  {
+    "model": "web.userprofile",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "profile_photo": "uploads/profile_photos/100.jpg",
+      "home_currency": 1,
+      "exchange_currency": 2,
+      "language": 2,
+      "basic_information": "Ahoj ja jsem Marek. Marek Parek.",
+      "email": "marekhanacek1@gmail.com",
+      "phone": "+420 601 392 291",
+      "address": "Dobraticka, Letnany, Praha, Cesko",
+      "radius": 20.0,
+      "lat": 50.1308307,
+      "lng": 14.5087313
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "!Bd0c5Frxgt6x26waLDgzCcAximYiVM7oAXeXbskj",
+      "last_login": "2017-04-11T19:30:26.743Z",
+      "is_superuser": false,
+      "username": "MarekHanacek",
+      "first_name": "Marek",
+      "last_name": "Hanacek",
+      "email": "marekhanacek1@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-04-03T16:08:43.550Z",
+      "groups": [
+      ],
+      "user_permissions": [
+      ]
+    }
+  },
+  {
+    "model": "web.userprofile",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "profile_photo": "uploads/profile_photos/100.jpg",
+      "home_currency": 1,
+      "exchange_currency": 2,
+      "language": 2,
+      "basic_information": "Ahoj ja jsem Marek. Marek Parek.",
+      "email": "marekhanacek1@gmail.com",
+      "phone": "+420 601 392 291",
+      "address": "Dobraticka, Letnany, Praha, Cesko",
+      "radius": 20.0,
+      "lat": 50.1308307,
+      "lng": 14.5087313
+    }
+  }
+]

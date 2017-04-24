@@ -1,0 +1,15 @@
+{% load offer %}
+{% load i18n %}
+{% load thumbnail %}
+
+<div class="colored-box">
+    <h1>
+        {{ actual_user.get_full_name }}
+        {{ actual_user|print_verified }}
+    </h1>
+    <img class="center-block img-circle" src="{{ actual_user.userprofile.profile_photo|thumbnail_url:'avatar' }}"/>
+    {% if actual_user.last_login %}
+        <p>{% trans 'Last login:' %} <strong>{{ actual_user.last_login|date:"j.n.Y H:i" }}</strong></p>
+    {% endif %}
+    <p>{% trans '# of offers:' %} <strong>{{ number_of_offers }}</strong></p>
+</div>

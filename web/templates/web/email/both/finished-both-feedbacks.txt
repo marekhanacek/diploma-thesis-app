@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% blocktrans %}
+User {{ user.get_full_name }} inserted feedback to money exchange offer.
+
+You can see this feedback in your user profile.
+
+Thank you for using our services.
+Exchange.com
+{% endblocktrans %}

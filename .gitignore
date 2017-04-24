@@ -1,0 +1,6 @@
+/dip/settings_local.py
+/media/uploads/profile_photos/*
+/static
+/temp
+*.pyc
+/.idea

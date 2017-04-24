@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% blocktrans %}
+User {{ user.get_full_name }} has accept your offer for money exchange ({{ from }} to {{ to }}).
+
+You will see his/her contact information in your user profile after accepting user. Than you can change your money with this user.
+
+Thank you for using our services.
+Exchange.com
+{% endblocktrans %}

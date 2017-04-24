@@ -1,0 +1,8 @@
+{% load offer %}
+{% load i18n %}
+
+<div class="colored-box">
+    <h1>{% trans 'Contact informations:' %}</h1>
+    <p>{% trans 'Email:' %} <strong>{{ other_user.userprofile.email }}</strong></p>
+    <p>{% trans 'Phone:' %} <strong>{{ other_user.userprofile.phone }}</strong></p>
+</div>

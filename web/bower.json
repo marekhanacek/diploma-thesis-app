@@ -1,0 +1,14 @@
+{
+  "name": "DIP",
+  "authors": [
+    "Marek Hanáček <marekhanacek1@gmail.com>"
+  ],
+  "directory": "static/components/",
+  "description": "Source code of the diploma thesis",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "bootstrap-star-rating": "^4.0.1",
+    "seiyria-bootstrap-slider": "^9.7.2"
+  }
+}

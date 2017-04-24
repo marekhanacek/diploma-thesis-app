@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<div class="colored-box">
+    <h3>{% trans 'Insert your feedback' %}</h3>
+    <hr class="darker"/>
+    <form action="{% url 'feedback' offer.id %}" method="post" class="form-horizontal">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="" class="col-md-3">{% trans 'Rating' %}</label>
+            <div class="col-md-9" id="star-input">
+                {{ feedback_form.stars }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-md-3">{% trans 'Comment' %}</label>
+            <div class="col-md-9">
+                {{ feedback_form.comment }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <input type="submit" class="btn btn-my pull-right" value="Save feedback"/>
+            </div>
+        </div>
+    </form>
+</div>

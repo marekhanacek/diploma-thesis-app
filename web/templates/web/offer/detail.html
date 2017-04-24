@@ -1,0 +1,80 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load offer %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-push-4">
+                <div class="colored-box">
+                    <h2>{{ offer|format_offer_currency_from }} {% trans 'to' %} {{ offer|format_offer_currency_to }}</h2>
+                    {% include 'web/snippets/offer_basic_info.html' with show_status=True %}
+                    {% include 'web/snippets/offer_buttons.html' %}
+                    <div class="clearfix"></div>
+                </div>
+
+                {% if offer.status.is_ready_to_exchange %}
+                    {% include 'web/snippets/user_contact.html' %}
+                {% endif %}
+
+                {% if offer.status.is_finished %}
+                    {% if not has_feedback %}
+                        {% include 'web/snippets/feedback_form.html' %}
+                    {% endif %}
+                    {% include 'web/snippets/feedbacks.html' %}
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                    {% if history_with_user %}
+                        {% include 'web/snippets/history_with_user.html' %}
+                    {% endif %}
+                {% endif %}
+
+                {% if feedbacks %}
+                    {% include 'web/snippets/users_feedback.html' %}
+                {% endif %}
+            </div>
+            <div class="col-sm-4 col-sm-pull-8">
+                {% for offer_user in offer.iterate_users %}
+                    {% if offer_user %}
+                        <div class="colored-box">
+                            <h2 class="text-center">
+                                <a href="{% url 'user_detail' offer_user.id %}">
+                                    {{ offer_user.get_full_name }}
+                                    {{ offer_user|print_verified }}
+                                </a>
+                            </h2>
+                            <p class="text-center">
+                                {% if forloop.first %}
+                                    {% trans "Created this offer" %}
+                                {% else %}
+                                    {% trans "Has joined" %}
+                                {% endif %}
+                            </p>
+
+                            {% if offer_user.userprofile.profile_photo.url %}
+                                <img class="center-block img-circle"
+                                     src="{{ offer_user.userprofile.profile_photo|thumbnail_url:'avatar' }}"
+                                     alt=""/>
+                            {% else %}
+                                <img class="center-block img-circle"
+                                     src="{{ "http://fakeimg.pl/200x200/?text=profilePhoto" }}"/>
+                            {% endif %}<br/>
+
+                            {% if offer_user.last_login %}
+                                <p>{% trans 'Last login:' %}
+                                    <strong>{{ offer_user.last_login|date:"j.n.Y H:i" }}</strong></p>
+                            {% endif %}
+                            <p>{% trans '# of offers:' %}
+                                <strong>{{ offer_user.userprofile.number_of_offers }}</strong></p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock content %}

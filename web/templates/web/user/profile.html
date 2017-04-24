@@ -1,0 +1,161 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load offer %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="colored-box">
+                    <h1>{{ user.get_full_name }} {{ user|print_verified }}</h1>
+                    <img class="center-block img-circle"
+                         src="{{ user.userprofile.profile_photo|thumbnail_url:'avatar' }}"/>
+                    <br/>
+                    <p>{% trans 'Email:' %} <strong>{{ user.userprofile.email }}</strong></p>
+                    <p>{% trans 'Your address:' %} <strong>{{ user.userprofile.address }}</strong></p>
+                    <p>{% trans 'Searching radius:' %} <strong>{{ user.userprofile.radius }} km</strong></p>
+                    <hr/>
+                    <div class="list-group">
+                        <a href="{% url 'change_preferences' %}" class="list-group-item">
+                            {% trans 'Change preferences' %}
+                        </a>
+                    </div>
+                </div>
+                {% include 'web/snippets/user_stars.html' %}
+            </div>
+
+            <div class="col-md-8">
+                <div id="site">
+                    <div class="colored-box">
+                        <h2>{% trans 'Your actual offers' %}</h2>
+                        <hr class="darker"/>
+
+                        <ul class="nav nav-tabs">
+                            {% if actual_offers_my %}
+                                <li class="active">
+                                    <a href="#offers-waiting-user" data-toggle="tab">{% trans 'Waiting for you' %}</a>
+                                </li>
+                            {% endif %}
+                            {% if actual_offers_user %}
+                                <li {% if not actual_offers_my %}class="active"{% endif %}>
+                                    <a href="#offers-waiting-others"
+                                       data-toggle="tab">{% trans 'Waiting for other user' %}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+
+                        <div class="tab-content">
+                            {% if actual_offers_my %}
+                                <div role="tabpanel" class="tab-pane active" id="offers-waiting-user">
+                                    {% for offer in actual_offers_my %}
+                                        {% get_other_user offer user as other_user %}
+                                        {% if forloop.counter0|divisibleby:2 %}
+                                            <div class="row">{% endif %}
+                                    <div class="col-md-6 offer-box">
+                                        <div class="relative">
+                                            <a href="{% url 'offer_detail' offer.id %}" class="absolute-link"></a>
+                                            <h4>
+                                                {{ offer|format_offer_currency_from }} to {{ offer|format_offer_currency_to }}
+                                                <span class="label label-status">{{ offer.status.title }}</span>
+                                            </h4>
+                                            <p>
+                                                {% if other_user %}
+                                                    <span class="glyphicon glyphicon-user"></span>
+                                                    <a href="{% url 'user_detail' offer.user_created.id %}"
+                                                       class="relative">
+                                                        {{ other_user.get_full_name }} <?php stars(4); ?>
+                                                    </a> |
+                                                {% endif %}
+                                                <span class="glyphicon glyphicon-globe" data-toggle="tooltip"
+                                                      title="{% trans 'Address' %}"></span>
+                                                {{ offer.address }} |
+                                                <span class="glyphicon glyphicon-time" data-toggle="tooltip"
+                                                      title="{% trans 'Creation date' %}"></span>
+                                                {{ offer.created_at|date:"j.n.Y H:i" }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {% if forloop.last or forloop.counter|divisibleby:2 %}</div>{% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if actual_offers_user %}
+                                <div role="tabpanel" class="tab-pane {% if not actual_offers_my %}active{% endif %}" id="offers-waiting-others">
+                                    {% for offer in actual_offers_user %}
+                                        {% get_other_user offer user as other_user %}
+                                        {% if forloop.counter0|divisibleby:2 %}
+                                            <div class="row">{% endif %}
+                                    <div class="col-md-6 offer-box">
+                                        <div class="relative">
+                                            <a href="{% url 'offer_detail' offer.id %}" class="absolute-link"></a>
+                                            <h4>{{ offer|format_offer_currency_from }} to {{ offer|format_offer_currency_to }} <span
+                                                    class="label label-status">{{ offer.status.title }}</span></h4>
+                                            <p>
+                                                {% if other_user %}
+                                                    <span class="glyphicon glyphicon-user"></span>
+                                                    <a href="{% url 'user_detail' offer.user_created.id %}"
+                                                       class="relative">
+                                                        {{ other_user.get_full_name }} <?php stars(4); ?>
+                                                    </a> <br>
+                                                {% endif %}
+                                                <span class="glyphicon glyphicon-globe" data-toggle="tooltip"
+                                                      title="{% trans 'Address' %}"></span>
+                                                {{ offer.address }} <br>
+                                                <span class="glyphicon glyphicon-time" data-toggle="tooltip"
+                                                      title="{% trans 'Creation date' %}"></span>
+                                                {{ offer.created_at|date:"j.n.Y H:i" }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {% if forloop.last or forloop.counter|divisibleby:2 %}</div>{% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="colored-box">
+                        <h2>{% trans 'Finished offers' %}</h2>
+                        <hr class="darker"/>
+
+                        {% for offer in finished_offers %}
+                            {% get_other_user offer user as other_user %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4><a href="{% url 'offer_detail' offer.id %}">{{ offer|format_offer_currency_from }}
+                                        to {{ offer|format_offer_currency_to }}</a></h4>
+                                    <p>
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        <a href="{% url 'user_detail' other_user.id %}">{{ other_user.get_full_name }}</a>
+                                    </p>
+
+                                    {% if offer.feedbacks.count %}
+                                        {% for feedback in offer.feedbacks.all %}
+                                            <p>
+                                                <strong>{{ feedback.user_created.first_name }}'s feedback:</strong><br>
+                                                {{ feedback.stars }}<br>
+                                                {{ feedback.comment }}
+                                            </p>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>
+                                            {% trans 'No feedbacks yet.' %}
+                                            <a href="{% url 'offer_detail' offer.id %}" class="btn btn-my btn-xs">
+                                                {% trans 'Insert feedback' %}
+                                            </a>
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if not forloop.last %}
+                                <hr/>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

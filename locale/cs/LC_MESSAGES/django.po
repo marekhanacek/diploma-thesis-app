@@ -1,0 +1,544 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-24 14:53+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: web/templates/web/base-map.html:51 web/templates/web/base.html:42
+msgid "Terms"
+msgstr ""
+
+#: web/templates/web/base-map.html:52 web/templates/web/base.html:43
+msgid "How it works?"
+msgstr ""
+
+#: web/templates/web/base-map.html:53 web/templates/web/base.html:44
+msgid "Contact"
+msgstr ""
+
+#: web/templates/web/base-map.html:64
+msgid "Show text"
+msgstr ""
+
+#: web/templates/web/base-map.html:66
+msgid "Show map"
+msgstr ""
+
+#: web/templates/web/base-map.html:72
+msgid ""
+"Bla bla bla blaBla bla bla blaBla bla bla blaBla bla bla blaBla bla bla bla"
+msgstr ""
+
+#: web/templates/web/base-map.html:73
+msgid "Agree"
+msgstr ""
+
+#: web/templates/web/email/both/finished-both-feedbacks.txt:3
+#, python-format
+msgid ""
+"\n"
+"User %(user.get_full_name)s inserted feedback to money exchange offer.\n"
+"\n"
+"You can see this feedback in your user profile.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
+msgstr ""
+
+#: web/templates/web/email/both/finished-other-feedback.txt:3
+#, python-format
+msgid ""
+"\n"
+"User %(user.get_full_name)s inserted feedback to money exchange offer.\n"
+"\n"
+"You can see this feedback in your user profile in 7 days or after that you "
+"insert your feedback.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
+msgstr ""
+
+#: web/templates/web/email/both/finished.txt:3
+#, python-format
+msgid ""
+"\n"
+"User %(user.get_full_name)s marker offer for money exchange as Complete.\n"
+"\n"
+"Now, you can insert feedback on this user in your user profile on web "
+"exchange.com.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
+msgstr ""
+
+#: web/templates/web/email/created/already_not_awaiting_approval.txt:3
+#: web/templates/web/email/created/already_not_rte.txt:3
+#, python-format
+msgid ""
+"\n"
+"User %(user.get_full_name)s is already not interesting in your money "
+"exchange offer.\n"
+"\n"
+"Offer was marked as Awaiting acceptance. Now you can wait for other takers.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
+msgstr ""
+
+#: web/templates/web/email/created/awaiting_approval.txt:3
+#, python-format
+msgid ""
+"\n"
+"User %(user.get_full_name)s has accept your offer for money exchange "
+"(%(from)s to %(to)s).\n"
+"\n"
+"You will see his/her contact information in your user profile after "
+"accepting user. Than you can change your money with this user.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
+msgstr ""
+
+#: web/templates/web/email/responded/already_not_rte.txt:3
+#, python-format
+msgid ""
+"\n"
+"User %(user.get_full_name)s has canceled offer for money exchange.\n"
+"\n"
+"Take a look at other offers.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
+msgstr ""
+
+#: web/templates/web/email/responded/approved.txt:3
+#, python-format
+msgid ""
+"\n"
+"User %(user.get_full_name)s agree with offer for money exchange (%(from)s to "
+"%(to)s).\n"
+"\n"
+"Contact informations of %(user.get_full_name)s are below:\n"
+"%(other_user.get_full_name)s\n"
+"Tel: %(other_user.get_profile.phone)s\n"
+"Email: %(other_user.get_profile.email)s\n"
+"\n"
+"You can see these contact informations in your user profile on web exchange."
+"com.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
+msgstr ""
+
+#: web/templates/web/email/responded/not_approved.txt:3
+#, python-format
+msgid ""
+"\n"
+"User %(user.get_full_name)s not agree with offer for money exchange "
+"(%(from)s to %(to)s).\n"
+"\n"
+"If you are still looking for the best way how to change your money, you can "
+"search new offers, or offer your own offer on the web exchange.com.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
+msgstr ""
+
+#: web/templates/web/modals.html:11
+msgid "Login page"
+msgstr ""
+
+#: web/templates/web/modals.html:15
+msgid "Login with facebook"
+msgstr ""
+
+#: web/templates/web/modals.html:36
+msgid "Address change"
+msgstr ""
+
+#: web/templates/web/modals.html:38
+msgid "Type your address"
+msgstr ""
+
+#: web/templates/web/modals.html:39
+msgid "Or click to map to select position"
+msgstr ""
+
+#: web/templates/web/modals.html:40
+msgid "Or select your current position"
+msgstr ""
+
+#: web/templates/web/modals.html:50
+msgid "My position"
+msgstr ""
+
+#: web/templates/web/modals.html:56
+#: web/templates/web/user/change-preferences.html:79
+msgid "Save"
+msgstr ""
+
+#: web/templates/web/navbar.html:20
+msgid "Change your address"
+msgstr ""
+
+#: web/templates/web/navbar.html:30
+msgid "Logout"
+msgstr ""
+
+#: web/templates/web/navbar.html:32
+msgid "Login"
+msgstr ""
+
+#: web/templates/web/offer/detail-ajax.html:11
+msgid "Accept"
+msgstr ""
+
+#: web/templates/web/offer/detail-ajax.html:20
+msgid "Created by"
+msgstr ""
+
+#: web/templates/web/offer/detail.html:13
+msgid "to"
+msgstr ""
+
+#: web/templates/web/offer/detail.html:52
+msgid "Created this offer"
+msgstr ""
+
+#: web/templates/web/offer/detail.html:54
+msgid "Has joined"
+msgstr ""
+
+#: web/templates/web/offer/detail.html:68
+#: web/templates/web/snippets/user_profile.html:12
+msgid "Last login:"
+msgstr ""
+
+#: web/templates/web/offer/detail.html:71
+#: web/templates/web/snippets/user_profile.html:14
+msgid "# of offers:"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:6
+msgid "Offers"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:9
+msgid "New offer"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:17
+msgid "Exchange currencies"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:18
+msgid "Change currency from"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:25
+msgid "To"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:32
+msgid "Filter by price interval:"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:33
+msgid "In interval:"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:61
+#: web/templates/web/offer/list-ajax.html:63
+msgid "Default"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:67
+msgid "Stars"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:69
+#: web/templates/web/snippets/feedback_form.html:9
+msgid "Rating"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:73
+#: web/templates/web/offer/list-ajax.html:75
+msgid "Amount"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:79
+#: web/templates/web/offer/list-ajax.html:81
+msgid "Distance"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:87
+msgid "Offer"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:88
+msgid "User"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:89
+#: web/templates/web/snippets/offer_basic_info.html:15
+msgid "Distance from your location"
+msgstr ""
+
+#: web/templates/web/offer/list-ajax.html:119
+msgid "Show all offers"
+msgstr ""
+
+#: web/templates/web/offer/new.html:11
+msgid "Create new offer"
+msgstr ""
+
+#: web/templates/web/offer/new.html:18
+msgid "I have"
+msgstr ""
+
+#: web/templates/web/offer/new.html:29
+msgid "and want to change to"
+msgstr ""
+
+#: web/templates/web/offer/new.html:40
+#: web/templates/web/snippets/offer_basic_info.html:11
+#: web/templates/web/user/change-preferences.html:59
+#: web/templates/web/user/profile.html:73
+#: web/templates/web/user/profile.html:105
+msgid "Address"
+msgstr ""
+
+#: web/templates/web/offer/new.html:47
+#: web/templates/web/user/change-preferences.html:66
+msgid "Radius"
+msgstr ""
+
+#: web/templates/web/offer/new.html:54
+#: web/templates/web/snippets/feedback_form.html:15
+#: web/templates/web/snippets/offer_basic_info.html:25
+msgid "Comment"
+msgstr ""
+
+#: web/templates/web/offer/new.html:61
+msgid "Create offer"
+msgstr ""
+
+#: web/templates/web/page/contact.html:7
+msgid "Contact to author"
+msgstr ""
+
+#: web/templates/web/snippets/feedback_form.html:4
+msgid "Insert your feedback"
+msgstr ""
+
+#: web/templates/web/snippets/feedbacks.html:6
+msgid "Feedbacks of this offer"
+msgstr ""
+
+#: web/templates/web/snippets/history_with_user.html:5
+msgid "Your history with user"
+msgstr ""
+
+#: web/templates/web/snippets/offer_basic_info.html:6
+msgid "Offer status"
+msgstr ""
+
+#: web/templates/web/snippets/offer_basic_info.html:20
+#: web/templates/web/user/profile.html:76
+#: web/templates/web/user/profile.html:108
+msgid "Creation date"
+msgstr ""
+
+#: web/templates/web/snippets/offer_basic_info.html:30
+msgid "Number of visits"
+msgstr ""
+
+#: web/templates/web/snippets/offer_buttons.html:10
+msgid "Delete offer"
+msgstr ""
+
+#: web/templates/web/snippets/offer_buttons.html:18
+msgid "Accept offer"
+msgstr ""
+
+#: web/templates/web/snippets/offer_buttons.html:29
+msgid "Approve user"
+msgstr ""
+
+#: web/templates/web/snippets/offer_buttons.html:36
+msgid "Refuse user"
+msgstr ""
+
+#: web/templates/web/snippets/offer_buttons.html:44
+msgid "I am already not interested"
+msgstr ""
+
+#: web/templates/web/snippets/offer_buttons.html:56
+msgid "Offer was not completed. Offer it again."
+msgstr ""
+
+#: web/templates/web/snippets/offer_buttons.html:63
+#: web/templates/web/snippets/offer_buttons.html:78
+msgid "Finish offer"
+msgstr ""
+
+#: web/templates/web/snippets/offer_buttons.html:71
+msgid "Offer was not completed."
+msgstr ""
+
+#: web/templates/web/snippets/user_contact.html:5
+msgid "Contact informations:"
+msgstr ""
+
+#: web/templates/web/snippets/user_contact.html:6
+#: web/templates/web/user/profile.html:17
+msgid "Email:"
+msgstr ""
+
+#: web/templates/web/snippets/user_contact.html:7
+msgid "Phone:"
+msgstr ""
+
+#: web/templates/web/snippets/user_stars.html:8
+msgid "User rating"
+msgstr ""
+
+#: web/templates/web/snippets/users_feedback.html:5
+msgid "Users feedback"
+msgstr ""
+
+#: web/templates/web/snippets/users_feedback.html:17
+msgid "Rating:"
+msgstr ""
+
+#: web/templates/web/snippets/users_feedback.html:18
+msgid "Comment:"
+msgstr ""
+
+#: web/templates/web/snippets/users_feedback.html:26
+#: web/templates/web/user/profile.html:145
+msgid "No feedbacks yet."
+msgstr ""
+
+#: web/templates/web/user/change-preferences.html:12
+#: web/templates/web/user/change-preferences.html:90
+msgid "Back to my profile"
+msgstr ""
+
+#: web/templates/web/user/change-preferences.html:13
+msgid "Change your preferences"
+msgstr ""
+
+#: web/templates/web/user/change-preferences.html:22
+msgid "Home currency"
+msgstr ""
+
+#: web/templates/web/user/change-preferences.html:32
+msgid "Prefered exchange currency"
+msgstr ""
+
+#: web/templates/web/user/change-preferences.html:41
+msgid "Language"
+msgstr ""
+
+#: web/templates/web/user/change-preferences.html:50
+msgid "Basic information about you"
+msgstr ""
+
+#: web/templates/web/user/profile.html:18
+msgid "Your address:"
+msgstr ""
+
+#: web/templates/web/user/profile.html:19
+msgid "Searching radius:"
+msgstr ""
+
+#: web/templates/web/user/profile.html:23
+msgid "Change preferences"
+msgstr ""
+
+#: web/templates/web/user/profile.html:33
+msgid "Your actual offers"
+msgstr ""
+
+#: web/templates/web/user/profile.html:39
+msgid "Waiting for you"
+msgstr ""
+
+#: web/templates/web/user/profile.html:45
+msgid "Waiting for other user"
+msgstr ""
+
+#: web/templates/web/user/profile.html:121
+msgid "Finished offers"
+msgstr ""
+
+#: web/templates/web/user/profile.html:147
+msgid "Insert feedback"
+msgstr ""
+
+#: web/views/offer.py:97
+msgid "You do not have permission."
+msgstr ""
+
+#: web/views/offer.py:125
+msgid "Feedback was added."
+msgstr ""
+
+#: web/views/offer.py:145
+msgid "Offer was added."
+msgstr ""
+
+#: web/views/offer_status.py:16
+msgid "Offer was deleted."
+msgstr ""
+
+#: web/views/offer_status.py:24
+msgid "Offer was accepted."
+msgstr ""
+
+#: web/views/offer_status.py:32
+msgid "Offer was approved."
+msgstr ""
+
+#: web/views/offer_status.py:43
+msgid "User was refused and offer is again available for other users."
+msgstr ""
+
+#: web/views/offer_status.py:52
+msgid "You were deleted from this offer."
+msgstr ""
+
+#: web/views/offer_status.py:66
+msgid "Offer was canceled. Offer is again available for other users."
+msgstr ""
+
+#: web/views/offer_status.py:69
+msgid "Offer was canceled."
+msgstr ""
+
+#: web/views/offer_status.py:77
+msgid "Offer was marked as completed."
+msgstr ""
+
+#: web/views/user.py:119
+msgid "Preferences were changed."
+msgstr ""
+
+#: web/views/user.py:121
+msgid "ERROR"
+msgstr ""

@@ -1,0 +1,28 @@
+{% load i18n %}
+{% load offer %}
+
+<div class="colored-box">
+    <h3>{% trans 'Users feedback' %}</h3>
+    <hr class="darker"/>
+    {% if feedbacks %}
+        {% for feedback in feedbacks %}
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>
+                        <a href="{% url 'user_detail' feedback.user_created.id %}" class="map-ajax" data-history="true">
+                            {{ feedback.user_created.first_name }}
+                        </a>
+                    </h4>
+                    <p>
+                        <strong>{% trans 'Rating:' %}</strong> {{ feedback.stars|print_stars }}<br/>
+                        <strong>{% trans 'Comment:' %}</strong> {{ feedback.comment }}
+                    </p>
+                </div>
+            </div>
+            {% if not forloop.last %}
+                <hr/>{% endif %}
+        {% endfor %}
+    {% else %}
+        <p>{% trans 'No feedbacks yet.' %}</p>
+    {% endif %}
+</div>

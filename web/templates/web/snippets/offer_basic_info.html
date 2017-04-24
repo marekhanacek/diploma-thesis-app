@@ -1,0 +1,32 @@
+{% load offer %}
+{% load i18n %}
+
+{% if show_status %}
+<p>
+    <span class="glyphicon glyphicon-leaf" data-toggle="tooltip" title="{% trans 'Offer status' %}"></span>
+    <span class="label label-status">{{ offer.status.title }}</span><br/>
+</p>
+{% endif %}
+<p>
+    <span class="glyphicon glyphicon-globe" data-toggle="tooltip" title="{% trans 'Address' %}"></span>
+    {{ offer.address }}
+</p>
+<p>
+    <span class="glyphicon glyphicon-map-marker" data-toggle="tooltip" title="{% trans 'Distance from your location' %}"></span>
+    {% get_offer_distance_from offer input_offer.lat input_offer.lng as distance %}
+    {{ distance|floatformat:0 }} km
+</p>
+<p>
+    <span class="glyphicon glyphicon-time" data-toggle="tooltip" title="{% trans 'Creation date' %}"></span>
+    {{ offer.created_at|date:"j.n.Y H:i" }}
+</p>
+<p>
+    {% if offer.comment %}
+        <span class="glyphicon glyphicon-comment" data-toggle="tooltip" title="{% trans 'Comment' %}"></span>
+        {{ offer.comment }}
+    {% endif %}
+</p>
+{#<p>#}
+{#    <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="{% trans 'Number of visits' %}"></span>#}
+{#    {{ offer.visits }}#}
+{#</p>#}

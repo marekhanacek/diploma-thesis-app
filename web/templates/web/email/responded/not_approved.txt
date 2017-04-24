@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% blocktrans %}
+User {{ user.get_full_name }} not agree with offer for money exchange ({{ from }} to {{ to }}).
+
+If you are still looking for the best way how to change your money, you can search new offers, or offer your own offer on the web exchange.com.
+
+Thank you for using our services.
+Exchange.com
+{% endblocktrans %}

@@ -1,0 +1,15 @@
+{% load i18n %}
+
+{% blocktrans %}
+User {{ user.get_full_name }} agree with offer for money exchange ({{ from }} to {{ to }}).
+
+Contact informations of {{ user.get_full_name}} are below:
+{{ other_user.get_full_name }}
+Tel: {{ other_user.get_profile.phone }}
+Email: {{ other_user.get_profile.email }}
+
+You can see these contact informations in your user profile on web exchange.com.
+
+Thank you for using our services.
+Exchange.com
+{% endblocktrans %}

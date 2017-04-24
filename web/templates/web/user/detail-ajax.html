@@ -1,0 +1,11 @@
+{% load static %}
+{% load offer %}
+
+<div id="content">
+    {% include 'web/snippets/user_profile.html' %}
+    {% include 'web/snippets/user_stars.html' %}
+    {% if history_with_user %}
+        {% include 'web/snippets/history_with_user.html' %}
+    {% endif %}
+    {% include 'web/snippets/users_feedback.html' %}
+</div>

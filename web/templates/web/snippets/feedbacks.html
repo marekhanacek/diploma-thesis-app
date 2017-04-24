@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load offer %}
+
+{% if visible_feedbacks|length > 0 %}
+    <div class="colored-box">
+        <h3>{% trans 'Feedbacks of this offer' %}</h3>
+        <hr class="darker"/>
+        {% for feedback in visible_feedbacks %}
+            <p>
+                <strong>{{ feedback.user_created.get_full_name }}'s feedback:</strong>
+                {{ feedback.stars }}<br>
+                {{ feedback.comment }}
+            </p>
+        {% endfor %}
+    </div>
+{% endif %}

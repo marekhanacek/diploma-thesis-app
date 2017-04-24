@@ -1,0 +1,90 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MicroXchange {{ global }}</title>
+    <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css' %}"
+          rel="stylesheet"/>
+    <link href="{% static 'css/screen.css' %}" rel="stylesheet"/>
+</head>
+<body
+        class="map"
+        data-lat="{{ input_offer.lat|stringformat:".10f" }}"
+        data-lng="{{ input_offer.lng|stringformat:".10f" }}"
+        data-radius="{{ input_offer.radius|stringformat:".1f" }}"
+        data-marker="http://localhost:8000{% static "images/marker.png" %}"
+        data-marker-verified="http://localhost:8000{% static "images/marker-verified.png" %}"
+>
+<div id="map-parent">
+    <div id="map"></div>
+</div>
+<div id="content-shadow"></div>
+<div id="content-map">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="fixed-alert alert alert-{{ message.tags }}" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <nav class="navbar navbar-my" id="nav">
+        <div>
+            {% include 'web/navbar.html' %}
+        </div>
+    </nav>
+
+    <div id="site">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p class="text-center">
+            <a href="{% url 'page' 'terms' %}">{% trans 'Terms' %}</a> |
+            <a href="{% url 'page' 'how-it-works' %}">{% trans 'How it works?' %}</a> |
+            <a href="{% url 'page' 'contact' %}">{% trans 'Contact' %}</a>
+        </p>
+    </footer>
+
+    {#    <a href="" class="btn btn-my" id="map-button">#}
+    {#        <span class="text"><span class="glyphicon glyphicon-chevron-left"></span> Hide map</span>#}
+    {#        <span class="text" style="display: none;">Show map <span class="glyphicon glyphicon-chevron-right"></span></span>#}
+    {#    </a>#}
+
+</div>
+
+<a href="" id="show-text-mobile" class="map-button map-button-bottom hidden-md hidden-lg">{% trans 'Show text' %}</a>
+<a href="" id="show-map-mobile" class="map-button map-button-top hidden-md hidden-lg"
+   style="display: none;">{% trans 'Show map' %}</a>
+
+
+{% if show_cookies %}
+    <div id="privacy-policy">
+        <p>
+            {% trans 'Bla bla bla blaBla bla bla blaBla bla bla blaBla bla bla blaBla bla bla bla' %}
+            <a href="#" id="allow-cookies-button" class="btn btn-my inline-btn"><span>{% trans 'Agree' %}</span></a>
+        </p>
+    </div>
+{% endif %}
+
+{% include 'web/modals.html' %}
+
+<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'bower_components/bootstrap-star-rating/js/star-rating.min.js' %}"></script>
+<script src="{% static 'bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.js' %}"></script>
+<script {# async defer #}
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8Wa05QdGga7M2mLeCJzUtpRB2U7hHE8c&libraries=places"></script>
+<script src="{% static 'js/map.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

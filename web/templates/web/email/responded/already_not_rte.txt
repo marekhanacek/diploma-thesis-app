@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% blocktrans %}
+User {{ user.get_full_name }} has canceled offer for money exchange.
+
+Take a look at other offers.
+
+Thank you for using our services.
+Exchange.com
+{% endblocktrans %}

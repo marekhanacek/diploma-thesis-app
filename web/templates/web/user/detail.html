@@ -1,0 +1,20 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load offer %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {% include 'web/snippets/user_profile.html' %}
+                {% include 'web/snippets/user_stars.html' %}
+            </div>
+            <div class="col-md-8">
+                {% if history_with_user %}
+                    {% include 'web/snippets/history_with_user.html' %}
+                {% endif %}
+                {% include 'web/snippets/users_feedback.html' %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

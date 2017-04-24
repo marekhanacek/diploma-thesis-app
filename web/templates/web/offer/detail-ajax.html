@@ -1,0 +1,40 @@
+{% load offer %}
+{% load i18n %}
+
+<div id="content">
+    <div class="colored-box">
+        <div class="buttons">
+            <form method="post" action="{% url 'offer_accept' offer.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-my pull-right">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {% trans 'Accept' %}
+                </button>
+            </form>
+        </div>
+
+        <h2>{{ offer|format_offer_currency_from }} to {{ offer|format_offer_currency_to }}</h2>
+
+        <div class="profile-box pull-right">
+            <a href="{% url 'user_detail' offer.user_created.id %}" class="map-ajax" data-history="true">
+                {% trans 'Created by' %}<br/>
+                <strong>{{ offer.user_created.get_full_name }}</strong>
+                {{ offer.user_created|print_verified }}
+            </a>
+        </div>
+
+        {% include 'web/snippets/offer_basic_info.html' with show_status=False %}
+
+        <div class="clearfix"></div>
+
+        {% if user.is_authenticated %}
+            {% if history_with_user %}
+                {% include 'web/snippets/history_with_user.html' %}
+            {% endif %}
+        {% endif %}
+    </div>
+
+    {% if feedbacks %}
+        {% include 'web/snippets/users_feedback.html' %}
+    {% endif %}
+</div>
