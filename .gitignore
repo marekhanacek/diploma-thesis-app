@@ -1,6 +1,6 @@
 /media/uploads/profile_photos/*
-/dip/staticfiles
-/dip/static
+/dip/staticfiles/*
+/dip/static/*
 /temp
 *.pyc
 /.idea
