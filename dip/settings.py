@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-from dip.settings_local import *
+
+DEBUG = True
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,10 +80,10 @@ WSGI_APPLICATION = 'dip.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': DATABASE_NAME,
-        'USER': DATABASE_USER,
-        'PASSWORD': DATABASE_PASS,
-        'HOST': DATABASE_HOST,
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASS'],
+        'HOST': os.environ['DATABASE_HOST'],
         'OPTIONS': {'charset': 'utf8'},
         'TEST': {
             'CHARSET': 'utf8',
@@ -138,8 +140,8 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = LOCAL_SOCIAL_AUTH_FACEBOOK_KEY
-SOCIAL_AUTH_FACEBOOK_SECRET = LOCAL_SOCIAL_AUTH_FACEBOOK_SECRET
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ['SOCIAL_AUTH_FACEBOOK_KEY']
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['SOCIAL_AUTH_FACEBOOK_SECRET']
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'locale': 'cs_CZ',
@@ -174,11 +176,11 @@ STATUS_DELETED = 5
 
 # Email settings
 
-EMAIL_USE_TLS = LOCAL_EMAIL_USE_TLS
-EMAIL_HOST = LOCAL_EMAIL_HOST
-EMAIL_HOST_USER = LOCAL_EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = LOCAL_EMAIL_HOST_PASSWORD
-EMAIL_PORT = LOCAL_EMAIL_PORT
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'marekhanacek1@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_PORT = 587
 ALLOW_MAIL_SENDING = False
 
 # Thumbnails settings
