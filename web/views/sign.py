@@ -5,8 +5,7 @@ from django.contrib.auth import logout as auth_logout, login as auth_login
 from django.utils.decorators import method_decorator
 from django.views.generic.base import View
 
-from dip.settings import AUTHENTICATION_BACKENDS
-from dip.settings_local import DEBUG
+from dip.settings import AUTHENTICATION_BACKENDS, DEBUG
 
 
 @method_decorator(login_required, name='dispatch')
