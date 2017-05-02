@@ -9,8 +9,8 @@ from dip.settings import STATUS_AWAITING_ACCEPTANCE, STATUS_AWAITING_APPROVAL, S
 class Currency(models.Model):
     name = models.CharField(max_length=50)
     identificator = models.CharField(max_length=3)
-    prefix = models.CharField(max_length=10)
-    postfix = models.CharField(max_length=10)
+    prefix = models.CharField(max_length=5)
+    postfix = models.CharField(max_length=5)
 
     def __str__(self):
         return self.identificator
@@ -23,8 +23,7 @@ class CurrencyRates(models.Model):
 
 
 class OfferStatus(models.Model):
-    title = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
+    title = models.CharField(max_length=30)
 
     def is_awaiting_acceptance(self):
         return self.id == STATUS_AWAITING_ACCEPTANCE
@@ -54,7 +53,7 @@ class Offer(models.Model):
     lng = models.FloatField()
     amount = models.IntegerField()
     exchange_rate = models.FloatField()
-    comment = models.CharField(max_length=250)
+    comment = models.TextField(default='')
 
     # dates
     created_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -81,7 +80,8 @@ class Offer(models.Model):
 class Feedback(models.Model):
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='feedbacks')
     user_created = models.ForeignKey(User, on_delete=models.PROTECT, related_name='feedbacks_created')
-    comment = models.CharField(max_length=50)
+    user_responded = models.ForeignKey(User, on_delete=models.PROTECT, related_name='feedbacks_responded')
+    comment = models.TextField(default='')
     stars = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -102,10 +102,10 @@ class UserProfile(models.Model):
     exchange_currency = models.ForeignKey(Currency, on_delete=models.PROTECT,
                                           related_name='profiles_having_exchange_currency', null=True)
     language = models.ForeignKey(Language, on_delete=models.PROTECT, related_name='profiles_having_language', null=True)
-    basic_information = models.CharField(max_length=191, default='')
-    email = models.CharField(max_length=191, default='')
-    phone = models.CharField(max_length=191, default='')
-    address = models.CharField(max_length=191, default='')
+    basic_information = models.TextField(default='')
+    email = models.CharField(max_length=150, default='')
+    phone = models.CharField(max_length=20, default='')
+    address = models.CharField(max_length=255, default='')
     radius = models.FloatField(default=0)
     lat = models.FloatField(default=0)
     lng = models.FloatField(default=0)

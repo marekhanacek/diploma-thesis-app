@@ -13,7 +13,7 @@ function App() {
     this.mobileVersion = 'map'; // map or text
 
     this.el = {
-        'offerTable': this.body.find('.offer-table tr'),
+        'offerTable': this.body.find('.offer-table'),
         'site': this.body.find('#site'),
         'cookies': this.body.find('#privacy-policy'),
         'showTextMobileButton': this.body.find('#show-text-mobile'),
@@ -31,7 +31,7 @@ function App() {
     };
 
     this.showAllOffers = function () {
-        this.el.offerTable.show(1000);
+        this.el.offerTable.find('tr').show();
         $('#show-all-offers').hide();
     };
 

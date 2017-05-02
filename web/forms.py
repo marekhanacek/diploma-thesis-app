@@ -1,8 +1,7 @@
 from django import forms
 
 from web.models import Language
-from .models import Currency, UserProfile
-from django.contrib.auth.models import User
+from .models import Currency
 
 
 class OfferSearchForm(forms.Form):
@@ -34,18 +33,6 @@ class OfferSearchForm(forms.Form):
             }
         )
     )
-
-
-class UserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = '__all__'
-
-
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        exclude = ['user']
 
 
 class OfferForm(forms.Form):

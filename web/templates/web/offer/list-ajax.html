@@ -1,4 +1,4 @@
-{% load offer %}
+{% load web_extras %}
 {% load i18n %}
 
 <div class="colored-box">
@@ -64,9 +64,9 @@
             {% endif %}
 
             {% if input_offer.sort == 'stars' %}
-                {% trans 'Stars' %} |
+                {% trans 'User rating' %} |
             {% else %}
-                <a href="{% url 'offer_sort' 'stars' %}">{% trans 'Rating' %}</a> |
+                <a href="{% url 'offer_sort' 'stars' %}">{% trans 'User rating' %}</a> |
             {% endif %}
 
             {% if input_offer.sort == 'amount' %}
@@ -106,7 +106,6 @@
                     <td>
                         {% get_offer_distance_from offer input_offer.lat input_offer.lng as distance %}
                         {{ distance|floatformat:0 }} km
-{#                        {{ offer.distance_from_user|floatformat:0 }} km#}
                     </td>
                 </tr>
             {% endfor %}

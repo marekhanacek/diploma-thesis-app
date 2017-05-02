@@ -1,6 +1,6 @@
 {% extends 'web/base.html' %}
 {% load static %}
-{% load offer %}
+{% load web_extras %}
 {% load i18n %}
 {% load thumbnail %}
 
@@ -42,7 +42,7 @@
                             {% if actual_offers_user %}
                                 <li {% if not actual_offers_my %}class="active"{% endif %}>
                                     <a href="#offers-waiting-others"
-                                       data-toggle="tab">{% trans 'Waiting for other user' %}</a>
+                                       data-toggle="tab">{% trans 'Waiting for other users' %}</a>
                                 </li>
                             {% endif %}
                         </ul>

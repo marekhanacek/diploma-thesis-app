@@ -7,13 +7,13 @@ from django.utils.translation import ugettext as _
 from django.views.generic.base import View
 
 from web.forms import OfferSearchForm, OfferForm, FeedbackForm
-from web.models import Offer
+from web.models import Offer, Currency
 from web.service.acl import can_user_access_offer
 from web.service.offer import get_minimum_amount_for_currencies, get_maximum_amount_for_currencies, get_sorted_offers, \
     get_offer_visible_feedbacks, create_feedback, create_offer
 from web.service import offer_sorting_strategies
 from web.service.user import get_user_feedbacks
-from web.templatetags.offer import get_other_user
+from web.templatetags.web_extras import get_other_user
 
 
 class ListView(View):
@@ -26,7 +26,6 @@ class ListView(View):
         form.fields['currency_to'].queryset = form.fields['currency_to'].queryset.filter(
             ~Q(pk=input_offer['currency_from'])
         )
-
         offers = get_sorted_offers(
             input_offer=request.session['input_offer'],
             sorting_strategy=self.get_sorting_strategy(input_offer['sort']),
@@ -120,7 +119,7 @@ class FeedbackView(View):
             offer=Offer.objects.get(pk=id),
             user=request.user,
             comment=request.POST.get('comment'),
-            stars=request.POST.get('stars'),
+            stars=int(request.POST.get('stars')),
         )
         messages.add_message(request, messages.INFO, _('Feedback was added.'))
         return redirect('offer_detail', id=id)
@@ -131,15 +130,17 @@ class NewView(View):
     template_name = "web/offer/new.html"
 
     def post(self, request):
+        currency_from = Currency.objects.get(pk=int(request.POST.get('currency_from')))
+        currency_to = Currency.objects.get(pk=int(request.POST.get('currency_to')))
         create_offer(
             lat=float(request.POST.get('lat')),
             lng=float(request.POST.get('lng')),
             radius=int(request.POST.get('radius')),
             amount=int(request.POST.get('amount_from')),
             comment=request.POST.get('comment'),
-            currency_from=int(request.POST.get('currency_from')),
-            currency_to=int(request.POST.get('currency_to')),
-            user_created=int(request.user.id),
+            currency_from=currency_from,
+            currency_to=currency_to,
+            user_created=request.user,
             address=request.POST.get('address'),
         )
         messages.add_message(request, messages.INFO, _('Offer was added.'))

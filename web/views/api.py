@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
@@ -6,6 +7,8 @@ from rest_framework.response import Response
 from django.contrib.auth import login
 from django.http.response import HttpResponse
 from social_django.utils import psa
+from rest_framework.authtoken.models import Token
+from rest_framework import mixins
 
 from web.models import Offer, Currency, Language
 from web.serializers import OfferSerializer, CurrencySerializer, FeedbackSerializer, UserSerializer, \
@@ -15,11 +18,12 @@ from web.service.offer_sorting_strategies import AmountSortingStrategy
 from web.service import offer_status
 
 
-class OfferViewSet(viewsets.ModelViewSet):
+class OfferViewSet(viewsets.ReadOnlyModelViewSet, mixins.CreateModelMixin):
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
 
     def list(self, request, *args, **kwargs):
+        print(request.user.id)
         queryset = self.filter_queryset(self.get_my_queryset())
 
         page = self.paginate_queryset(queryset)
@@ -64,62 +68,54 @@ class OfferViewSet(viewsets.ModelViewSet):
         )
 
     @detail_route(methods=['post'])
-    def delete(self, *args, **kwargs):
+    def delete(self, request, *args, **kwargs):
         offer = self.get_object()
-        user = None
-        offer_status.delete(offer, user)
+        offer_status.delete(offer, request.user)
         return Response(OfferSerializer(offer).data)
 
     @detail_route(methods=['post'])
-    def accept(self, *args, **kwargs):
+    def accept(self, request, *args, **kwargs):
         offer = self.get_object()
-        user = None
-        offer_status.accept(offer, user)
+        offer_status.accept(offer, request.user)
         return Response(OfferSerializer(offer).data)
 
     @detail_route(methods=['post'])
-    def approve(self, *args, **kwargs):
+    def approve(self, request, *args, **kwargs):
         offer = self.get_object()
-        user = None
-        offer_status.approve(offer, user)
+        offer_status.approve(offer, request.user)
         return Response(OfferSerializer(offer).data)
 
     @detail_route(methods=['post'])
-    def refuse(self, *args, **kwargs):
+    def refuse(self, request, *args, **kwargs):
         offer = self.get_object()
-        user = None
-        offer_status.refuse(offer, user)
+        offer_status.refuse(offer, request.user)
         return Response(OfferSerializer(offer).data)
 
     @detail_route(methods=['post'])
-    def already_not_interested(self, *args, **kwargs):
+    def already_not_interested(self, request, *args, **kwargs):
         offer = self.get_object()
-        user = None
-        offer_status.already_not_interested(offer, user)
+        offer_status.already_not_interested(offer, request.user)
         return Response(OfferSerializer(offer).data)
 
     @detail_route(methods=['post'])
-    def offer_again(self, *args, **kwargs):
+    def offer_again(self, request, *args, **kwargs):
         offer = self.get_object()
-        user = None
-        offer_status.offer_again(offer, user)
+        offer_status.offer_again(offer, request.user)
         return Response(OfferSerializer(offer).data)
 
     @detail_route(methods=['post'])
-    def complete(self, *args, **kwargs):
+    def complete(self, request, *args, **kwargs):
         offer = self.get_object()
-        user = None
-        offer_status.complete(offer, user)
+        offer_status.complete(offer, request.user)
         return Response(OfferSerializer(offer).data)
 
     @detail_route(methods=['get', 'post'])
     def feedback(self, request, pk, *args, **kwargs):
         if request.method == 'POST':
-            offer = Offer.objects.get(pk=pk)
-            user = User.objects.get(pk=100)
+            offer = get_object_or_404(Offer, pk=pk)
             create_feedback(
                 offer=offer,
-                user=user,
+                user=request.user,
                 comment=self.request.query_params.get('comment'),
                 stars=self.request.query_params.get('stars')
             )
@@ -146,10 +142,11 @@ class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 @psa('social:complete')
-def register_by_access_token(request, backend):
+def login(request, backend):
     user = request.backend.do_auth(request.GET.get('access_token'))
     if user:
         login(request, user)
-        return HttpResponse('OK')
+        token = Token.objects.create(user=user)
+        return HttpResponse(token.key)
     else:
         return HttpResponse('ERROR')

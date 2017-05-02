@@ -1,6 +1,5 @@
 from requests import request, HTTPError
 from django.core.files.base import ContentFile
-import urllib
 
 from web.models import UserProfile
 from web.service.user import save_user_location_to_session

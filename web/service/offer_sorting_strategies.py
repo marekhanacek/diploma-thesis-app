@@ -19,7 +19,7 @@ class DistanceSortingStrategy(SortingStrategyInterface):
 
 class StarsSortingStrategy(SortingStrategyInterface):
     def sort_offers(self, offers, amount_from, amount_to, lat, lng):
-        return sorted(offers, key=lambda x: get_user_stars(x.user_created))
+        return sorted(offers, key=lambda x: get_user_stars(x.user_created), reverse=True)
 
 
 class RatingsSortingStrategy(SortingStrategyInterface):

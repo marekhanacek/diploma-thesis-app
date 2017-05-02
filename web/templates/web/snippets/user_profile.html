@@ -1,4 +1,4 @@
-{% load offer %}
+{% load web_extras %}
 {% load i18n %}
 {% load thumbnail %}
 
@@ -8,6 +8,7 @@
         {{ actual_user|print_verified }}
     </h1>
     <img class="center-block img-circle" src="{{ actual_user.userprofile.profile_photo|thumbnail_url:'avatar' }}"/>
+    <br />
     {% if actual_user.last_login %}
         <p>{% trans 'Last login:' %} <strong>{{ actual_user.last_login|date:"j.n.Y H:i" }}</strong></p>
     {% endif %}

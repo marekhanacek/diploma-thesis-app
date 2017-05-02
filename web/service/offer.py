@@ -34,16 +34,22 @@ def create_offer(lat, lng, radius, amount, comment, currency_from, currency_to, 
 
 
 def create_feedback(offer, user, comment, stars):
-    if offer.status.is_finished():
+    if not offer.status.is_finished():
         raise Exception('Offer has to be in status FINISHED')
     if user != offer.user_created and user != offer.user_responded:
         raise Exception('User is not attached to this offer')
     if stars < 0 or stars > 5:
         raise Exception('Stars is number between 0 and 5')
 
+    if offer.user_created == user:
+        other_user = offer.user_responded
+    else:
+        other_user = offer.user_created
+
     return Feedback.objects.create(
         offer=offer,
         user_created=user,
+        user_responded=other_user,
         comment=comment,
         stars=stars,
     )

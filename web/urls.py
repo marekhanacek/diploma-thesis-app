@@ -2,7 +2,7 @@ from rest_framework import routers
 from django.conf.urls import url, include
 
 from web.views import other
-from web.views.api import OfferViewSet, CurrencyViewSet, UserViewSet, LanguageViewSet, register_by_access_token
+from web.views.api import OfferViewSet, CurrencyViewSet, UserViewSet, LanguageViewSet, login
 from .views import offer, page, sign, user, offer_status
 
 router = routers.DefaultRouter()
@@ -34,13 +34,13 @@ urlpatterns = [
 
     url(r'^page/(.*)$', page.DetailView.as_view(), name='page'),
 
-    url(r'^exchange_rate/(?P<currecy_from>[0-9]+)/(?P<currecy_to>[0-9]+)$', other.RateView.as_view(), name='exchange_rate'),
+    url(r'^exchange-rate/(?P<currecy_from>[0-9]+)/(?P<currecy_to>[0-9]+)$', other.RateView.as_view(), name='exchange_rate'),
 
     url(r'^login/(?P<id>[0-9]+)$', sign.LoginView.as_view(), name='login'),
     url(r'^logout$', sign.LogoutView.as_view(), name='logout'),
 
     url(r'^api/', include(router.urls)),
 
-    url(r'^register-by-token/(?P<backend>[^/]+)/$', register_by_access_token)
+    url(r'^api/login/(?P<backend>[^/]+)/$', login),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

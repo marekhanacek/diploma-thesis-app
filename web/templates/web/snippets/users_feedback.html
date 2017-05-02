@@ -1,8 +1,8 @@
 {% load i18n %}
-{% load offer %}
+{% load web_extras %}
 
 <div class="colored-box">
-    <h3>{% trans 'Users feedback' %}</h3>
+    <h2>{% trans "User's feedbacks" %}</h2>
     <hr class="darker"/>
     {% if feedbacks %}
         {% for feedback in feedbacks %}

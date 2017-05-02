@@ -45,5 +45,5 @@ class OfferSortingStrategiesTests(TestCase):
         offers = self.get_offers(StarsSortingStrategy())
         previous = offers[:1][0]
         for offer in offers:
-            self.assertLessEqual(get_user_stars(previous.user_created), get_user_stars(offer.user_created))
+            self.assertGreaterEqual(get_user_stars(previous.user_created), get_user_stars(offer.user_created))
             previous = offer

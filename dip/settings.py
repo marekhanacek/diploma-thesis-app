@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'web.apps.WebConfig',
     'social_django',
     'easy_thumbnails',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -62,7 +63,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'web.context_processors.template_variables',
-
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
@@ -199,5 +199,9 @@ FIXTURE_DIRS = [
 # Django REST Framework settings
 
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
