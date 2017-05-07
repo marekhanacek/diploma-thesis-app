@@ -46,6 +46,15 @@
     </div>
 </footer>
 
+{% if show_cookies %}
+    <div id="privacy-policy">
+        <p>
+            {% trans 'By continuing to browse this website, you agree to our use of cookies.' %}
+            <a href="#" id="allow-cookies-button" class="btn btn-my inline-btn"><span>{% trans 'Agree' %}</span></a>
+        </p>
+    </div>
+{% endif %}
+
 {% include 'web/modals.html' %}
 
 <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-06 18:11+0200\n"
+"POT-Creation-Date: 2017-05-07 23:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,12 +31,11 @@ msgstr "Jak to funguje?"
 msgid "Contact"
 msgstr "Kontakt"
 
-#: web/templates/web/base-map.html:67
-msgid ""
-"Bla bla bla blaBla bla bla blaBla bla bla blaBla bla bla blaBla bla bla bla"
-msgstr "AHOJ"
+#: web/templates/web/base-map.html:67 web/templates/web/base.html:52
+msgid "By continuing to browse this website, you agree to our use of cookies."
+msgstr "Používáním tohoto webu souhlasíte s využíváním cookies."
 
-#: web/templates/web/base-map.html:68
+#: web/templates/web/base-map.html:68 web/templates/web/base.html:53
 msgid "Agree"
 msgstr "Souhlasím"
 
@@ -237,10 +236,6 @@ msgstr "Změna adresy"
 msgid "Type your address"
 msgstr "Zadejte vaši adresu"
 
-#: web/templates/web/modals.html:39
-msgid "Or click to map to select position"
-msgstr "Nebo klikněte do mapy k vybrání pozice"
-
 #: web/templates/web/modals.html:40
 msgid "Or select your current position"
 msgstr "Nebo vyberte aktuální polohu"
@@ -250,7 +245,7 @@ msgid "My position"
 msgstr "Moje poloha"
 
 #: web/templates/web/modals.html:56
-#: web/templates/web/user/change-preferences.html:86
+#: web/templates/web/user/change-preferences.html:85
 msgid "Save"
 msgstr "Uložit"
 
@@ -280,7 +275,7 @@ msgstr "Příjmout"
 
 #: web/templates/web/offer/detail-ajax.html:16
 #: web/templates/web/offer/detail.html:12
-#: web/templates/web/offer/list-ajax.html:101
+#: web/templates/web/offer/list-ajax.html:104
 #: web/templates/web/snippets/history_with_user.html:14
 #: web/templates/web/user/profile.html:62
 #: web/templates/web/user/profile.html:95
@@ -342,49 +337,49 @@ msgstr "Filtrovat dle ceny:"
 msgid "In interval:"
 msgstr "V intervalu:"
 
-#: web/templates/web/offer/list-ajax.html:61
+#: web/templates/web/offer/list-ajax.html:64
 msgid "Sort by:"
 msgstr "Seřadit dle:"
 
-#: web/templates/web/offer/list-ajax.html:64
-#: web/templates/web/offer/list-ajax.html:66
+#: web/templates/web/offer/list-ajax.html:67
+#: web/templates/web/offer/list-ajax.html:69
 msgid "Default"
 msgstr "Výchozí"
 
-#: web/templates/web/offer/list-ajax.html:70
-#: web/templates/web/offer/list-ajax.html:72
+#: web/templates/web/offer/list-ajax.html:73
+#: web/templates/web/offer/list-ajax.html:75
 #: web/templates/web/snippets/user_stars.html:8
 msgid "User rating"
 msgstr "Hodnocení uživatele"
 
-#: web/templates/web/offer/list-ajax.html:76
-#: web/templates/web/offer/list-ajax.html:78
+#: web/templates/web/offer/list-ajax.html:79
+#: web/templates/web/offer/list-ajax.html:81
 msgid "Amount"
 msgstr "Částka"
 
-#: web/templates/web/offer/list-ajax.html:82
-#: web/templates/web/offer/list-ajax.html:84
+#: web/templates/web/offer/list-ajax.html:85
+#: web/templates/web/offer/list-ajax.html:87
 msgid "Distance"
 msgstr "Vzdálenost"
 
-#: web/templates/web/offer/list-ajax.html:90
+#: web/templates/web/offer/list-ajax.html:93
 msgid "Offer"
 msgstr "Nabídka"
 
-#: web/templates/web/offer/list-ajax.html:91
+#: web/templates/web/offer/list-ajax.html:94
 msgid "User"
 msgstr "Uživatel"
 
-#: web/templates/web/offer/list-ajax.html:92
+#: web/templates/web/offer/list-ajax.html:95
 #: web/templates/web/snippets/offer_basic_info.html:15
 msgid "Distance from your location"
 msgstr "Vzdálenost od vaší polohy"
 
-#: web/templates/web/offer/list-ajax.html:123
+#: web/templates/web/offer/list-ajax.html:126
 msgid "Show all offers"
 msgstr "Zobrazit všechny nabídky"
 
-#: web/templates/web/offer/list-ajax.html:129
+#: web/templates/web/offer/list-ajax.html:132
 msgid "There are no offers."
 msgstr "Nebyly nalezeny žádné nabídky."
 
@@ -413,13 +408,13 @@ msgstr "Adresa"
 msgid "Radius"
 msgstr "Rádius"
 
-#: web/templates/web/offer/new.html:54
+#: web/templates/web/offer/new.html:57
 #: web/templates/web/snippets/feedback_form.html:15
 #: web/templates/web/snippets/offer_basic_info.html:25
 msgid "Comment"
 msgstr "Komentář"
 
-#: web/templates/web/offer/new.html:61
+#: web/templates/web/offer/new.html:64
 msgid "Create offer"
 msgstr "Vytvořit nabídku"
 
@@ -515,7 +510,7 @@ msgid "No feedbacks yet."
 msgstr "Žádná hodnocení nebyla zadána."
 
 #: web/templates/web/user/change-preferences.html:12
-#: web/templates/web/user/change-preferences.html:97
+#: web/templates/web/user/change-preferences.html:96
 msgid "Back to my profile"
 msgstr "Zpět na můj profil"
 
@@ -539,7 +534,7 @@ msgstr "Jazyk"
 msgid "Basic information about you"
 msgstr "Základní informace o vás"
 
-#: web/templates/web/user/change-preferences.html:77
+#: web/templates/web/user/change-preferences.html:76
 msgid "Phone"
 msgstr "Telefon"
 
@@ -580,7 +575,9 @@ msgid "User is verified"
 msgstr "Uživatel je ověřený"
 
 #: web/views/offer.py:71
-msgid "You do not have permission."
+#, fuzzy
+#| msgid "You do not have permission."
+msgid "Access denied. You do not have permission."
 msgstr "Nemá dostatečná práva pro přístup."
 
 #: web/views/offer.py:102
@@ -605,8 +602,8 @@ msgstr "Nabídka byla smazána."
 
 #: web/views/offer_status.py:20 web/views/offer_status.py:31
 #: web/views/offer_status.py:42 web/views/offer_status.py:57
-#: web/views/offer_status.py:68 web/views/offer_status.py:88
-#: web/views/offer_status.py:99
+#: web/views/offer_status.py:67 web/views/offer_status.py:87
+#: web/views/offer_status.py:98
 msgid "Access denied."
 msgstr "Přístup odepřen."
 
@@ -622,19 +619,19 @@ msgstr "Nabídka byla přijata."
 msgid "User was refused and offer is again available for other users."
 msgstr "Uživatel byl odmítnut. Nabídka je opět přístupná ostatním uživatelům."
 
-#: web/views/offer_status.py:66
+#: web/views/offer_status.py:65
 msgid "You were deleted from this offer."
 msgstr "Byl jsem odstraněn z této nabídky."
 
-#: web/views/offer_status.py:83
+#: web/views/offer_status.py:82
 msgid "Offer was canceled. Offer is again available for other users."
 msgstr "Nabídka byla zrušena. Nabídka je opět přístupná ostatním uživatelům."
 
-#: web/views/offer_status.py:86
+#: web/views/offer_status.py:85
 msgid "Offer was canceled."
 msgstr "Nabídka byla zrušena."
 
-#: web/views/offer_status.py:97
+#: web/views/offer_status.py:96
 msgid "Offer was marked as completed."
 msgstr "Nabídka byla označena jako kompletní."
 
@@ -645,9 +642,6 @@ msgstr "Údaje byly změněny."
 #: web/views/user.py:94
 msgid "ERROR"
 msgstr "ERROR"
-
-msgid "Do"
-msgstr "AHOJ"
 
 msgid "Awaiting acceptance"
 msgstr "Čeká na druhého uživatele"
