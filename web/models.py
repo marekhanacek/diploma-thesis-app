@@ -95,9 +95,9 @@ class UserProfile(models.Model):
     exchange_currency = models.ForeignKey(Currency, on_delete=models.PROTECT,
                                           related_name='profiles_having_exchange_currency', null=True)
     language = models.ForeignKey(Language, on_delete=models.PROTECT, related_name='profiles_having_language', null=True)
-    basic_information = models.TextField(default='')
+    basic_information = models.TextField(default='', blank=True)
     email = models.CharField(max_length=150, default='')
-    phone = models.CharField(max_length=20, default='')
+    phone = models.CharField(max_length=20, default='', blank=True)
     address = models.CharField(max_length=255, default='')
     radius = models.FloatField(default=0)
     lat = models.FloatField(default=0)
