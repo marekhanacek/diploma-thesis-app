@@ -8,7 +8,15 @@ from web.service.user import save_user_location_to_session, save_user_currencies
 def save_profile_picture(backend, user, response, is_new=False, *args, **kwargs):
     if backend.name == 'facebook':
         if is_new:
-            UserProfile.objects.create(user=user)
+            UserProfile.objects.create(
+                user=user,
+                home_currency_id=1,
+                exchange_currency_id=2,
+                lat=50.0755381,
+                lng=14.43780049999998,
+                address='Praha',
+                radius=100,
+            )
 
         url = 'http://graph.facebook.com/{0}/picture'.format(response['id'])
 
