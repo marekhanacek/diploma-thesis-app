@@ -186,7 +186,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'marekhanacek1@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = 587
-ALLOW_MAIL_SENDING = False
+ALLOW_MAIL_SENDING = True
 
 # Thumbnails settings
 
