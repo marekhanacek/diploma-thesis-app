@@ -9,7 +9,6 @@ class RateView(View):
     @staticmethod
     def get(request, currecy_from, currecy_to):
         try:
-            rate = get_exchange_rate(currecy_from, currecy_to)
-            return HttpResponse(rate)
+            return HttpResponse(get_exchange_rate(currecy_from, currecy_to))
         except ObjectDoesNotExist:
             raise Http404

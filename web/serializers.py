@@ -4,6 +4,7 @@ from rest_framework.exceptions import ValidationError
 
 from web.models import Offer, Currency, Feedback, Language, UserProfile
 from web.service.offer import create_offer
+from web.service.user import is_verified, get_user_stars
 
 
 class OfferSerializer(serializers.ModelSerializer):
@@ -108,11 +109,24 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     userprofile = UserProfileSerializer()
+    is_verified = serializers.SerializerMethodField()
+    stars = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = (
             'id',
             'username',
+            'is_verified',
+            'stars',
+            'email',
             'userprofile',
         )
+
+    @staticmethod
+    def get_is_verified(user):
+        return is_verified(user)
+
+    @staticmethod
+    def get_stars(user):
+        return get_user_stars(user)

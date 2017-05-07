@@ -1,16 +1,26 @@
 {% load i18n %}
 {% load web_extras %}
 
-{% if visible_feedbacks|length > 0 %}
+{% if other_user_feedback and other_user_feedback|is_feedback_visible or user_feedback %}
     <div class="colored-box">
-        <h3>{% trans 'Feedbacks of this offer' %}</h3>
+        <h2>{% trans 'Feedbacks of this offer' %}</h2>
         <hr class="darker"/>
-        {% for feedback in visible_feedbacks %}
+        {% if user_feedback %}
             <p>
-                <strong>{{ feedback.user_created.get_full_name }}'s feedback:</strong>
-                {{ feedback.stars|print_stars }}<br>
-                {{ feedback.comment }}
+                <strong>Your feedback:</strong>
+                {{ user_feedback.stars|print_stars }}<br>
+                {% if not user_feedback|is_feedback_visible %}
+                    This feedback is not visible to other users
+                {% endif %}<br />
+                {{ user_feedback.comment }}
             </p>
-        {% endfor %}
+        {% endif %}
+        {% if other_user_feedback %}
+            <p>
+                <strong>{{ other_user_feedback.user_created.get_full_name }}'s feedback:</strong>
+                {{ other_user_feedback.stars|print_stars }}<br>
+                {{ other_user_feedback.comment }}
+            </p>
+        {% endif %}
     </div>
 {% endif %}

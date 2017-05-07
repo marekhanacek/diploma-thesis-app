@@ -3,18 +3,23 @@
 {% load thumbnail %}
 
 <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-            aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="glyphicon glyphicon-user" style="color: #fff;"></span>
     </button>
-    <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-euro"></span> MicroXChange</a>
+    <button type="button" class="navbar-toggle collapsed hidden-md hidden-lg" style="color: #fff;" id="show-map-mobile">
+        {% trans 'Show map' %}
+    </button>
+    <button type="button" class="navbar-toggle collapsed hidden-md hidden-lg" style="color: #fff; display: none;" id="show-text-mobile">
+        {% trans 'Show text' %}
+    </button>
+    <button type="button" class="navbar-toggle collapsed" data-toggle="modal" data-target="#addressModal" title="Click to change your address">
+        <span class="glyphicon glyphicon-map-marker" style="color: #fff;"></span>
+    </button>
+    <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-euro"></span> <span class="hidden-xs">MicroXChange</span></a>
 </div>
 <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li class="hidden-xs">
             <a href="" data-toggle="modal" data-target="#addressModal" title="Click to change your address">
                 <span class="glyphicon glyphicon-map-marker"></span>
                 {% trans 'Change your address' %}

@@ -14,8 +14,9 @@
                     <img class="center-block img-circle"
                          src="{{ user.userprofile.profile_photo|thumbnail_url:'avatar' }}"/>
                     <br/>
-                    <p>{% trans 'Email:' %} <strong>{{ user.userprofile.email }}</strong></p>
-                    <p>{% trans 'Your address:' %} <strong>{{ user.userprofile.address }}</strong></p>
+                    <p>{% trans 'Email:' %} <strong>{{ user.email }}</strong></p>
+                    <p>{% trans 'Phone:' %} <strong>{{ user.userprofile.phone }}</strong></p>
+                    <p>{% trans 'Address:' %} <strong>{{ user.userprofile.address }}</strong></p>
                     <p>{% trans 'Searching radius:' %} <strong>{{ user.userprofile.radius }} km</strong></p>
                     <hr/>
                     <div class="list-group">
@@ -58,8 +59,8 @@
                                         <div class="relative">
                                             <a href="{% url 'offer_detail' offer.id %}" class="absolute-link"></a>
                                             <h4>
-                                                {{ offer|format_offer_currency_from }} to {{ offer|format_offer_currency_to }}
-                                                <span class="label label-status">{{ offer.status.title }}</span>
+                                                {{ offer|format_offer_currency_from }} {% trans 'to' %} {{ offer|format_offer_currency_to }}
+                                                <span class="label label-status">{% trans offer.status.title %}</span>
                                             </h4>
                                             <p>
                                                 {% if other_user %}
@@ -91,7 +92,7 @@
                                     <div class="col-md-6 offer-box">
                                         <div class="relative">
                                             <a href="{% url 'offer_detail' offer.id %}" class="absolute-link"></a>
-                                            <h4>{{ offer|format_offer_currency_from }} to {{ offer|format_offer_currency_to }} <span
+                                            <h4>{{ offer|format_offer_currency_from }} {% trans 'to' %} {{ offer|format_offer_currency_to }} <span
                                                     class="label label-status">{{ offer.status.title }}</span></h4>
                                             <p>
                                                 {% if other_user %}
@@ -126,7 +127,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <h4><a href="{% url 'offer_detail' offer.id %}">{{ offer|format_offer_currency_from }}
-                                        to {{ offer|format_offer_currency_to }}</a></h4>
+                                        {% trans 'to' %} {{ offer|format_offer_currency_to }}</a></h4>
                                     <p>
                                         <span class="glyphicon glyphicon-user"></span>
                                         <a href="{% url 'user_detail' other_user.id %}">{{ other_user.get_full_name }}</a>
@@ -135,8 +136,8 @@
                                     {% if offer.feedbacks.count %}
                                         {% for feedback in offer.feedbacks.all %}
                                             <p>
-                                                <strong>{{ feedback.user_created.first_name }}'s feedback:</strong><br>
-                                                {{ feedback.stars }}<br>
+                                                <strong>{{ feedback.user_created.get_full_name }}</strong><br>
+                                                {{ feedback.stars|print_stars }}<br>
                                                 {{ feedback.comment }}
                                             </p>
                                         {% endfor %}

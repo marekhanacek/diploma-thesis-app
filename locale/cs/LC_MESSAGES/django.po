@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-24 14:53+0200\n"
+"POT-Creation-Date: 2017-05-06 18:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,34 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: web/templates/web/base-map.html:51 web/templates/web/base.html:42
+#: web/templates/web/base-map.html:52 web/templates/web/base.html:42
 msgid "Terms"
-msgstr ""
+msgstr "Podmínky"
 
-#: web/templates/web/base-map.html:52 web/templates/web/base.html:43
+#: web/templates/web/base-map.html:53 web/templates/web/base.html:43
 msgid "How it works?"
-msgstr ""
+msgstr "Jak to funguje?"
 
-#: web/templates/web/base-map.html:53 web/templates/web/base.html:44
+#: web/templates/web/base-map.html:54 web/templates/web/base.html:44
+#: web/templates/web/page/contact.html:7
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
-#: web/templates/web/base-map.html:64
-msgid "Show text"
-msgstr ""
-
-#: web/templates/web/base-map.html:66
-msgid "Show map"
-msgstr ""
-
-#: web/templates/web/base-map.html:72
+#: web/templates/web/base-map.html:67
 msgid ""
 "Bla bla bla blaBla bla bla blaBla bla bla blaBla bla bla blaBla bla bla bla"
-msgstr ""
+msgstr "AHOJ"
 
-#: web/templates/web/base-map.html:73
+#: web/templates/web/base-map.html:68
 msgid "Agree"
-msgstr ""
+msgstr "Souhlasím"
 
 #: web/templates/web/email/both/finished-both-feedbacks.txt:3
 #, python-format
@@ -58,6 +51,13 @@ msgid ""
 "Thank you for using our services.\n"
 "Exchange.com\n"
 msgstr ""
+"\n"
+"User %(user.get_full_name)s inserted feedback to money exchange offer.\n"
+"\n"
+"You can see this feedback in your user profile.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
 
 #: web/templates/web/email/both/finished-other-feedback.txt:3
 #, python-format
@@ -71,6 +71,14 @@ msgid ""
 "Thank you for using our services.\n"
 "Exchange.com\n"
 msgstr ""
+"\n"
+"User %(user.get_full_name)s inserted feedback to money exchange offer.\n"
+"\n"
+"You can see this feedback in your user profile in 7 days or after that you "
+"insert your feedback.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
 
 #: web/templates/web/email/both/finished.txt:3
 #, python-format
@@ -84,6 +92,14 @@ msgid ""
 "Thank you for using our services.\n"
 "Exchange.com\n"
 msgstr ""
+"\n"
+"User %(user.get_full_name)s marker offer for money exchange as Complete.\n"
+"\n"
+"Now, you can insert feedback on this user in your user profile on web "
+"exchange.com.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
 
 #: web/templates/web/email/created/already_not_awaiting_approval.txt:3
 #: web/templates/web/email/created/already_not_rte.txt:3
@@ -98,6 +114,14 @@ msgid ""
 "Thank you for using our services.\n"
 "Exchange.com\n"
 msgstr ""
+"\n"
+"User %(user.get_full_name)s is already not interesting in your money "
+"exchange offer.\n"
+"\n"
+"Offer was marked as Awaiting acceptance. Now you can wait for other takers.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
 
 #: web/templates/web/email/created/awaiting_approval.txt:3
 #, python-format
@@ -112,6 +136,15 @@ msgid ""
 "Thank you for using our services.\n"
 "Exchange.com\n"
 msgstr ""
+"\n"
+"User %(user.get_full_name)s has accept your offer for money exchange "
+"(%(from)s to %(to)s).\n"
+"\n"
+"You will see his/her contact information in your user profile after "
+"accepting user. Than you can change your money with this user.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
 
 #: web/templates/web/email/responded/already_not_rte.txt:3
 #, python-format
@@ -124,6 +157,13 @@ msgid ""
 "Thank you for using our services.\n"
 "Exchange.com\n"
 msgstr ""
+"\n"
+"User %(user.get_full_name)s has canceled offer for money exchange.\n"
+"\n"
+"Take a look at other offers.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
 
 #: web/templates/web/email/responded/approved.txt:3
 #, python-format
@@ -143,6 +183,20 @@ msgid ""
 "Thank you for using our services.\n"
 "Exchange.com\n"
 msgstr ""
+"\n"
+"User %(user.get_full_name)s agree with offer for money exchange (%(from)s to "
+"%(to)s).\n"
+"\n"
+"Contact informations of %(user.get_full_name)s are below:\n"
+"%(other_user.get_full_name)s\n"
+"Tel: %(other_user.get_profile.phone)s\n"
+"Email: %(other_user.get_profile.email)s\n"
+"\n"
+"You can see these contact informations in your user profile on web exchange."
+"com.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
 
 #: web/templates/web/email/responded/not_approved.txt:3
 #, python-format
@@ -157,388 +211,455 @@ msgid ""
 "Thank you for using our services.\n"
 "Exchange.com\n"
 msgstr ""
+"\n"
+"User %(user.get_full_name)s not agree with offer for money exchange "
+"(%(from)s to %(to)s).\n"
+"\n"
+"If you are still looking for the best way how to change your money, you can "
+"search new offers, or offer your own offer on the web exchange.com.\n"
+"\n"
+"Thank you for using our services.\n"
+"Exchange.com\n"
 
 #: web/templates/web/modals.html:11
 msgid "Login page"
-msgstr ""
+msgstr "Přihlášení"
 
 #: web/templates/web/modals.html:15
 msgid "Login with facebook"
-msgstr ""
+msgstr "Přihlásit se přes Facebook"
 
 #: web/templates/web/modals.html:36
 msgid "Address change"
-msgstr ""
+msgstr "Změna adresy"
 
 #: web/templates/web/modals.html:38
 msgid "Type your address"
-msgstr ""
+msgstr "Zadejte vaši adresu"
 
 #: web/templates/web/modals.html:39
 msgid "Or click to map to select position"
-msgstr ""
+msgstr "Nebo klikněte do mapy k vybrání pozice"
 
 #: web/templates/web/modals.html:40
 msgid "Or select your current position"
-msgstr ""
+msgstr "Nebo vyberte aktuální polohu"
 
 #: web/templates/web/modals.html:50
 msgid "My position"
-msgstr ""
+msgstr "Moje poloha"
 
 #: web/templates/web/modals.html:56
-#: web/templates/web/user/change-preferences.html:79
+#: web/templates/web/user/change-preferences.html:86
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
-#: web/templates/web/navbar.html:20
+#: web/templates/web/navbar.html:10
+msgid "Show map"
+msgstr "Zobrazit mapu"
+
+#: web/templates/web/navbar.html:13
+msgid "Show text"
+msgstr "Zobrazit text"
+
+#: web/templates/web/navbar.html:25
 msgid "Change your address"
-msgstr ""
+msgstr "Změnit adresu"
 
-#: web/templates/web/navbar.html:30
+#: web/templates/web/navbar.html:35
 msgid "Logout"
-msgstr ""
+msgstr "Odhlásit se"
 
-#: web/templates/web/navbar.html:32
+#: web/templates/web/navbar.html:37
 msgid "Login"
-msgstr ""
+msgstr "Přihlásit se"
 
 #: web/templates/web/offer/detail-ajax.html:11
 msgid "Accept"
-msgstr ""
+msgstr "Příjmout"
+
+#: web/templates/web/offer/detail-ajax.html:16
+#: web/templates/web/offer/detail.html:12
+#: web/templates/web/offer/list-ajax.html:101
+#: web/templates/web/snippets/history_with_user.html:14
+#: web/templates/web/user/profile.html:62
+#: web/templates/web/user/profile.html:95
+#: web/templates/web/user/profile.html:130
+msgid "to"
+msgstr "do"
 
 #: web/templates/web/offer/detail-ajax.html:20
 msgid "Created by"
-msgstr ""
+msgstr "Vytvořil"
 
-#: web/templates/web/offer/detail.html:13
-msgid "to"
-msgstr ""
-
-#: web/templates/web/offer/detail.html:52
+#: web/templates/web/offer/detail.html:53
 msgid "Created this offer"
-msgstr ""
+msgstr "Vytvořil tuto nabídku"
 
-#: web/templates/web/offer/detail.html:54
+#: web/templates/web/offer/detail.html:55
 msgid "Has joined"
-msgstr ""
+msgstr "Se přidal"
 
-#: web/templates/web/offer/detail.html:68
-#: web/templates/web/snippets/user_profile.html:12
+#: web/templates/web/offer/detail.html:69
+#: web/templates/web/snippets/user_profile.html:13
 msgid "Last login:"
-msgstr ""
+msgstr "Poslední přihlášení:"
 
-#: web/templates/web/offer/detail.html:71
-#: web/templates/web/snippets/user_profile.html:14
+#: web/templates/web/offer/detail.html:72
+#: web/templates/web/snippets/user_profile.html:15
 msgid "# of offers:"
-msgstr ""
+msgstr "Počet nabídek"
 
 #: web/templates/web/offer/list-ajax.html:6
 msgid "Offers"
-msgstr ""
+msgstr "Nabídky"
 
 #: web/templates/web/offer/list-ajax.html:9
 msgid "New offer"
-msgstr ""
+msgstr "Nová nabídka"
 
 #: web/templates/web/offer/list-ajax.html:17
 msgid "Exchange currencies"
-msgstr ""
+msgstr "Měny"
 
 #: web/templates/web/offer/list-ajax.html:18
 msgid "Change currency from"
-msgstr ""
+msgstr "Měna z"
 
-#: web/templates/web/offer/list-ajax.html:25
+#: web/templates/web/offer/list-ajax.html:24
+msgid "Shuffle currencies"
+msgstr "Prohodit měny"
+
+#: web/templates/web/offer/list-ajax.html:27
 msgid "To"
-msgstr ""
+msgstr "Do"
 
-#: web/templates/web/offer/list-ajax.html:32
+#: web/templates/web/offer/list-ajax.html:34
 msgid "Filter by price interval:"
-msgstr ""
+msgstr "Filtrovat dle ceny:"
 
-#: web/templates/web/offer/list-ajax.html:33
+#: web/templates/web/offer/list-ajax.html:35
 msgid "In interval:"
-msgstr ""
+msgstr "V intervalu:"
 
 #: web/templates/web/offer/list-ajax.html:61
-#: web/templates/web/offer/list-ajax.html:63
+msgid "Sort by:"
+msgstr "Seřadit dle:"
+
+#: web/templates/web/offer/list-ajax.html:64
+#: web/templates/web/offer/list-ajax.html:66
 msgid "Default"
-msgstr ""
+msgstr "Výchozí"
 
-#: web/templates/web/offer/list-ajax.html:67
-msgid "Stars"
-msgstr ""
+#: web/templates/web/offer/list-ajax.html:70
+#: web/templates/web/offer/list-ajax.html:72
+#: web/templates/web/snippets/user_stars.html:8
+msgid "User rating"
+msgstr "Hodnocení uživatele"
 
-#: web/templates/web/offer/list-ajax.html:69
-#: web/templates/web/snippets/feedback_form.html:9
-msgid "Rating"
-msgstr ""
-
-#: web/templates/web/offer/list-ajax.html:73
-#: web/templates/web/offer/list-ajax.html:75
+#: web/templates/web/offer/list-ajax.html:76
+#: web/templates/web/offer/list-ajax.html:78
 msgid "Amount"
-msgstr ""
+msgstr "Částka"
 
-#: web/templates/web/offer/list-ajax.html:79
-#: web/templates/web/offer/list-ajax.html:81
+#: web/templates/web/offer/list-ajax.html:82
+#: web/templates/web/offer/list-ajax.html:84
 msgid "Distance"
-msgstr ""
+msgstr "Vzdálenost"
 
-#: web/templates/web/offer/list-ajax.html:87
+#: web/templates/web/offer/list-ajax.html:90
 msgid "Offer"
-msgstr ""
+msgstr "Nabídka"
 
-#: web/templates/web/offer/list-ajax.html:88
+#: web/templates/web/offer/list-ajax.html:91
 msgid "User"
-msgstr ""
+msgstr "Uživatel"
 
-#: web/templates/web/offer/list-ajax.html:89
+#: web/templates/web/offer/list-ajax.html:92
 #: web/templates/web/snippets/offer_basic_info.html:15
 msgid "Distance from your location"
-msgstr ""
+msgstr "Vzdálenost od vaší polohy"
 
-#: web/templates/web/offer/list-ajax.html:119
+#: web/templates/web/offer/list-ajax.html:123
 msgid "Show all offers"
-msgstr ""
+msgstr "Zobrazit všechny nabídky"
+
+#: web/templates/web/offer/list-ajax.html:129
+msgid "There are no offers."
+msgstr "Nebyly nalezeny žádné nabídky."
 
 #: web/templates/web/offer/new.html:11
 msgid "Create new offer"
-msgstr ""
+msgstr "Vytvořit novou nabídku"
 
 #: web/templates/web/offer/new.html:18
 msgid "I have"
-msgstr ""
+msgstr "Mám"
 
 #: web/templates/web/offer/new.html:29
 msgid "and want to change to"
-msgstr ""
+msgstr "a chci směnit na"
 
 #: web/templates/web/offer/new.html:40
 #: web/templates/web/snippets/offer_basic_info.html:11
 #: web/templates/web/user/change-preferences.html:59
-#: web/templates/web/user/profile.html:73
-#: web/templates/web/user/profile.html:105
+#: web/templates/web/user/profile.html:74
+#: web/templates/web/user/profile.html:106
 msgid "Address"
-msgstr ""
+msgstr "Adresa"
 
 #: web/templates/web/offer/new.html:47
 #: web/templates/web/user/change-preferences.html:66
 msgid "Radius"
-msgstr ""
+msgstr "Rádius"
 
 #: web/templates/web/offer/new.html:54
 #: web/templates/web/snippets/feedback_form.html:15
 #: web/templates/web/snippets/offer_basic_info.html:25
 msgid "Comment"
-msgstr ""
+msgstr "Komentář"
 
 #: web/templates/web/offer/new.html:61
 msgid "Create offer"
-msgstr ""
-
-#: web/templates/web/page/contact.html:7
-msgid "Contact to author"
-msgstr ""
+msgstr "Vytvořit nabídku"
 
 #: web/templates/web/snippets/feedback_form.html:4
 msgid "Insert your feedback"
-msgstr ""
+msgstr "Vložte hodnocení"
+
+#: web/templates/web/snippets/feedback_form.html:9
+msgid "Rating"
+msgstr "Hodnocení"
 
 #: web/templates/web/snippets/feedbacks.html:6
 msgid "Feedbacks of this offer"
-msgstr ""
+msgstr "Hodnocení této nabídky"
 
 #: web/templates/web/snippets/history_with_user.html:5
 msgid "Your history with user"
-msgstr ""
+msgstr "Vaše historie s uživatelem"
 
 #: web/templates/web/snippets/offer_basic_info.html:6
 msgid "Offer status"
-msgstr ""
+msgstr "Status nabídky"
 
 #: web/templates/web/snippets/offer_basic_info.html:20
-#: web/templates/web/user/profile.html:76
-#: web/templates/web/user/profile.html:108
+#: web/templates/web/user/profile.html:77
+#: web/templates/web/user/profile.html:109
 msgid "Creation date"
-msgstr ""
-
-#: web/templates/web/snippets/offer_basic_info.html:30
-msgid "Number of visits"
-msgstr ""
+msgstr "Datum vytvoření"
 
 #: web/templates/web/snippets/offer_buttons.html:10
 msgid "Delete offer"
-msgstr ""
+msgstr "Smazat nabídku"
 
 #: web/templates/web/snippets/offer_buttons.html:18
 msgid "Accept offer"
-msgstr ""
+msgstr "Příjmout nabídku"
 
 #: web/templates/web/snippets/offer_buttons.html:29
 msgid "Approve user"
-msgstr ""
+msgstr "Příjmout uživatele"
 
 #: web/templates/web/snippets/offer_buttons.html:36
 msgid "Refuse user"
-msgstr ""
+msgstr "Odmítnout uživatele"
 
 #: web/templates/web/snippets/offer_buttons.html:44
 msgid "I am already not interested"
-msgstr ""
+msgstr "Již nemám zájem o nabídku"
 
 #: web/templates/web/snippets/offer_buttons.html:56
 msgid "Offer was not completed. Offer it again."
-msgstr ""
+msgstr "Nabídka nebyla kompletní. Nabízet znovu."
 
 #: web/templates/web/snippets/offer_buttons.html:63
 #: web/templates/web/snippets/offer_buttons.html:78
 msgid "Finish offer"
-msgstr ""
+msgstr "Dokončené nabídky"
 
 #: web/templates/web/snippets/offer_buttons.html:71
 msgid "Offer was not completed."
-msgstr ""
+msgstr "Nabídka nebyla kompletní."
 
 #: web/templates/web/snippets/user_contact.html:5
 msgid "Contact informations:"
-msgstr ""
+msgstr "Kontaktní informace:"
 
 #: web/templates/web/snippets/user_contact.html:6
+#: web/templates/web/snippets/user_contact.html:7
 #: web/templates/web/user/profile.html:17
 msgid "Email:"
-msgstr ""
+msgstr "Email:"
 
-#: web/templates/web/snippets/user_contact.html:7
+#: web/templates/web/snippets/user_contact.html:8
+#: web/templates/web/user/profile.html:18
 msgid "Phone:"
-msgstr ""
-
-#: web/templates/web/snippets/user_stars.html:8
-msgid "User rating"
-msgstr ""
+msgstr "Telefon:"
 
 #: web/templates/web/snippets/users_feedback.html:5
-msgid "Users feedback"
-msgstr ""
+msgid "User's feedbacks"
+msgstr "Hodnocení uživatele"
 
 #: web/templates/web/snippets/users_feedback.html:17
 msgid "Rating:"
-msgstr ""
+msgstr "Hodnocení:"
 
 #: web/templates/web/snippets/users_feedback.html:18
 msgid "Comment:"
-msgstr ""
+msgstr "Komentář"
 
 #: web/templates/web/snippets/users_feedback.html:26
-#: web/templates/web/user/profile.html:145
+#: web/templates/web/user/profile.html:146
 msgid "No feedbacks yet."
-msgstr ""
+msgstr "Žádná hodnocení nebyla zadána."
 
 #: web/templates/web/user/change-preferences.html:12
-#: web/templates/web/user/change-preferences.html:90
+#: web/templates/web/user/change-preferences.html:97
 msgid "Back to my profile"
-msgstr ""
+msgstr "Zpět na můj profil"
 
 #: web/templates/web/user/change-preferences.html:13
 msgid "Change your preferences"
-msgstr ""
+msgstr "Změnit údaje"
 
 #: web/templates/web/user/change-preferences.html:22
 msgid "Home currency"
-msgstr ""
+msgstr "Domácí měna"
 
 #: web/templates/web/user/change-preferences.html:32
 msgid "Prefered exchange currency"
-msgstr ""
+msgstr "Preferovaná zahraniční měna"
 
 #: web/templates/web/user/change-preferences.html:41
 msgid "Language"
-msgstr ""
+msgstr "Jazyk"
 
 #: web/templates/web/user/change-preferences.html:50
 msgid "Basic information about you"
-msgstr ""
+msgstr "Základní informace o vás"
 
-#: web/templates/web/user/profile.html:18
-msgid "Your address:"
-msgstr ""
+#: web/templates/web/user/change-preferences.html:77
+msgid "Phone"
+msgstr "Telefon"
 
 #: web/templates/web/user/profile.html:19
+msgid "Address:"
+msgstr "Adresa"
+
+#: web/templates/web/user/profile.html:20
 msgid "Searching radius:"
-msgstr ""
+msgstr "Rádius pro vyhledávání"
 
-#: web/templates/web/user/profile.html:23
+#: web/templates/web/user/profile.html:24
 msgid "Change preferences"
-msgstr ""
+msgstr "Změna údajů"
 
-#: web/templates/web/user/profile.html:33
+#: web/templates/web/user/profile.html:34
 msgid "Your actual offers"
-msgstr ""
+msgstr "Vaše aktuální nabídky"
 
-#: web/templates/web/user/profile.html:39
+#: web/templates/web/user/profile.html:40
 msgid "Waiting for you"
-msgstr ""
+msgstr "Čekající na vás"
 
-#: web/templates/web/user/profile.html:45
-msgid "Waiting for other user"
-msgstr ""
+#: web/templates/web/user/profile.html:46
+msgid "Waiting for other users"
+msgstr "Čekající na ostatní uživatele"
 
-#: web/templates/web/user/profile.html:121
+#: web/templates/web/user/profile.html:122
 msgid "Finished offers"
-msgstr ""
+msgstr "Dokončené nabídky"
 
-#: web/templates/web/user/profile.html:147
+#: web/templates/web/user/profile.html:148
 msgid "Insert feedback"
-msgstr ""
+msgstr "Vložit hodnocení"
 
-#: web/views/offer.py:97
+#: web/templatetags/web_extras.py:31
+msgid "User is verified"
+msgstr "Uživatel je ověřený"
+
+#: web/views/offer.py:71
 msgid "You do not have permission."
-msgstr ""
+msgstr "Nemá dostatečná práva pro přístup."
 
-#: web/views/offer.py:125
+#: web/views/offer.py:102
 msgid "Feedback was added."
-msgstr ""
+msgstr "Hodnocení bylo přidáno."
 
-#: web/views/offer.py:145
+#: web/views/offer.py:104
+msgid "Feedback process ERROR."
+msgstr "Nastala chyba při zpracování hodnocení."
+
+#: web/views/offer.py:129
 msgid "Offer was added."
-msgstr ""
+msgstr "Nabídka byla přidána."
 
-#: web/views/offer_status.py:16
+#: web/views/offer.py:131
+msgid "Offer process ERROR."
+msgstr "Nastala chyba při zpracování nabídky."
+
+#: web/views/offer_status.py:18
 msgid "Offer was deleted."
-msgstr ""
+msgstr "Nabídka byla smazána."
 
-#: web/views/offer_status.py:24
+#: web/views/offer_status.py:20 web/views/offer_status.py:31
+#: web/views/offer_status.py:42 web/views/offer_status.py:57
+#: web/views/offer_status.py:68 web/views/offer_status.py:88
+#: web/views/offer_status.py:99
+msgid "Access denied."
+msgstr "Přístup odepřen."
+
+#: web/views/offer_status.py:29
 msgid "Offer was accepted."
-msgstr ""
+msgstr "Nabídka byla přijata."
 
-#: web/views/offer_status.py:32
+#: web/views/offer_status.py:40
 msgid "Offer was approved."
-msgstr ""
+msgstr "Nabídka byla přijata."
 
-#: web/views/offer_status.py:43
+#: web/views/offer_status.py:54
 msgid "User was refused and offer is again available for other users."
-msgstr ""
-
-#: web/views/offer_status.py:52
-msgid "You were deleted from this offer."
-msgstr ""
+msgstr "Uživatel byl odmítnut. Nabídka je opět přístupná ostatním uživatelům."
 
 #: web/views/offer_status.py:66
+msgid "You were deleted from this offer."
+msgstr "Byl jsem odstraněn z této nabídky."
+
+#: web/views/offer_status.py:83
 msgid "Offer was canceled. Offer is again available for other users."
-msgstr ""
+msgstr "Nabídka byla zrušena. Nabídka je opět přístupná ostatním uživatelům."
 
-#: web/views/offer_status.py:69
+#: web/views/offer_status.py:86
 msgid "Offer was canceled."
-msgstr ""
+msgstr "Nabídka byla zrušena."
 
-#: web/views/offer_status.py:77
+#: web/views/offer_status.py:97
 msgid "Offer was marked as completed."
-msgstr ""
+msgstr "Nabídka byla označena jako kompletní."
 
-#: web/views/user.py:119
+#: web/views/user.py:92
 msgid "Preferences were changed."
-msgstr ""
+msgstr "Údaje byly změněny."
 
-#: web/views/user.py:121
+#: web/views/user.py:94
 msgid "ERROR"
-msgstr ""
+msgstr "ERROR"
+
+msgid "Do"
+msgstr "AHOJ"
+
+msgid "Awaiting acceptance"
+msgstr "Čeká na druhého uživatele"
+
+msgid "Awaiting approval"
+msgstr "Čeká na schválení"
+
+msgid "Ready to exchange"
+msgstr "Připravena ke směně"
+
+msgid "Finished"
+msgstr "Dokončená"
+
+msgid "Deleted"
+msgstr "Smazaná"

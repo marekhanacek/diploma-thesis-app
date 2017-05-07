@@ -18,13 +18,19 @@
         data-lat="{{ input_offer.lat|stringformat:".10f" }}"
         data-lng="{{ input_offer.lng|stringformat:".10f" }}"
         data-radius="{{ input_offer.radius|stringformat:".1f" }}"
-        data-marker="http://localhost:8000{% static "images/marker.png" %}"
-        data-marker-verified="http://localhost:8000{% static "images/marker-verified.png" %}"
+        data-marker="{{ request.scheme }}://{{ request.get_host }}{% static "images/marker.png" %}"
+        data-marker-verified="{{ request.scheme }}://{{ request.get_host }}{% static "images/marker-verified.png" %}"
 >
 <div id="map-parent">
     <div id="map"></div>
 </div>
 <div id="content-shadow"></div>
+
+<nav class="navbar navbar-my" id="nav">
+    <div>
+        {% include 'web/navbar.html' %}
+    </div>
+</nav>
 <div id="content-map">
 
     {% if messages %}
@@ -37,12 +43,6 @@
         {% endfor %}
     {% endif %}
 
-    <nav class="navbar navbar-my" id="nav">
-        <div>
-            {% include 'web/navbar.html' %}
-        </div>
-    </nav>
-
     <div id="site">
         {% block content %}{% endblock %}
     </div>
@@ -54,17 +54,11 @@
             <a href="{% url 'page' 'contact' %}">{% trans 'Contact' %}</a>
         </p>
     </footer>
-
-    {#    <a href="" class="btn btn-my" id="map-button">#}
-    {#        <span class="text"><span class="glyphicon glyphicon-chevron-left"></span> Hide map</span>#}
-    {#        <span class="text" style="display: none;">Show map <span class="glyphicon glyphicon-chevron-right"></span></span>#}
-    {#    </a>#}
-
 </div>
 
-<a href="" id="show-text-mobile" class="map-button map-button-bottom hidden-md hidden-lg">{% trans 'Show text' %}</a>
-<a href="" id="show-map-mobile" class="map-button map-button-top hidden-md hidden-lg"
-   style="display: none;">{% trans 'Show map' %}</a>
+{#<a href="" id="show-text-mobile" class="map-button map-button-bottom hidden-md hidden-lg">{% trans 'Show text' %}</a>#}
+{#<a href="" id="show-map-mobile" class="map-button map-button-top hidden-md hidden-lg"#}
+{#   style="display: none;">{% trans 'Show map' %}</a>#}
 
 
 {% if show_cookies %}

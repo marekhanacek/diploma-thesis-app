@@ -31,7 +31,8 @@ class BaseTestCase(TestCase):
     def get_user_except(except_users=[]):
         query = User.objects
         for u in except_users:
-            query = query.filter(~Q(id=u.id))
+            if u:
+                query = query.filter(~Q(id=u.id))
         return query.first()
 
     @staticmethod

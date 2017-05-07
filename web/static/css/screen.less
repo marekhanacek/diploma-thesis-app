@@ -79,8 +79,12 @@ hr.darker {
 .colored-box {
   background: @secondaryColor;
   box-shadow: 0 0 6px rgba(0, 0, 0, .1);
-  padding: 30px;
+  padding: 30px 14px;
   margin-bottom: 20px;
+
+  @media only screen and (min-width: 768px) {
+    padding: 30px;
+  }
 }
 
 .navbar-my {
@@ -88,6 +92,14 @@ hr.darker {
   min-height: 40px;
   margin-bottom: 0px;
   border-radius: 0;
+  position: relative;
+  z-index: 1000;
+
+  @media only screen and (min-width: 992px) {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
 
   .navbar-nav > li > a {
     color: @secondaryColor;
@@ -111,6 +123,12 @@ hr.darker {
   }
 }
 
+body.map .navbar-my {
+  @media only screen and (min-width: 992px) {
+    left: 48%;
+  }
+}
+
 .offer-table {
   width: 100%;
   border-collapse: collapse;
@@ -122,7 +140,7 @@ hr.darker {
       padding: 13px;
     }
 
-    &:hover {
+    &:hover, &.hover {
       background: @offerTableTrBackgroundHoverColor;
     }
 
@@ -137,15 +155,19 @@ hr.darker {
 }
 
 #content-map {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 52%;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   z-index: 12;
+
+  @media only screen and (min-width: 992px) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 52%;
+    padding-top: 52px;
+  }
 }
 
 #content-shadow {
@@ -464,13 +486,15 @@ a.btn-circle {
 @media (max-width: 992px) {
   #map-parent {
     right: 0;
-    height: 95%;
+    display: none;
+  }
+
+  #map {
+    display: none;
   }
 
   #content-map {
-    top: 5%;
     width: 100%;
-    display: none;
   }
 
   #content-shadow {
@@ -478,11 +502,6 @@ a.btn-circle {
     width: 100%;
     display: none;
   }
-}
-
-#show-map-mobile {
-  color: darken(@primaryColor, 15%);
-  background: url('../images/map.png');
 }
 
 .glyphicon-verified {
@@ -500,4 +519,12 @@ h1 .glyphicon-verified {
 .icon-my-star {
   color: yellow;
   text-shadow: 0px 0px 1px #000;
+}
+.navbar-toggle {
+  margin-right: 10px;
+  padding: 9px 4px;
+}
+
+#show-map-mobile {
+  display: inline-block;
 }

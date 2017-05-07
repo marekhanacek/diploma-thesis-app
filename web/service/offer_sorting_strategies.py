@@ -29,7 +29,7 @@ class RatingsSortingStrategy(SortingStrategyInterface):
     def add_params(self, offers, amount_from, amount_to, lat, lng):
         offers = DistanceSortingStrategy().sort_offers(offers, amount_from, amount_to, lat, lng)
         if len(offers):
-            max_distance = get_offer_distance_from(offers[-1], lat, lng) + 10
+            max_distance = get_offer_distance_from(offers[-1], lat, lng)
             min_distance = get_offer_distance_from(offers[0], lat, lng)
             new_offers = []
             for offer in offers:
@@ -40,43 +40,26 @@ class RatingsSortingStrategy(SortingStrategyInterface):
         else:
             return []
 
-    # def get_amount_rating(self, offer, ten_percent, amount):
-    #     percent = ten_percent / 100
-    #     amount_diff = abs(offer.amount * offer.exchange_rate - amount)
-    #     coef = self.get_amount_rating_group_coeficient(amount_diff, percent)
-    #     return (1 - ((amount_diff / percent) / 100)) * coef
-    #
-    # @staticmethod
-    # def get_amount_rating_group_coeficient(amount_diff, percent):
-    #     temp = amount_diff / percent
-    #     if temp > 10:
-    #         return 1
-    #     elif temp > 4:
-    #         return 2
-    #     else:
-    #         return 3
-
     @staticmethod
     def get_stars_rating(offer):
         if len(get_user_feedbacks(offer.user_created)) < 2:
             return 0
-
-        user_stars = get_user_stars(offer.user_created)
-        return {
-            0: -2,
-            1: -1.5,
-            2: -1,
-            3: 0.6,
-            4: 0.8,
-            5: 1,
-        }.get(user_stars, 0)
+        else:
+            return {
+                0: -2,
+                1: -1.5,
+                2: -1,
+                3: 0.6,
+                4: 0.8,
+                5: 1,
+            }.get(get_user_stars(offer.user_created), 0)
 
     @staticmethod
     def get_distance_rating(offer, min_distance, max_distance, lat, lng):
-        min_max_distance = max_distance - min_distance
         distance_from_min = get_offer_distance_from(offer, lat, lng) - min_distance
+        min_max_distance = max_distance - min_distance
         percent = min_max_distance / 100
-        return 1 - ((distance_from_min / percent) / 100)
+        return 1 - ((distance_from_min / percent) / 100) if percent else 0
 
     @staticmethod
     def sort(offers):
@@ -85,3 +68,14 @@ class RatingsSortingStrategy(SortingStrategyInterface):
             key=lambda x: getattr(x, 'rating_distance') + getattr(x, 'rating_stars'),
             reverse=True
         )
+
+
+def get_sorting_strategy_by_identificator(identificator):
+    if identificator == 'amount':
+        return AmountSortingStrategy()
+    elif identificator == 'stars':
+        return StarsSortingStrategy()
+    elif identificator == 'distance':
+        return DistanceSortingStrategy()
+    else:
+        return RatingsSortingStrategy()

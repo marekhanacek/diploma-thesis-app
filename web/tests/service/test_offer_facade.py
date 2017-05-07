@@ -2,11 +2,10 @@ from django.contrib.auth.models import User
 
 from dip import settings
 from web.models import Offer, Feedback, Currency
-from web.service.offer import create_offer, get_sorted_offers, get_base_offers, get_offers_waiting_for_user_reaction, \
+from web.service.offer import create_offer, get_base_offers, get_offers_waiting_for_user_reaction, \
     get_offers_waiting_for_other_user_reaction, get_exchange_rate, get_finished_offers, get_history_of_users, \
-    is_offer_waiting_for_user_reaction, is_offer_waiting_for_other_user_reaction, get_minimum_amount_for_currencies, get_maximum_amount_for_currencies, \
-    is_feedback_visible, get_offer_visible_feedbacks
-from web.service.offer_sorting_strategies import RatingsSortingStrategy
+    is_offer_waiting_for_user_reaction, is_offer_waiting_for_other_user_reaction, is_feedback_visible, \
+    get_offer_visible_feedbacks
 from web.tests import BaseTestCase
 
 
@@ -15,15 +14,15 @@ class OfferFacadeTests(BaseTestCase):
 
     def test_create_offer(self):
         params = {
-          'lat': 12.3,
-          'lng': 21.0,
-          'radius': 22,
-          'amount': 22,
-          'comment': 'Test comment',
-          'currency_from': Currency.objects.get(pk=1),
-          'currency_to': Currency.objects.get(pk=2),
-          'user_created': User.objects.get(pk=1),
-          'address': 'Praha'
+            'lat': 12.3,
+            'lng': 21.0,
+            'radius': 22,
+            'amount': 22,
+            'comment': 'Test comment',
+            'currency_from': Currency.objects.get(pk=1),
+            'currency_to': Currency.objects.get(pk=2),
+            'user_created': User.objects.get(pk=1),
+            'address': 'Praha'
         }
         count_before = Offer.objects.count()
         offer = create_offer(
@@ -101,14 +100,6 @@ class OfferFacadeTests(BaseTestCase):
         user = User.objects.get(pk=1)
         offer = Offer.objects.get(pk=1)
         self.assertFalse(is_offer_waiting_for_other_user_reaction(offer, user))
-
-    def test_get_minimum_amount(self):
-        amount = get_minimum_amount_for_currencies(1, 2)
-        self.assertEqual(amount, 33)
-
-    def test_get_maximum_amount(self):
-        amount = get_maximum_amount_for_currencies(1, 2)
-        self.assertEqual(amount, 391)
 
     def test_is_feedback_visible(self):
         feedback = Feedback.objects.get(pk=1)

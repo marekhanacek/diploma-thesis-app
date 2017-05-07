@@ -33,10 +33,10 @@ function Map(elementId) {
 
         this.circles.push(new google.maps.Circle({
             strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
+            strokeOpacity: 0.5,
             strokeWeight: 2,
             fillColor: '#FF0000',
-            fillOpacity: 0.25,
+            fillOpacity: 0.1,
             map: this.map,
             center: center,
             radius: radius
@@ -69,7 +69,7 @@ function Map(elementId) {
         this.map.setCenter(this.center);
     };
 
-    this.addOffer = function (offer, offerClickCallback) {
+    this.addOffer = function (offer, offerMouseOverCallback, offerMouseOutCallback) {
         var that = this;
         offer.marker.setMap(this.map);
 
@@ -82,6 +82,18 @@ function Map(elementId) {
             });
             infowindow.open(that.map, offer.marker);
             that.map.setCenter(offer.getPosition());
+        });
+
+        google.maps.event.addListener(offer.marker, 'mouseout', function () {
+            if(offerMouseOutCallback != undefined) {
+                offerMouseOutCallback(offer);
+            }
+        });
+
+        google.maps.event.addListener(offer.marker, 'mouseover', function () {
+            if(offerMouseOverCallback != undefined) {
+                offerMouseOverCallback(offer);
+            }
         });
 
         this.offers[offer.id] = offer;
@@ -200,6 +212,7 @@ function Map(elementId) {
             };
             that.addMarker(position);
             setCircles();
+            that.fitAllBounds();
         }
     };
 
@@ -281,6 +294,9 @@ function Map(elementId) {
         this.circles.forEach(function (circle) {
             bounds.union(circle.getBounds());
         });
+        $.each(this.offers, function (id, offer) {
+            bounds.extend(offer.marker.getPosition());
+        });
         this.map.fitBounds(bounds);
     };
 
@@ -302,6 +318,7 @@ function Map(elementId) {
         $.each(settings['offers'], function (id, offer) {
             that.addOffer(offer);
         });
+        this.fitAllBounds();
     };
 }
 
@@ -357,7 +374,6 @@ function MapHistory(element, map) {
         this.history.push(html);
         this.mapSettings.push(this.map.getActualSettings());
         this.element.before(this.createBackButtonHtml());
-        console.log(this.history.length);
     };
 
     this.previous = function () {

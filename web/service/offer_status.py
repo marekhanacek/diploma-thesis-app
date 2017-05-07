@@ -5,6 +5,8 @@ from web.service.mail import send_mail
 
 
 def delete(offer, user):
+    if offer.status.id != settings.STATUS_AWAITING_ACCEPTANCE:
+        raise PermissionDenied
     if user != offer.user_created:
         raise PermissionDenied
 
@@ -13,11 +15,13 @@ def delete(offer, user):
 
 
 def accept(offer, user):
+    if offer.status.id != settings.STATUS_AWAITING_ACCEPTANCE:
+        raise PermissionDenied
     if user == offer.user_created:
         raise PermissionDenied
 
     offer.status_id = settings.STATUS_AWAITING_APPROVAL
-    offer.user_responded_id = user.id
+    offer.user_responded = user
     offer.save()
     send_mail(
         folder='created',
@@ -29,6 +33,8 @@ def accept(offer, user):
 
 
 def approve(offer, user):
+    if offer.status.id != settings.STATUS_AWAITING_APPROVAL:
+        raise PermissionDenied
     if user != offer.user_created:
         raise PermissionDenied
 
@@ -44,6 +50,8 @@ def approve(offer, user):
 
 
 def refuse(offer, user):
+    if offer.status.id != settings.STATUS_AWAITING_APPROVAL:
+        raise PermissionDenied
     if user != offer.user_created:
         raise PermissionDenied
 
@@ -60,6 +68,8 @@ def refuse(offer, user):
 
 
 def already_not_interested(offer, user):
+    if offer.status.id != settings.STATUS_AWAITING_APPROVAL:
+        raise PermissionDenied
     if user != offer.user_responded:
         raise PermissionDenied
 
@@ -76,10 +86,12 @@ def already_not_interested(offer, user):
 
 
 def offer_again(offer, user):
+    if offer.status.id != settings.STATUS_READY_TO_EXCHANGE:
+        raise PermissionDenied
     if user != offer.user_created and user != offer.user_responded:
         raise PermissionDenied
 
-    if user.id == offer.user_created_id:
+    if user.id == offer.user_created.id:
         send_mail(
             folder='responded',
             file='already_not_rte',
@@ -102,12 +114,14 @@ def offer_again(offer, user):
 
 
 def complete(offer, user):
+    if offer.status.id != settings.STATUS_READY_TO_EXCHANGE:
+        raise PermissionDenied
     if user != offer.user_created and user != offer.user_responded:
         raise PermissionDenied
 
     offer.status_id = settings.STATUS_FINISHED
     offer.save()
-    if user.id == offer.user_created_id:
+    if user.id == offer.user_created.id:
         send_mail(
             folder='both',
             file='finished',

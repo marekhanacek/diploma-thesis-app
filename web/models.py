@@ -2,8 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.db import models
 
-from dip.settings import STATUS_AWAITING_ACCEPTANCE, STATUS_AWAITING_APPROVAL, STATUS_READY_TO_EXCHANGE, STATUS_FINISHED, \
-    STATUS_DELETED
+from dip import settings
 
 
 class Currency(models.Model):
@@ -26,19 +25,19 @@ class OfferStatus(models.Model):
     title = models.CharField(max_length=30)
 
     def is_awaiting_acceptance(self):
-        return self.id == STATUS_AWAITING_ACCEPTANCE
+        return self.id == settings.STATUS_AWAITING_ACCEPTANCE
 
     def is_awaiting_approval(self):
-        return self.id == STATUS_AWAITING_APPROVAL
+        return self.id == settings.STATUS_AWAITING_APPROVAL
 
     def is_ready_to_exchange(self):
-        return self.id == STATUS_READY_TO_EXCHANGE
+        return self.id == settings.STATUS_READY_TO_EXCHANGE
 
     def is_finished(self):
-        return self.id == STATUS_FINISHED
+        return self.id == settings.STATUS_FINISHED
 
     def is_deleted(self):
-        return self.id == STATUS_DELETED
+        return self.id == settings.STATUS_DELETED
 
 
 class Offer(models.Model):
@@ -66,12 +65,6 @@ class Offer(models.Model):
     def iterate_users(self):
         yield self.user_created
         yield self.user_responded
-
-    def has_users_feedback(self, user):
-        for feedback in self.feedbacks.all():
-            if feedback.user_created == user:
-                return True
-        return False
 
     def is_user_attached(self, user):
         return user == self.user_created or user == self.user_responded

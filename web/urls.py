@@ -1,5 +1,6 @@
 from rest_framework import routers
 from django.conf.urls import url, include
+from rest_framework.documentation import include_docs_urls
 
 from web.views import other
 from web.views.api import OfferViewSet, CurrencyViewSet, UserViewSet, LanguageViewSet, login
@@ -40,7 +41,8 @@ urlpatterns = [
     url(r'^logout$', sign.LogoutView.as_view(), name='logout'),
 
     url(r'^api/', include(router.urls)),
+    url(r'^api/docs/', include_docs_urls(title='My API title'))
 
-    url(r'^api/login/(?P<backend>[^/]+)/$', login),
+    # url(r'^api/login/(?P<backend>[^/]+)/$', login),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

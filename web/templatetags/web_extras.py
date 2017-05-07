@@ -1,9 +1,10 @@
 from django import template
 from django.utils.formats import number_format
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext as _
 
 from web.models import Currency
-from web.service.offer import get_offer_distance_from as offer_get_offer_distance_from
+from web.service import offer as offer_service
 from web.service.user import is_verified
 
 register = template.Library()
@@ -27,7 +28,7 @@ def print_verified(user):
             ' class="glyphicon glyphicon-ok glyphicon-verified img-circle"'
             ' data-toggle="tooltip"'
             ' data-placement="top"'
-            ' title="User is verified"'
+            ' title="'+_("User is verified")+'"'
             '>'
             '</span>')
     else:
@@ -37,6 +38,11 @@ def print_verified(user):
 @register.filter(is_safe=True)
 def print_stars(stars):
     return mark_safe('<span class="glyphicon glyphicon-star icon-my-star"></span> ' * stars)
+
+
+@register.filter
+def is_feedback_visible(feedback):
+    return offer_service.is_feedback_visible(feedback)
 
 
 @register.assignment_tag
@@ -54,7 +60,7 @@ def get_other_user(offer, user):
 
 @register.assignment_tag
 def get_offer_distance_from(offer, lat, lng):
-    return offer_get_offer_distance_from(offer, lat, lng)
+    return offer_service.get_offer_distance_from(offer, lat, lng)
 
 
 @register.assignment_tag

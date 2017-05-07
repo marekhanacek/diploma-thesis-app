@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.aggregates import Min, Max
 from django.db.models.expressions import F
 from django.db.models.fields import FloatField
@@ -14,7 +15,7 @@ from web.service import gps_distance
 def create_offer(lat, lng, radius, amount, comment, currency_from, currency_to, user_created,
                  address):
     if currency_from == currency_to:
-        raise Exception("Cannon create offer with same currencies")
+        raise Exception("Can not create offer with same currencies")
     if amount < 1:
         raise Exception("Amount must be positive number")
 
@@ -76,13 +77,10 @@ def get_base_offers(currency_from=None, currency_to=None, minus_amount=None, plu
 
     if currency_from:
         offers = offers.filter(currency_from_id=currency_from)
-
     if currency_to:
         offers = offers.filter(currency_to_id=currency_to)
-
     if minus_amount and plus_amount:
-        offers = offers.filter(total__range=(minus_amount, plus_amount))
-
+        offers = offers.filter(total__range=(minus_amount-1, plus_amount+1))
     if user and user.is_authenticated():
         offers = offers.filter(~Q(user_created=user))
 
@@ -157,20 +155,20 @@ def is_offer_waiting_for_other_user_reaction(offer, user):
     return False
 
 
-def get_minimum_amount_for_currencies(currency_from, currency_to):
-    amount = get_base_offers(
-        currency_from,
-        currency_to
-    ).aggregate(Min('total'))['total__min']
-    return int(amount) if amount else 0
+def get_minimum_amount_for_offers(offers):
+    if offers:
+        minimum_offer = min(offers, key=lambda offer: offer.amount * offer.exchange_rate)
+        return int(minimum_offer.amount * minimum_offer.exchange_rate)
+    else:
+        return 0
 
 
-def get_maximum_amount_for_currencies(currency_from, currency_to):
-    amount = get_base_offers(
-        currency_from,
-        currency_to
-    ).aggregate(Max('total'))['total__max']
-    return int(amount) if amount else 0
+def get_maximum_amount_for_offers(offers):
+    if offers:
+        maximum_offer = max(offers, key=lambda offer: offer.amount * offer.exchange_rate)
+        return int(maximum_offer.amount * maximum_offer.exchange_rate)
+    else:
+        return 0
 
 
 def is_feedback_visible(feedback):
@@ -190,3 +188,17 @@ def get_offer_visible_feedbacks(offer):
 
 def get_offer_distance_from(offer, lat, lng):
     return gps_distance(lat, lng, offer.lat, offer.lng)
+
+
+def get_offer_feedback_user_created(offer, user):
+    try:
+        return offer.feedbacks.filter(user_created=user).first()
+    except ObjectDoesNotExist:
+        return None
+
+
+def get_offer_feedback_user_responded(offer, user):
+    try:
+        return offer.feedbacks.filter(user_responded=user).first()
+    except ObjectDoesNotExist:
+        return None

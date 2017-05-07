@@ -23,8 +23,8 @@ class OfferListTests(TestCase):
             'currency_from': 2,
             'currency_to': 3,
         }
-        min_amount = 0
-        max_amount = 0
+        min_amount = None
+        max_amount = None
 
         # pri zmene currency_from nebo currency_to se meze nastavuji na min a max
         response = self.client.post(reverse('offer_list'), params)

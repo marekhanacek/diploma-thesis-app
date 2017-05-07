@@ -1,11 +1,13 @@
+from dip import settings
+
+
 def template_variables(request):
-    show_cookies = not bool(request.COOKIES.get('cookies-allowed'))
     return {
-        'STATUS_AWAITING_ACCEPTANCE': 1,
-        'STATUS_AWAITING_APPROVAL': 2,
-        'STATUS_READY_TO_EXCHANGE': 3,
-        'STATUS_FINISHED': 4,
-        'STATUS_DELETED': 4,
+        'STATUS_AWAITING_ACCEPTANCE': settings.STATUS_AWAITING_ACCEPTANCE,
+        'STATUS_AWAITING_APPROVAL': settings.STATUS_AWAITING_APPROVAL,
+        'STATUS_READY_TO_EXCHANGE': settings.STATUS_READY_TO_EXCHANGE,
+        'STATUS_FINISHED': settings.STATUS_FINISHED,
+        'STATUS_DELETED': settings.STATUS_DELETED,
         'input_offer': {
             'lat': request.session['input_offer']['lat'],
             'lng': request.session['input_offer']['lng'],
@@ -17,5 +19,5 @@ def template_variables(request):
             'currency_to': request.session['input_offer']['currency_to'],
             'sort': request.session['input_offer']['sort'],
         },
-        'show_cookies': show_cookies
+        'show_cookies': not bool(request.COOKIES.get('cookies-allowed'))
     }

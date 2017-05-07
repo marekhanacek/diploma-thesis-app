@@ -13,7 +13,7 @@
             </form>
         </div>
 
-        <h2>{{ offer|format_offer_currency_from }} to {{ offer|format_offer_currency_to }}</h2>
+        <h2>{{ offer|format_offer_currency_from }} {% trans 'to' %} {{ offer|format_offer_currency_to }}</h2>
 
         <div class="profile-box pull-right">
             <a href="{% url 'user_detail' offer.user_created.id %}" class="map-ajax" data-history="true">

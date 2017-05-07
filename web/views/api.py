@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
-from rest_framework import viewsets
-from rest_framework.decorators import detail_route
+from rest_framework import viewsets, status
+from rest_framework.decorators import detail_route, list_route
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 from django.contrib.auth import login
@@ -13,17 +12,50 @@ from rest_framework import mixins
 from web.models import Offer, Currency, Language
 from web.serializers import OfferSerializer, CurrencySerializer, FeedbackSerializer, UserSerializer, \
     LanguageSerializer
-from web.service.offer import get_sorted_offers, get_offer_visible_feedbacks, create_feedback
+from web.service.api_permission import IsActualUserLogged, CanUserAccessOffer
+from web.service.offer import get_sorted_offers, get_offer_visible_feedbacks, create_feedback, get_finished_offers, \
+    get_offers_waiting_for_other_user_reaction, get_offers_waiting_for_user_reaction
 from web.service.offer_sorting_strategies import AmountSortingStrategy
 from web.service import offer_status
+from web.service.user import get_user_feedbacks
 
 
 class OfferViewSet(viewsets.ReadOnlyModelViewSet, mixins.CreateModelMixin):
+    """
+    list:
+    Return a list of all offers by parameters -- currency_from, currency_to, amount_from, amount_to, lat, lng and radius.
+
+    retrieve:
+    Return the given offer.
+
+    create:
+    Create a new offer instance.
+
+    accept:
+    Accept offer by logged user.
+
+    already_not_interested:
+    User is already not interested in this offer.
+
+    approve:
+    Approve responded user.
+
+    complete:
+    Complete offer.
+
+    delete:
+    Delete offer.
+
+    offer_again:
+    Storno offer when user is already accepted.
+
+    refuse:
+    Refuse responded user.
+    """
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
 
-    def list(self, request, *args, **kwargs):
-        print(request.user.id)
+    def list(self, request, currency_from, currency_to, *args, **kwargs):
         queryset = self.filter_queryset(self.get_my_queryset())
 
         page = self.paginate_queryset(queryset)
@@ -67,86 +99,147 @@ class OfferViewSet(viewsets.ReadOnlyModelViewSet, mixins.CreateModelMixin):
             amount_to=amount_to
         )
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
     def delete(self, request, *args, **kwargs):
-        offer = self.get_object()
-        offer_status.delete(offer, request.user)
-        return Response(OfferSerializer(offer).data)
+        offer_status.delete(self.get_object(), request.user)
+        return Response(OfferSerializer(self.get_object()).data)
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
     def accept(self, request, *args, **kwargs):
-        offer = self.get_object()
-        offer_status.accept(offer, request.user)
-        return Response(OfferSerializer(offer).data)
+        offer_status.accept(self.get_object(), request.user)
+        return Response(OfferSerializer(self.get_object()).data)
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
     def approve(self, request, *args, **kwargs):
-        offer = self.get_object()
-        offer_status.approve(offer, request.user)
-        return Response(OfferSerializer(offer).data)
+        offer_status.approve(self.get_object(), request.user)
+        return Response(OfferSerializer(self.get_object()).data)
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
     def refuse(self, request, *args, **kwargs):
-        offer = self.get_object()
-        offer_status.refuse(offer, request.user)
-        return Response(OfferSerializer(offer).data)
+        offer_status.refuse(self.get_object(), request.user)
+        return Response(OfferSerializer(self.get_object()).data)
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
     def already_not_interested(self, request, *args, **kwargs):
-        offer = self.get_object()
-        offer_status.already_not_interested(offer, request.user)
-        return Response(OfferSerializer(offer).data)
+        offer_status.already_not_interested(self.get_object(), request.user)
+        return Response(OfferSerializer(self.get_object()).data)
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
     def offer_again(self, request, *args, **kwargs):
-        offer = self.get_object()
-        offer_status.offer_again(offer, request.user)
-        return Response(OfferSerializer(offer).data)
+        offer_status.offer_again(self.get_object(), request.user)
+        return Response(OfferSerializer(self.get_object()).data)
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
     def complete(self, request, *args, **kwargs):
-        offer = self.get_object()
-        offer_status.complete(offer, request.user)
-        return Response(OfferSerializer(offer).data)
+        offer_status.complete(self.get_object(), request.user)
+        return Response(OfferSerializer(self.get_object()).data)
 
-    @detail_route(methods=['get', 'post'])
-    def feedback(self, request, pk, *args, **kwargs):
+    @detail_route(methods=['get', 'post'], permission_classes=[CanUserAccessOffer])
+    def feedback(self, request, *args, **kwargs):
         if request.method == 'POST':
-            offer = get_object_or_404(Offer, pk=pk)
             create_feedback(
-                offer=offer,
+                offer=self.get_object(),
                 user=request.user,
                 comment=self.request.query_params.get('comment'),
                 stars=self.request.query_params.get('stars')
             )
-            return Response(FeedbackSerializer(get_offer_visible_feedbacks(offer), many=True).data)
+            return Response(
+                FeedbackSerializer(get_offer_visible_feedbacks(self.get_object()), many=True).data,
+                status=status.HTTP_201_CREATED
+            )
 
         elif request.method == 'GET':
-            offer = Offer.objects.get(pk=pk)
-            return Response(FeedbackSerializer(get_offer_visible_feedbacks(offer), many=True).data)
+            return Response(FeedbackSerializer(get_offer_visible_feedbacks(self.get_object()), many=True).data)
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    list:
+    Return a list of all the existing users.
+
+    retrieve:
+    Return the given user.
+
+    create:
+    Create a new user instance.
+
+    feedback:
+    Return user's feedbacks.
+
+    finished_offers:
+    Return all user's finished offer.
+
+    user_reaction:
+    Return all offers that are waiting for user reaction.
+
+    other_user_reaction:
+    Return all offers that are waiting for other user reaction.
+
+    login:
+    Login user.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    @detail_route(methods=['get'])
+    def feedback(self, *args, **kwargs):
+        return Response(
+            FeedbackSerializer(get_user_feedbacks(self.get_object()), many=True).data
+        )
+
+    @detail_route(methods=['get'], permission_classes=[IsActualUserLogged])
+    def finished_offers(self, *args, **kwargs):
+        return Response(
+            OfferSerializer(get_finished_offers(self.get_object()), many=True).data
+        )
+
+    @detail_route(methods=['get'], permission_classes=[IsActualUserLogged])
+    def user_reaction(self, *args, **kwargs):
+        return Response(
+            OfferSerializer(get_offers_waiting_for_user_reaction(self.get_object()), many=True).data
+        )
+
+    @detail_route(methods=['get'], permission_classes=[IsActualUserLogged])
+    def other_user_reaction(self, *args, **kwargs):
+        return Response(
+            OfferSerializer(get_offers_waiting_for_other_user_reaction(self.get_object()), many=True).data
+        )
+
+    @psa('social:complete')
+    @list_route(methods=['get'], permission_classes=[IsActualUserLogged])
+    def login(self, request, backend, *args, **kwargs):
+        try:
+            user = request.backend.do_auth(request.GET.get('access_token'))
+        except AttributeError:
+            raise ParseError('Required parameter access_token is missing.')
+
+        if user:
+            login(request, user)
+            token = Token.objects.create(user=user)
+            return HttpResponse(token.key)
+        else:
+            return HttpResponse('ERROR')
 
 
 class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    retrieve:
+    Return the given currency.
+
+    list:
+    Return a list of all the existing currencies.
+    """
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
 class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    retrieve:
+    Return the given language.
+
+    list:
+    Return a list of all the existing languages.
+    """
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
-
-
-@psa('social:complete')
-def login(request, backend):
-    user = request.backend.do_auth(request.GET.get('access_token'))
-    if user:
-        login(request, user)
-        token = Token.objects.create(user=user)
-        return HttpResponse(token.key)
-    else:
-        return HttpResponse('ERROR')

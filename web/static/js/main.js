@@ -10,10 +10,9 @@ function App() {
     this.mapHistory = null;
     this.isMapPage = null;
     this.mapPopupInit = false;
-    this.mobileVersion = 'map'; // map or text
+    this.mobileVersion = 'text'; // map or text
 
     this.el = {
-        'offerTable': this.body.find('.offer-table'),
         'site': this.body.find('#site'),
         'cookies': this.body.find('#privacy-policy'),
         'showTextMobileButton': this.body.find('#show-text-mobile'),
@@ -31,7 +30,7 @@ function App() {
     };
 
     this.showAllOffers = function () {
-        this.el.offerTable.find('tr').show();
+        this.body.find('.offer-table').find('tr').show();
         $('#show-all-offers').hide();
     };
 
@@ -105,19 +104,21 @@ function App() {
         }
     };
 
-    this.refreshOffers = function () {
+    this.refreshOffers = function (currency_from, currency_to) {
         var that = this;
-
         $('#offers-box #offers-loading').show();
         $('#offers-box .offer-table').hide();
+
+        currency_from = currency_from == undefined ? $('select[name=currency_from]').val() : currency_from;
+        currency_to = currency_to == undefined ? $('select[name=currency_to]').val() : currency_to;
         this.el.site.load(
             $('#offer-frm').attr('action'),
             {
                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
                 'amount_from': this.slider.slider('getValue')[0],
                 'amount_to': this.slider.slider('getValue')[1],
-                'currency_from': $('select[name=currency_from]').val(),
-                'currency_to': $('select[name=currency_to]').val()
+                'currency_from': currency_from,
+                'currency_to': currency_to
             },
             function () {
                 $('#offers-box #offers-loading').hide();
@@ -145,9 +146,14 @@ function App() {
         if (mapOffers != undefined) {
             $.each(mapOffers, function (key, data) {
                 var offer = new Offer(data.id, data.lat, data.lng, data.amountFrom, data.amountTo, data.detailUrl, data.user, data.userVerified);
-                that.normalMap.addOffer(offer);
+                that.normalMap.addOffer(offer, function(o) {
+                    $('#offers-box .offer-table tr[data-offer-id='+o.id+']').addClass('hover');
+                }, function(o) {
+                    $('#offers-box .offer-table tr[data-offer-id='+o.id+']').removeClass('hover');
+                });
             });
         }
+        this.normalMap.fitAllBounds();
     };
 
     this.historyBack = function () {
@@ -185,7 +191,7 @@ function App() {
 
     this.initNewOfferMap = function () {
         this.newOfferMap = new Map('map-new-offer');
-        this.newOfferMap.initSearch('map-form-new-offer');
+        this.newOfferMap.initSearch('map-form-new-offer', true);
     };
 
     this.initPreferencesMap = function () {
@@ -201,9 +207,9 @@ function App() {
         this.popupMap = new Map('map-popup');
         this.popupMap.resize();
         this.popupMap.initSearch('map-form-popup', true);
-        this.popupMap.addMarkerByClick(function (position) {
-            that.popupMap.setSearchLatLng(position.lat(), position.lng());
-        });
+        // this.popupMap.addMarkerByClick(function (position) {
+        //     that.popupMap.setSearchLatLng(position.lat(), position.lng());
+        // });
     };
 
     this.recalculateAmountTo = function () {
@@ -212,7 +218,7 @@ function App() {
         var amount_from = $('#map-form-new-offer input[name="amount_from"]');
         var amount_to = $('#map-form-new-offer input[name="amount_to"]');
         $.ajax({
-            url: '/exchange_rate/'+currency_from.val()+'/'+currency_to.val(),
+            url: '/exchange-rate/'+currency_from.val()+'/'+currency_to.val(),
             success: function(data) {
                 amount_to.val(amount_from.val() * data);
             }
@@ -265,6 +271,14 @@ function App() {
         this.body.on('click', '#allow-cookies-button', function (e) {
             e.preventDefault();
             that.allowCookies();
+        });
+
+        this.body.on('click', '#shuffle-currencies', function (e) {
+            e.preventDefault();
+            that.refreshOffers(
+                $('#offer-frm select[name="currency_to"]').val(),
+                $('#offer-frm select[name="currency_from"]').val()
+            );
         });
 
         this.body.on('mouseenter', "tr.map-offer-ajax", function () {
@@ -352,6 +366,7 @@ function App() {
         this.el.showMapMobileButton.show();
         this.el.map.hide();
         this.el.contentMap.show();
+        $('#map-parent').hide();
     };
 
     this.showMapMobile = function () {
@@ -360,7 +375,9 @@ function App() {
         this.el.showMapMobileButton.hide();
         this.el.map.show();
         this.el.contentMap.hide();
+        $('#map-parent').show();
         this.normalMap.resize();
+        this.normalMap.fitAllBounds();
     };
 
     this.showDesktopVersion = function () {

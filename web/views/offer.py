@@ -4,79 +4,56 @@ from django.db.models.query_utils import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
-from django.views.generic.base import View
+from django.views.generic.base import View, TemplateView
 
 from web.forms import OfferSearchForm, OfferForm, FeedbackForm
-from web.models import Offer, Currency
+from web.models import Offer
 from web.service.acl import can_user_access_offer
-from web.service.offer import get_minimum_amount_for_currencies, get_maximum_amount_for_currencies, get_sorted_offers, \
-    get_offer_visible_feedbacks, create_feedback, create_offer
-from web.service import offer_sorting_strategies
+from web.service.offer import get_sorted_offers, \
+    get_offer_feedback_user_created, get_offer_feedback_user_responded, get_minimum_amount_for_offers, \
+    get_maximum_amount_for_offers
+from web.service.offer_sorting_strategies import get_sorting_strategy_by_identificator
 from web.service.user import get_user_feedbacks
 from web.templatetags.web_extras import get_other_user
 
 
-class ListView(View):
-    def get(self, request):
-        input_offer = request.session['input_offer']
-        minimal_amount = get_minimum_amount_for_currencies(input_offer['currency_to'], input_offer['currency_from'])
-        maximal_amount = get_maximum_amount_for_currencies(input_offer['currency_to'], input_offer['currency_from'])
+class ListView(TemplateView):
+    def get_template_names(self):
+        return ["web/offer/list-ajax.html" if self.request.is_ajax() else "web/offer/list.html"]
 
+    def get_context_data(self, **kwargs):
+        input_offer = self.request.session['input_offer']
         form = OfferSearchForm(initial=input_offer)
         form.fields['currency_to'].queryset = form.fields['currency_to'].queryset.filter(
             ~Q(pk=input_offer['currency_from'])
         )
         offers = get_sorted_offers(
-            input_offer=request.session['input_offer'],
-            sorting_strategy=self.get_sorting_strategy(input_offer['sort']),
+            input_offer=self.request.session['input_offer'],
+            sorting_strategy=get_sorting_strategy_by_identificator(input_offer['sort']),
             currency_from=input_offer['currency_from'],
             currency_to=input_offer['currency_to'],
-            amount_from=input_offer['amount_from'],
-            amount_to=input_offer['amount_to'],
-            user=request.user
+            user=self.request.user
         )
-
-        context = {
-            'offers': offers,
+        return {
+            'offers': get_sorted_offers(
+                input_offer=self.request.session['input_offer'],
+                sorting_strategy=get_sorting_strategy_by_identificator(input_offer['sort']),
+                currency_from=input_offer['currency_from'],
+                currency_to=input_offer['currency_to'],
+                amount_from=input_offer['amount_from'],
+                amount_to=input_offer['amount_to'],
+                user=self.request.user
+            ),
             'form': form,
-            'currency_minimum': minimal_amount,
-            'currency_maximum': maximal_amount
+            'currency_minimum': get_minimum_amount_for_offers(offers),
+            'currency_maximum': get_maximum_amount_for_offers(offers)
         }
 
-        template = "web/offer/list-ajax.html" if request.is_ajax() else "web/offer/list.html"
-
-        return render(request, template, context)
-
     def post(self, request):
-        amount_from = int(request.POST.get('amount_from'))
-        amount_to = int(request.POST.get('amount_to'))
-        currency_from = int(request.POST.get('currency_from'))
-        currency_to = int(request.POST.get('currency_to'))
-        input_offer = request.session['input_offer']
-
-        input_offer['amount_from'] = amount_from
-        input_offer['amount_to'] = amount_to
-
-        if input_offer['currency_from'] != currency_from or input_offer['currency_to'] != currency_to:
-            input_offer['amount_from'] = get_minimum_amount_for_currencies(currency_to, currency_from)
-            input_offer['amount_to'] = get_maximum_amount_for_currencies(currency_to, currency_from)
-
-        input_offer['currency_from'] = currency_from
-        input_offer['currency_to'] = currency_to
-
-        request.session.modified = True
+        form = OfferSearchForm(request.POST)
+        if form.is_valid():
+            form.process(request)
         return redirect('offer_list')
-
-    @staticmethod
-    def get_sorting_strategy(identificator):
-        if identificator == 'amount':
-            return offer_sorting_strategies.AmountSortingStrategy()
-        elif identificator == 'stars':
-            return offer_sorting_strategies.StarsSortingStrategy()
-        elif identificator == 'distance':
-            return offer_sorting_strategies.DistanceSortingStrategy()
-        else:
-            return offer_sorting_strategies.RatingsSortingStrategy()
 
 
 class SortView(View):
@@ -87,41 +64,44 @@ class SortView(View):
         return redirect('offer_list')
 
 
-class DetailView(View):
-    @staticmethod
-    def get(request, id):
-        offer = get_object_or_404(Offer, pk=id)
-
+class DetailView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        offer = get_object_or_404(Offer, pk=int(kwargs['id']))
         if not can_user_access_offer(request.user, offer):
-            messages.add_message(request, messages.INFO, _('You do not have permission.'))
+            messages.add_message(request, messages.INFO, _('Access denied. You do not have permission.'))
             return redirect('offer_list')
+        return super().get(self, request, *args, **kwargs)
 
-        form = FeedbackForm(initial={'amount_to': 0})
-
+    def get_context_data(self, id, **kwargs):
+        offer = get_object_or_404(Offer, pk=id)
         context = {
             'offer': offer,
-            'feedback_form': form,
-            'has_feedback': offer.has_users_feedback(request.user),
-            'feedbacks': get_user_feedbacks(offer.user_created),
-            'other_user': get_other_user(offer, request.user),
-            'visible_feedbacks': get_offer_visible_feedbacks(offer)
+            'feedback_form': FeedbackForm(initial={'amount_to': 0}),
+            'other_user': get_other_user(offer, self.request.user)
         }
+        if offer.user_created != self.request.user:
+            context['feedbacks'] = get_user_feedbacks(
+                get_other_user(offer, self.request.user) if self.request.user.is_authenticated()
+                else offer.user_created
+            )
+        if offer.status.is_finished():
+            context['user_feedback'] = get_offer_feedback_user_created(offer, self.request.user)
+            context['other_user_feedback'] = get_offer_feedback_user_responded(offer, self.request.user)
+        return context
 
-        template = "web/offer/detail-ajax.html" if request.is_ajax() else "web/offer/detail.html"
-
-        return render(request, template, context)
+    def get_template_names(self):
+        return ["web/offer/detail-ajax.html" if self.request.is_ajax() else "web/offer/detail.html"]
 
 
 class FeedbackView(View):
     @staticmethod
     def post(request, id):
-        create_feedback(
-            offer=Offer.objects.get(pk=id),
-            user=request.user,
-            comment=request.POST.get('comment'),
-            stars=int(request.POST.get('stars')),
-        )
-        messages.add_message(request, messages.INFO, _('Feedback was added.'))
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.process(id, request.user)
+            messages.add_message(request, messages.INFO, _('Feedback was added.'))
+        else:
+            messages.add_message(request, messages.INFO, _('Feedback process ERROR.'))
         return redirect('offer_detail', id=id)
 
 
@@ -129,23 +109,24 @@ class FeedbackView(View):
 class NewView(View):
     template_name = "web/offer/new.html"
 
-    def post(self, request):
-        currency_from = Currency.objects.get(pk=int(request.POST.get('currency_from')))
-        currency_to = Currency.objects.get(pk=int(request.POST.get('currency_to')))
-        create_offer(
-            lat=float(request.POST.get('lat')),
-            lng=float(request.POST.get('lng')),
-            radius=int(request.POST.get('radius')),
-            amount=int(request.POST.get('amount_from')),
-            comment=request.POST.get('comment'),
-            currency_from=currency_from,
-            currency_to=currency_to,
-            user_created=request.user,
-            address=request.POST.get('address'),
-        )
-        messages.add_message(request, messages.INFO, _('Offer was added.'))
-        return redirect('offer_new')
-
     def get(self, request):
-        form = OfferForm(initial={'amount_to': 0, 'currency_from': 1, 'currency_to': 2})
+        profile = request.user.userprofile
+        form = OfferForm(initial={
+            'amount_to': 0,
+            'currency_from': profile.home_currency,
+            'currency_to': profile.exchange_currency,
+            'lat': profile.lat,
+            'lng': profile.lng,
+            'address': profile.address,
+            'radius': profile.radius,
+        })
         return render(request, "web/offer/new.html", {'form': form})
+
+    def post(self, request):
+        form = OfferForm(request.POST)
+        if form.is_valid():
+            form.process(request.user)
+            messages.add_message(request, messages.INFO, _('Offer was added.'))
+        else:
+            messages.add_message(request, messages.INFO, _('Offer process ERROR.'))
+        return redirect('offer_new')

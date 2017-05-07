@@ -2,7 +2,7 @@ from requests import request, HTTPError
 from django.core.files.base import ContentFile
 
 from web.models import UserProfile
-from web.service.user import save_user_location_to_session
+from web.service.user import save_user_location_to_session, save_user_currencies_to_session
 
 
 def save_profile_picture(backend, user, response, is_new=False, *args, **kwargs):
@@ -30,4 +30,9 @@ def save_preferences_to_session(strategy, user, *args, **kwargs):
         lng=user.userprofile.lng,
         radius=user.userprofile.radius,
         address=user.userprofile.address
+    )
+    save_user_currencies_to_session(
+        session=strategy.session,
+        currency_from=user.userprofile.home_currency.id,
+        currency_to=user.userprofile.exchange_currency.id
     )

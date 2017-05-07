@@ -20,10 +20,11 @@
                 {% endif %}
 
                 {% if offer.status.is_finished %}
-                    {% if not has_feedback %}
+                    {% if not user_feedback %}
                         {% include 'web/snippets/feedback_form.html' %}
+                    {% else %}
+                        {% include 'web/snippets/feedbacks.html' %}
                     {% endif %}
-                    {% include 'web/snippets/feedbacks.html' %}
                 {% endif %}
 
                 {% if user.is_authenticated %}
@@ -36,6 +37,7 @@
                     {% include 'web/snippets/users_feedback.html' %}
                 {% endif %}
             </div>
+
             <div class="col-sm-4 col-sm-pull-8">
                 {% for offer_user in offer.iterate_users %}
                     {% if offer_user %}
