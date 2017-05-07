@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-07 23:35+0200\n"
+"POT-Creation-Date: 2017-05-07 23:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,6 +225,7 @@ msgid "Login page"
 msgstr "Přihlášení"
 
 #: web/templates/web/modals.html:15
+#: web/templates/web/user/access-denied.html:10
 msgid "Login with facebook"
 msgstr "Přihlásit se přes Facebook"
 
@@ -508,6 +509,16 @@ msgstr "Komentář"
 #: web/templates/web/user/profile.html:146
 msgid "No feedbacks yet."
 msgstr "Žádná hodnocení nebyla zadána."
+
+#: web/templates/web/user/access-denied.html:7
+#, fuzzy
+#| msgid "Access denied."
+msgid "Access denied"
+msgstr "Přístup odepřen."
+
+#: web/templates/web/user/access-denied.html:8
+msgid "Login to continue"
+msgstr "Pro pokračování se přihlašte."
 
 #: web/templates/web/user/change-preferences.html:12
 #: web/templates/web/user/change-preferences.html:96

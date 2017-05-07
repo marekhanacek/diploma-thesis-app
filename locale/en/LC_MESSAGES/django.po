@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-07 23:35+0200\n"
+"POT-Creation-Date: 2017-05-07 23:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,6 +154,7 @@ msgid "Login page"
 msgstr ""
 
 #: web/templates/web/modals.html:15
+#: web/templates/web/user/access-denied.html:10
 msgid "Login with facebook"
 msgstr ""
 
@@ -436,6 +437,14 @@ msgstr ""
 #: web/templates/web/snippets/users_feedback.html:26
 #: web/templates/web/user/profile.html:146
 msgid "No feedbacks yet."
+msgstr ""
+
+#: web/templates/web/user/access-denied.html:7
+msgid "Access denied"
+msgstr ""
+
+#: web/templates/web/user/access-denied.html:8
+msgid "Login to continue"
 msgstr ""
 
 #: web/templates/web/user/change-preferences.html:12

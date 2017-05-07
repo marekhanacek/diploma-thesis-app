@@ -168,8 +168,8 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details'
 )
 
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/access-denied'
+LOGIN_URL = '/access-denied'
 
 # offer states
 

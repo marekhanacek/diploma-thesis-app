@@ -93,3 +93,7 @@ class ChangePreferencesView(View):
         else:
             messages.add_message(request, messages.INFO, _('ERROR'))
         return redirect('user_profile')
+
+
+class AccessDeniedView(TemplateView):
+    template_name = "web/user/access-denied.html"

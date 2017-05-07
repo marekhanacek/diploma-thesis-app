@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^user/(?P<id>[0-9]+)$', user.DetailView.as_view(), name='user_detail'),
     url(r'^change-location', user.ChangeLocationView.as_view(), name='change_location'),
     url(r'^user/change-preferences', user.ChangePreferencesView.as_view(), name='change_preferences'),
+    url(r'^access-denied', user.AccessDeniedView.as_view(), name='access_denied'),
 
     url(r'^page/(.*)$', page.DetailView.as_view(), name='page'),
 

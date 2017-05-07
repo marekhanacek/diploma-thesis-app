@@ -1,0 +1,13 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+    <div class="container colored-box">
+        <h1>{% trans 'Access denied.' %}</h1>
+        <p>{% trans 'Login to continue' %}</p>
+        <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-my btn-lg">
+            {% trans 'Login with facebook' %}
+        </a>
+    </div>
+{% endblock %}
