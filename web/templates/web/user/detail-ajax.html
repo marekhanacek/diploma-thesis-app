@@ -2,8 +2,7 @@
 {% load web_extras %}
 
 <div id="content">
-    {% include 'web/snippets/user_profile.html' %}
-    {% include 'web/snippets/user_stars.html' %}
+    <div class="text-center">{% include 'web/snippets/user_profile.html' %}</div>
     {% if history_with_user %}
         {% include 'web/snippets/history_with_user.html' %}
     {% endif %}

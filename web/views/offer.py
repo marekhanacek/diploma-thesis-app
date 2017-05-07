@@ -13,7 +13,7 @@ from web.service.offer import get_sorted_offers, \
     get_offer_feedback_user_created, get_offer_feedback_user_responded, get_minimum_amount_for_offers, \
     get_maximum_amount_for_offers
 from web.service.offer_sorting_strategies import get_sorting_strategy_by_identificator
-from web.service.user import get_user_feedbacks
+from web.service.user import get_user_feedbacks, get_user_stars
 from web.templatetags.web_extras import get_other_user
 
 
@@ -74,10 +74,12 @@ class DetailView(TemplateView):
 
     def get_context_data(self, id, **kwargs):
         offer = get_object_or_404(Offer, pk=id)
+        other_user = get_other_user(offer, self.request.user)
         context = {
             'offer': offer,
             'feedback_form': FeedbackForm(initial={'amount_to': 0}),
-            'other_user': get_other_user(offer, self.request.user)
+            'other_user': other_user,
+            'stars': get_user_stars(other_user)
         }
         if offer.user_created != self.request.user:
             context['feedbacks'] = get_user_feedbacks(

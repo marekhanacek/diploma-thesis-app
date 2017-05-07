@@ -2,8 +2,12 @@
 {% load web_extras %}
 
 <div class="colored-box">
-    <h2>{% trans "User's feedbacks" %}</h2>
+    <h2>
+        {% trans "User's feedbacks" %}
+        <span class="pull-right"><span class="glyphicon glyphicon-star icon-my-star"></span> {{ stars }} / 5,0</span>
+    </h2>
     <hr class="darker"/>
+
     {% if feedbacks %}
         {% for feedback in feedbacks %}
             <div class="row">
