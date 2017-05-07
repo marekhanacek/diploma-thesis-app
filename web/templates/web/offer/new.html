@@ -46,7 +46,10 @@
                         <div class="form-group col-md-12">
                             <label for="">{% trans 'Radius' %} <span class="text-danger">*</span></label>
                             <div>
-                                {{ form.radius }}
+                                <div class="input-group">
+                                    {{ form.radius }}
+                                    <div class="input-group-addon">km</div>
+                                </div>
                             </div>
                         </div>
 

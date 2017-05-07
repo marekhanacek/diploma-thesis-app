@@ -52,12 +52,13 @@ class OfferSearchForm(forms.Form):
 
 
 class OfferForm(forms.Form):
-    amount_from = forms.CharField(
+    amount_from = forms.IntegerField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
                 'placeholder': 'Enter amount',
-                'style': 'width: 90px'
+                'style': 'width: 90px',
+                'type': 'number'
             }
         )
     )
@@ -98,11 +99,12 @@ class OfferForm(forms.Form):
             }
         )
     )
-    radius = forms.CharField(
+    radius = forms.IntegerField(
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control map-radius-input',
-                'placeholder': 'Enter searching radius'
+                'placeholder': 'Enter searching radius',
+                'type': 'number'
             }
         )
     )
@@ -170,6 +172,10 @@ class FeedbackForm(forms.Form):
 
 
 class ChangePreferencesForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ChangePreferencesForm, self).__init__(*args, **kwargs)
+        self.fields['language'].empty_label = None
+
     class Meta:
         model = UserProfile
         fields = [
