@@ -1,8 +1,8 @@
 /media/uploads/profile_photos/*
-/dip/staticfiles/*
-!/dip/staticfiles/placeholder
-/dip/static/*
-!/dip/static/placeholder
+/staticfiles/*
+!/staticfiles/placeholder
+/static/*
+!/static/placeholder
 /temp
 *.pyc
 /.idea
