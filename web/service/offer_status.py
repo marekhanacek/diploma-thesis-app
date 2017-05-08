@@ -26,7 +26,7 @@ def accept(offer, user):
     send_mail(
         folder='created',
         file='awaiting_approval',
-        to_email=offer.user_created.userprofile.email,
+        to_email=offer.user_created.email,
         subject='TOOD subject',
         context={}
     )
@@ -43,7 +43,7 @@ def approve(offer, user):
     send_mail(
         folder='responded',
         file='approved',
-        to_email=offer.user_responded.userprofile.email,
+        to_email=offer.user_responded.email,
         subject='TOOD subject',
         context={}
     )
@@ -58,7 +58,7 @@ def refuse(offer, user):
     send_mail(
         folder='responded',
         file='not_approved',
-        to_email=offer.user_responded.userprofile.email,
+        to_email=offer.user_responded.email,
         subject='TOOD subject',
         context={}
     )
@@ -76,7 +76,7 @@ def already_not_interested(offer, user):
     send_mail(
         folder='created',
         file='already_not_awaiting_approval',
-        to_email=offer.user_created.userprofile.email,
+        to_email=offer.user_created.email,
         subject='TOOD subject',
         context={}
     )
@@ -95,7 +95,7 @@ def offer_again(offer, user):
         send_mail(
             folder='responded',
             file='already_not_rte',
-            to_email=offer.user_responded.userprofile.email,
+            to_email=offer.user_responded.email,
             subject='TOOD subject',
             context={}
         )
@@ -103,7 +103,7 @@ def offer_again(offer, user):
         send_mail(
             folder='created',
             file='already_not_rte',
-            to_email=offer.user_created.userprofile.email,
+            to_email=offer.user_created.email,
             subject='TOOD subject',
             context={}
         )
@@ -125,7 +125,7 @@ def complete(offer, user):
         send_mail(
             folder='both',
             file='finished',
-            to_email=offer.user_responded.userprofile.email,
+            to_email=offer.user_responded.email,
             subject='TOOD subject',
             context={}
         )
@@ -133,7 +133,7 @@ def complete(offer, user):
         send_mail(
             folder='both',
             file='finished',
-            to_email=offer.user_created.userprofile.email,
+            to_email=offer.user_created.email,
             subject='TOOD subject',
             context={}
         )
