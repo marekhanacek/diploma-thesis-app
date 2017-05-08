@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-DEBUG = True
+DEBUG = os.environ['DJANGO_DEBUG'] == 'TRUE'
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
