@@ -22,3 +22,4 @@ urlpatterns = [
     url(r'^', include('web.urls')),
     url('', include('social_django.urls', namespace='social'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
