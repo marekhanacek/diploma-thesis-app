@@ -79,13 +79,15 @@ class DetailView(TemplateView):
             'offer': offer,
             'feedback_form': FeedbackForm(initial={'amount_to': 0}),
             'other_user': other_user,
-            'stars': get_user_stars(other_user)
-        }
-        if offer.user_created != self.request.user:
-            context['feedbacks'] = get_user_feedbacks(
-                get_other_user(offer, self.request.user) if self.request.user.is_authenticated()
+            'stars': get_user_stars(
+                other_user if other_user
+                else offer.user_created
+            ),
+            'feedbacks': get_user_feedbacks(
+                other_user if other_user
                 else offer.user_created
             )
+        }
         if offer.status.is_finished():
             context['user_feedback'] = get_offer_feedback_user_created(offer, self.request.user)
             context['other_user_feedback'] = get_offer_feedback_user_responded(offer, self.request.user)
