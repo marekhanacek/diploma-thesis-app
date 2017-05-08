@@ -89,14 +89,13 @@ class Language(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    profile_photo = models.ImageField(upload_to='uploads/profile_photos/', null=True)
+    profile_photo = models.ImageField(upload_to='uploads/profile_photos/', null=True, blank=True)
     home_currency = models.ForeignKey(Currency, on_delete=models.PROTECT, related_name='profiles_having_home_currency',
                                       null=True)
     exchange_currency = models.ForeignKey(Currency, on_delete=models.PROTECT,
                                           related_name='profiles_having_exchange_currency', null=True)
     language = models.ForeignKey(Language, on_delete=models.PROTECT, related_name='profiles_having_language', null=True)
     basic_information = models.TextField(default='', blank=True)
-    email = models.CharField(max_length=150, default='')
     phone = models.CharField(max_length=20, default='', blank=True)
     address = models.CharField(max_length=255, default='')
     radius = models.FloatField(default=0)

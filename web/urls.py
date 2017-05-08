@@ -38,12 +38,8 @@ urlpatterns = [
 
     url(r'^exchange-rate/(?P<currecy_from>[0-9]+)/(?P<currecy_to>[0-9]+)$', other.RateView.as_view(), name='exchange_rate'),
 
-    url(r'^login/(?P<id>[0-9]+)$', sign.LoginView.as_view(), name='login'),
     url(r'^logout$', sign.LogoutView.as_view(), name='logout'),
 
     url(r'^api/', include(router.urls)),
     url(r'^api/docs/', include_docs_urls(title='My API title'))
-
-    # url(r'^api/login/(?P<backend>[^/]+)/$', login),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
