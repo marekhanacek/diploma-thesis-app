@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from web.models import Offer, Currency, Feedback, Language, UserProfile
+from web.models import Offer, Currency, Feedback, Language, UserProfile, OfferStatus
 from web.service.offer import create_offer
 from web.service.user import is_verified, get_user_stars
 
@@ -84,6 +84,15 @@ class LanguageSerializer(serializers.ModelSerializer):
             'id',
             'identificator',
             'name',
+        )
+
+
+class OfferStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OfferStatus
+        fields = (
+            'id',
+            'title'
         )
 
 

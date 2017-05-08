@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 from rest_framework.documentation import include_docs_urls
 
 from web.views import other
-from web.views.api import OfferViewSet, CurrencyViewSet, UserViewSet, LanguageViewSet, login
+from web.views.api import OfferViewSet, CurrencyViewSet, UserViewSet, LanguageViewSet, login, OfferStatusViewSet
 from .views import offer, page, sign, user, offer_status
 
 router = routers.DefaultRouter()
@@ -11,6 +11,7 @@ router.register(r'offer', OfferViewSet)
 router.register(r'currency', CurrencyViewSet)
 router.register(r'user', UserViewSet)
 router.register(r'language', LanguageViewSet)
+router.register(r'status', OfferStatusViewSet)
 
 urlpatterns = [
     url(r'^$', offer.ListView.as_view(), name='offer_list'),
@@ -40,6 +41,7 @@ urlpatterns = [
 
     url(r'^logout$', sign.LogoutView.as_view(), name='logout'),
 
+    url(r'^api/user/login/(?P<backend>[^/]+)/$', login),
     url(r'^api/', include(router.urls)),
     url(r'^api/docs/', include_docs_urls(title='My API title'))
 ]

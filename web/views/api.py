@@ -3,15 +3,16 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
-from django.contrib.auth import login
+from django.contrib.auth import login as auth_login
 from django.http.response import HttpResponse
 from social_django.utils import psa
 from rest_framework.authtoken.models import Token
 from rest_framework import mixins
 
-from web.models import Offer, Currency, Language
+from dip import settings
+from web.models import Offer, Currency, Language, OfferStatus
 from web.serializers import OfferSerializer, CurrencySerializer, FeedbackSerializer, UserSerializer, \
-    LanguageSerializer
+    LanguageSerializer, OfferStatusSerializer
 from web.service.api_permission import IsActualUserLogged, CanUserAccessOffer
 from web.service.offer import get_sorted_offers, get_offer_visible_feedbacks, create_feedback, get_finished_offers, \
     get_offers_waiting_for_other_user_reaction, get_offers_waiting_for_user_reaction
@@ -82,23 +83,33 @@ class OfferViewSet(viewsets.ReadOnlyModelViewSet, mixins.CreateModelMixin):
         )
 
     def partial_update(self, request, *args, **kwargs):
-        action = self.request.data['action']
-        if action == 'delete':
-            offer_status.delete(self.get_object(), request.user)
-        if action == 'accept':
+        status = self.request.data['status']
+        offer = self.get_object()
+
+        if offer.status.is_awaiting_acceptance() and status == settings.STATUS_AWAITING_APPROVAL:
             offer_status.accept(self.get_object(), request.user)
-        if action == 'approve':
+
+        elif offer.status.is_awaiting_acceptance() and status == settings.STATUS_DELETED:
+            offer_status.delete(self.get_object(), request.user)
+
+        elif offer.status.is_awaiting_approval() and status == settings.STATUS_AWAITING_ACCEPTANCE:
+            if request.user == offer.user_created:
+                offer_status.refuse(self.get_object(), request.user)
+            else:
+                offer_status.already_not_interested(self.get_object(), request.user)
+
+        elif offer.status.is_awaiting_approval() and status == settings.STATUS_READY_TO_EXCHANGE:
             offer_status.approve(self.get_object(), request.user)
-        if action == 'refuse':
-            offer_status.refuse(self.get_object(), request.user)
-        if action == 'already_not_interested':
-            offer_status.already_not_interested(self.get_object(), request.user)
-        if action == 'offer_again':
+
+        elif offer.status.is_ready_to_exchange() and status == settings.STATUS_AWAITING_ACCEPTANCE:
             offer_status.offer_again(self.get_object(), request.user)
-        if action == 'complete':
+
+        elif offer.status.is_ready_to_exchange() and status == settings.STATUS_FINISHED:
             offer_status.complete(self.get_object(), request.user)
+
         else:
-            raise ParseError('Unknown action')
+            raise ParseError('This status change is not allowed.')
+
         return Response(OfferSerializer(self.get_object()).data)
 
     @detail_route(methods=['get', 'post'], permission_classes=[CanUserAccessOffer])
@@ -172,20 +183,20 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
             OfferSerializer(get_offers_waiting_for_other_user_reaction(self.get_object()), many=True).data
         )
 
-    @psa('social:complete')
-    @list_route(methods=['get'], permission_classes=[IsActualUserLogged])
-    def login(self, request, backend, *args, **kwargs):
-        try:
-            user = request.backend.do_auth(request.GET.get('access_token'))
-        except AttributeError:
-            raise ParseError('Required parameter access_token is missing.')
+    # @list_route(methods=['get'])
+    # def login(request, *args, **kwargs):
+    #     pass
 
-        if user:
-            login(request, user)
-            token = Token.objects.create(user=user)
-            return HttpResponse(token.key)
-        else:
-            return HttpResponse('ERROR')
+
+@psa('social:complete')
+def login(request, backend):
+    user = request.backend.do_auth(request.GET.get('access_token'))
+    if user:
+        auth_login(request, user)
+        token, created = Token.objects.get_or_create(defaults={'user': user})
+        return HttpResponse(token.key)
+    else:
+        return HttpResponse('ERROR')
 
 
 class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
@@ -210,3 +221,15 @@ class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
+
+
+class OfferStatusViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    retrieve:
+    Return the given status.
+
+    list:
+    Return a list of all the existing statuses.
+    """
+    queryset = OfferStatus.objects.all()
+    serializer_class = OfferStatusSerializer
