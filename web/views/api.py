@@ -31,26 +31,8 @@ class OfferViewSet(viewsets.ReadOnlyModelViewSet, mixins.CreateModelMixin):
     create:
     Create a new offer instance.
 
-    accept:
-    Accept offer by logged user.
-
-    already_not_interested:
-    User is already not interested in this offer.
-
-    approve:
-    Approve responded user.
-
-    complete:
-    Complete offer.
-
-    delete:
-    Delete offer.
-
-    offer_again:
-    Storno offer when user is already accepted.
-
-    refuse:
-    Refuse responded user.
+    partial_update:
+    Partial update of status by action parameter.
     """
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
@@ -99,39 +81,24 @@ class OfferViewSet(viewsets.ReadOnlyModelViewSet, mixins.CreateModelMixin):
             amount_to=amount_to
         )
 
-    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
-    def delete(self, request, *args, **kwargs):
-        offer_status.delete(self.get_object(), request.user)
-        return Response(OfferSerializer(self.get_object()).data)
-
-    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
-    def accept(self, request, *args, **kwargs):
-        offer_status.accept(self.get_object(), request.user)
-        return Response(OfferSerializer(self.get_object()).data)
-
-    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
-    def approve(self, request, *args, **kwargs):
-        offer_status.approve(self.get_object(), request.user)
-        return Response(OfferSerializer(self.get_object()).data)
-
-    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
-    def refuse(self, request, *args, **kwargs):
-        offer_status.refuse(self.get_object(), request.user)
-        return Response(OfferSerializer(self.get_object()).data)
-
-    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
-    def already_not_interested(self, request, *args, **kwargs):
-        offer_status.already_not_interested(self.get_object(), request.user)
-        return Response(OfferSerializer(self.get_object()).data)
-
-    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
-    def offer_again(self, request, *args, **kwargs):
-        offer_status.offer_again(self.get_object(), request.user)
-        return Response(OfferSerializer(self.get_object()).data)
-
-    @detail_route(methods=['post'], permission_classes=[CanUserAccessOffer])
-    def complete(self, request, *args, **kwargs):
-        offer_status.complete(self.get_object(), request.user)
+    def partial_update(self, request, *args, **kwargs):
+        action = self.request.data['action']
+        if action == 'delete':
+            offer_status.delete(self.get_object(), request.user)
+        if action == 'accept':
+            offer_status.accept(self.get_object(), request.user)
+        if action == 'approve':
+            offer_status.approve(self.get_object(), request.user)
+        if action == 'refuse':
+            offer_status.refuse(self.get_object(), request.user)
+        if action == 'already_not_interested':
+            offer_status.already_not_interested(self.get_object(), request.user)
+        if action == 'offer_again':
+            offer_status.offer_again(self.get_object(), request.user)
+        if action == 'complete':
+            offer_status.complete(self.get_object(), request.user)
+        else:
+            raise ParseError('Unknown action')
         return Response(OfferSerializer(self.get_object()).data)
 
     @detail_route(methods=['get', 'post'], permission_classes=[CanUserAccessOffer])
