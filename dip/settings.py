@@ -24,6 +24,8 @@ ALLOWED_HOSTS = ['*']
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+ADMINS = (('Marek Hanacek', 'marekhanacek1@gmail.com'),)
+
 # Application definition
 
 INSTALLED_APPS = [
