@@ -1,19 +1,15 @@
 {% extends 'web/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
-
     <div class="container colored-box">
-        <h1>How it works?</h1>
-        <h2>Offer statuses</h2>
-        <img src="{% static 'images/state-diagram.svg' %}" alt="">
-        <hr/>
-        <p>Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam
-            vehicula elementum sed sit amet dui. Vivamus magna justo, lacinia eget consectetur sed, convallis at
-            tellus.
-            Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
-            Curabitur
-            aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a pellentesque nec, egestas non
-            nisi.</p>
+        <h1>{% trans 'How it works?' %}</h1>
+        <p>{% trans 'This aplication allows people to bid or demand to personally exchange a certain amount of money from one currency to another.' %}</p>
+
+        <h2>{% trans 'Possible offer statuses' %}</h2>
+        {% with 'images/state-diagram-'|add:request.LANGUAGE_CODE|add:'.png' as image_static %}
+            <img src="{% static image_static %}" alt="">
+        {% endwith %}
     </div>
 {% endblock %}

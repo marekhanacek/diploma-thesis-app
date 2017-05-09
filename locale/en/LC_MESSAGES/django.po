@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-07 23:52+0200\n"
+"POT-Creation-Date: 2017-05-09 20:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,10 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: web/templates/web/base-map.html:52 web/templates/web/base.html:42
+#: web/templates/web/page/terms.html:7
 msgid "Terms"
 msgstr ""
 
 #: web/templates/web/base-map.html:53 web/templates/web/base.html:43
+#: web/templates/web/page/how-it-works.html:7
 msgid "How it works?"
 msgstr ""
 
@@ -175,7 +177,7 @@ msgid "My position"
 msgstr ""
 
 #: web/templates/web/modals.html:56
-#: web/templates/web/user/change-preferences.html:85
+#: web/templates/web/user/change-preferences.html:84
 msgid "Save"
 msgstr ""
 
@@ -207,9 +209,9 @@ msgstr ""
 #: web/templates/web/offer/detail.html:12
 #: web/templates/web/offer/list-ajax.html:104
 #: web/templates/web/snippets/history_with_user.html:14
-#: web/templates/web/user/profile.html:62
-#: web/templates/web/user/profile.html:95
-#: web/templates/web/user/profile.html:130
+#: web/templates/web/user/profile.html:65
+#: web/templates/web/user/profile.html:99
+#: web/templates/web/user/profile.html:140
 msgid "to"
 msgstr ""
 
@@ -217,20 +219,20 @@ msgstr ""
 msgid "Created by"
 msgstr ""
 
-#: web/templates/web/offer/detail.html:53
+#: web/templates/web/offer/detail.html:51
 msgid "Created this offer"
 msgstr ""
 
-#: web/templates/web/offer/detail.html:55
+#: web/templates/web/offer/detail.html:53
 msgid "Has joined"
 msgstr ""
 
-#: web/templates/web/offer/detail.html:69
+#: web/templates/web/offer/detail.html:67
 #: web/templates/web/snippets/user_profile.html:13
 msgid "Last login:"
 msgstr ""
 
-#: web/templates/web/offer/detail.html:72
+#: web/templates/web/offer/detail.html:70
 #: web/templates/web/snippets/user_profile.html:15
 msgid "# of offers:"
 msgstr ""
@@ -278,7 +280,7 @@ msgstr ""
 
 #: web/templates/web/offer/list-ajax.html:73
 #: web/templates/web/offer/list-ajax.html:75
-#: web/templates/web/snippets/user_stars.html:8
+#: web/templates/web/snippets/user_stars.html:7
 msgid "User rating"
 msgstr ""
 
@@ -310,6 +312,8 @@ msgid "Show all offers"
 msgstr ""
 
 #: web/templates/web/offer/list-ajax.html:132
+#: web/templates/web/user/profile.html:126
+#: web/templates/web/user/profile.html:169
 msgid "There are no offers."
 msgstr ""
 
@@ -327,14 +331,14 @@ msgstr ""
 
 #: web/templates/web/offer/new.html:40
 #: web/templates/web/snippets/offer_basic_info.html:11
-#: web/templates/web/user/change-preferences.html:59
-#: web/templates/web/user/profile.html:74
-#: web/templates/web/user/profile.html:106
+#: web/templates/web/user/change-preferences.html:58
+#: web/templates/web/user/profile.html:77
+#: web/templates/web/user/profile.html:112
 msgid "Address"
 msgstr ""
 
 #: web/templates/web/offer/new.html:47
-#: web/templates/web/user/change-preferences.html:66
+#: web/templates/web/user/change-preferences.html:65
 msgid "Radius"
 msgstr ""
 
@@ -346,6 +350,20 @@ msgstr ""
 
 #: web/templates/web/offer/new.html:64
 msgid "Create offer"
+msgstr ""
+
+#: web/templates/web/page/how-it-works.html:8
+msgid ""
+"This aplication allows people to bid or demand to personally exchange a "
+"certain amount of money from one currency to another."
+msgstr ""
+
+#: web/templates/web/page/how-it-works.html:10
+msgid "Possible offer statuses"
+msgstr ""
+
+#: web/templates/web/page/terms.html:8
+msgid "To Be Determined."
 msgstr ""
 
 #: web/templates/web/snippets/feedback_form.html:4
@@ -369,8 +387,8 @@ msgid "Offer status"
 msgstr ""
 
 #: web/templates/web/snippets/offer_basic_info.html:20
-#: web/templates/web/user/profile.html:77
-#: web/templates/web/user/profile.html:109
+#: web/templates/web/user/profile.html:80
+#: web/templates/web/user/profile.html:115
 msgid "Creation date"
 msgstr ""
 
@@ -412,35 +430,37 @@ msgid "Contact informations:"
 msgstr ""
 
 #: web/templates/web/snippets/user_contact.html:6
-#: web/templates/web/snippets/user_contact.html:7
 #: web/templates/web/user/profile.html:17
 msgid "Email:"
 msgstr ""
 
-#: web/templates/web/snippets/user_contact.html:8
+#: web/templates/web/snippets/user_contact.html:7
 #: web/templates/web/user/profile.html:18
 msgid "Phone:"
 msgstr ""
 
-#: web/templates/web/snippets/users_feedback.html:5
+#: web/templates/web/snippets/users_feedback.html:6
 msgid "User's feedbacks"
 msgstr ""
 
-#: web/templates/web/snippets/users_feedback.html:17
+#: web/templates/web/snippets/users_feedback.html:21
 msgid "Rating:"
 msgstr ""
 
-#: web/templates/web/snippets/users_feedback.html:18
+#: web/templates/web/snippets/users_feedback.html:22
 msgid "Comment:"
 msgstr ""
 
-#: web/templates/web/snippets/users_feedback.html:26
-#: web/templates/web/user/profile.html:146
+#: web/templates/web/snippets/users_feedback.html:30
+#: web/templates/web/user/profile.html:156
 msgid "No feedbacks yet."
 msgstr ""
 
-#: web/templates/web/user/access-denied.html:7
-msgid "Access denied"
+#: web/templates/web/user/access-denied.html:7 web/views/offer_status.py:20
+#: web/views/offer_status.py:31 web/views/offer_status.py:42
+#: web/views/offer_status.py:57 web/views/offer_status.py:67
+#: web/views/offer_status.py:87 web/views/offer_status.py:98
+msgid "Access denied."
 msgstr ""
 
 #: web/templates/web/user/access-denied.html:8
@@ -448,7 +468,7 @@ msgid "Login to continue"
 msgstr ""
 
 #: web/templates/web/user/change-preferences.html:12
-#: web/templates/web/user/change-preferences.html:96
+#: web/templates/web/user/change-preferences.html:95
 msgid "Back to my profile"
 msgstr ""
 
@@ -472,7 +492,7 @@ msgstr ""
 msgid "Basic information about you"
 msgstr ""
 
-#: web/templates/web/user/change-preferences.html:76
+#: web/templates/web/user/change-preferences.html:75
 msgid "Phone"
 msgstr ""
 
@@ -492,19 +512,19 @@ msgstr ""
 msgid "Your actual offers"
 msgstr ""
 
-#: web/templates/web/user/profile.html:40
+#: web/templates/web/user/profile.html:43
 msgid "Waiting for you"
 msgstr ""
 
-#: web/templates/web/user/profile.html:46
+#: web/templates/web/user/profile.html:49
 msgid "Waiting for other users"
 msgstr ""
 
-#: web/templates/web/user/profile.html:122
+#: web/templates/web/user/profile.html:131
 msgid "Finished offers"
 msgstr ""
 
-#: web/templates/web/user/profile.html:148
+#: web/templates/web/user/profile.html:158
 msgid "Insert feedback"
 msgstr ""
 
@@ -516,31 +536,24 @@ msgstr ""
 msgid "Access denied. You do not have permission."
 msgstr ""
 
-#: web/views/offer.py:102
+#: web/views/offer.py:106
 msgid "Feedback was added."
 msgstr ""
 
-#: web/views/offer.py:104
+#: web/views/offer.py:108
 msgid "Feedback process ERROR."
 msgstr ""
 
-#: web/views/offer.py:129
+#: web/views/offer.py:133
 msgid "Offer was added."
 msgstr ""
 
-#: web/views/offer.py:131
+#: web/views/offer.py:135
 msgid "Offer process ERROR."
 msgstr ""
 
 #: web/views/offer_status.py:18
 msgid "Offer was deleted."
-msgstr ""
-
-#: web/views/offer_status.py:20 web/views/offer_status.py:31
-#: web/views/offer_status.py:42 web/views/offer_status.py:57
-#: web/views/offer_status.py:67 web/views/offer_status.py:87
-#: web/views/offer_status.py:98
-msgid "Access denied."
 msgstr ""
 
 #: web/views/offer_status.py:29

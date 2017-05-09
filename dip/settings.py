@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
                 'web.context_processors.template_variables',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',

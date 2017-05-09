@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-07 23:52+0200\n"
+"POT-Creation-Date: 2017-05-09 20:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: web/templates/web/base-map.html:52 web/templates/web/base.html:42
+#: web/templates/web/page/terms.html:7
 msgid "Terms"
 msgstr "Podmínky"
 
 #: web/templates/web/base-map.html:53 web/templates/web/base.html:43
+#: web/templates/web/page/how-it-works.html:7
 msgid "How it works?"
 msgstr "Jak to funguje?"
 
@@ -73,8 +75,7 @@ msgstr ""
 "\n"
 "Uživatel %(user.get_full_name)s přidal hodnocení na směnu peněz.\n"
 "\n"
-"Toto hodnocení uvidíte za 7 dní, případně po zadání vašeho hodnocení."
-"\n"
+"Toto hodnocení uvidíte za 7 dní, případně po zadání vašeho hodnocení.\n"
 "\n"
 "Děkujeme za využívání našich služeb.\n"
 "Exchange.com\n"
@@ -94,8 +95,8 @@ msgstr ""
 "\n"
 "Uživatel %(user.get_full_name)s označit nabídku jako Kompletní.\n"
 "\n"
-"Nyní Můžete přidat hodnocení za tuto nabídku ve svém uživatelském profilu na webu "
-"exchange.com.\n"
+"Nyní Můžete přidat hodnocení za tuto nabídku ve svém uživatelském profilu na "
+"webu exchange.com.\n"
 "\n"
 "Děkujeme za využívání našich služeb.\n"
 "Exchange.com\n"
@@ -114,8 +115,7 @@ msgid ""
 "Exchange.com\n"
 msgstr ""
 "\n"
-"Uživatel %(user.get_full_name)s již nemá zájem o směnu peněz"
-".\n"
+"Uživatel %(user.get_full_name)s již nemá zájem o směnu peněz.\n"
 "\n"
 "Nabídka je opět dostupná ostatním uživatelům.\n"
 "\n"
@@ -136,11 +136,11 @@ msgid ""
 "Exchange.com\n"
 msgstr ""
 "\n"
-"Uživatel %(user.get_full_name)s přijal nabídku na směnu peněz "
-"(%(from)s do %(to)s).\n"
+"Uživatel %(user.get_full_name)s přijal nabídku na směnu peněz (%(from)s do "
+"%(to)s).\n"
 "\n"
-"Jeho kontaktní údaje uvidíte ve svém uživatelkém profilu po "
-"akceptování uživatele. Poté můžete s uživatelem směnit peníze.\n"
+"Jeho kontaktní údaje uvidíte ve svém uživatelkém profilu po akceptování "
+"uživatele. Poté můžete s uživatelem směnit peníze.\n"
 "\n"
 "Děkujeme za využívání našich služeb.\n"
 "Exchange.com\n"
@@ -191,8 +191,8 @@ msgstr ""
 "Tel: %(other_user.get_profile.phone)s\n"
 "Email: %(other_user.get_profile.email)s\n"
 "\n"
-"Tyto kontaktní údaje nyní naleznete také v uživatelském profilu na webu exchange.com."
-"com.\n"
+"Tyto kontaktní údaje nyní naleznete také v uživatelském profilu na webu "
+"exchange.com.com.\n"
 "\n"
 "Děkujeme za využívání našich služeb.\n"
 "Exchange.com\n"
@@ -214,8 +214,8 @@ msgstr ""
 "Uživatel %(user.get_full_name)s nesouhlasí s nabídkou na směnu peněz "
 "(%(from)s do %(to)s).\n"
 "\n"
-"Pokud stále hledaté nejlepší nabídku na směnu peněz můžete"
-"najít novou nabídku, nebo vytvořit novou nabídku na webu exchange.com.\n"
+"Pokud stále hledaté nejlepší nabídku na směnu peněz můžetenajít novou "
+"nabídku, nebo vytvořit novou nabídku na webu exchange.com.\n"
 "\n"
 "Děkujeme za využívání našich služeb.\n"
 "Exchange.com\n"
@@ -246,7 +246,7 @@ msgid "My position"
 msgstr "Moje poloha"
 
 #: web/templates/web/modals.html:56
-#: web/templates/web/user/change-preferences.html:85
+#: web/templates/web/user/change-preferences.html:84
 msgid "Save"
 msgstr "Uložit"
 
@@ -278,9 +278,9 @@ msgstr "Příjmout"
 #: web/templates/web/offer/detail.html:12
 #: web/templates/web/offer/list-ajax.html:104
 #: web/templates/web/snippets/history_with_user.html:14
-#: web/templates/web/user/profile.html:62
-#: web/templates/web/user/profile.html:95
-#: web/templates/web/user/profile.html:130
+#: web/templates/web/user/profile.html:65
+#: web/templates/web/user/profile.html:99
+#: web/templates/web/user/profile.html:140
 msgid "to"
 msgstr "do"
 
@@ -288,20 +288,20 @@ msgstr "do"
 msgid "Created by"
 msgstr "Vytvořil"
 
-#: web/templates/web/offer/detail.html:53
+#: web/templates/web/offer/detail.html:51
 msgid "Created this offer"
 msgstr "Vytvořil tuto nabídku"
 
-#: web/templates/web/offer/detail.html:55
+#: web/templates/web/offer/detail.html:53
 msgid "Has joined"
 msgstr "Se přidal"
 
-#: web/templates/web/offer/detail.html:69
+#: web/templates/web/offer/detail.html:67
 #: web/templates/web/snippets/user_profile.html:13
 msgid "Last login:"
 msgstr "Poslední přihlášení:"
 
-#: web/templates/web/offer/detail.html:72
+#: web/templates/web/offer/detail.html:70
 #: web/templates/web/snippets/user_profile.html:15
 msgid "# of offers:"
 msgstr "Počet nabídek"
@@ -349,7 +349,7 @@ msgstr "Výchozí"
 
 #: web/templates/web/offer/list-ajax.html:73
 #: web/templates/web/offer/list-ajax.html:75
-#: web/templates/web/snippets/user_stars.html:8
+#: web/templates/web/snippets/user_stars.html:7
 msgid "User rating"
 msgstr "Hodnocení uživatele"
 
@@ -381,6 +381,8 @@ msgid "Show all offers"
 msgstr "Zobrazit všechny nabídky"
 
 #: web/templates/web/offer/list-ajax.html:132
+#: web/templates/web/user/profile.html:126
+#: web/templates/web/user/profile.html:169
 msgid "There are no offers."
 msgstr "Nebyly nalezeny žádné nabídky."
 
@@ -398,14 +400,14 @@ msgstr "a chci směnit na"
 
 #: web/templates/web/offer/new.html:40
 #: web/templates/web/snippets/offer_basic_info.html:11
-#: web/templates/web/user/change-preferences.html:59
-#: web/templates/web/user/profile.html:74
-#: web/templates/web/user/profile.html:106
+#: web/templates/web/user/change-preferences.html:58
+#: web/templates/web/user/profile.html:77
+#: web/templates/web/user/profile.html:112
 msgid "Address"
 msgstr "Adresa"
 
 #: web/templates/web/offer/new.html:47
-#: web/templates/web/user/change-preferences.html:66
+#: web/templates/web/user/change-preferences.html:65
 msgid "Radius"
 msgstr "Rádius"
 
@@ -418,6 +420,23 @@ msgstr "Komentář"
 #: web/templates/web/offer/new.html:64
 msgid "Create offer"
 msgstr "Vytvořit nabídku"
+
+#: web/templates/web/page/how-it-works.html:8
+msgid ""
+"This aplication allows people to bid or demand to personally exchange a "
+"certain amount of money from one currency to another."
+msgstr ""
+"Tato aplikace umožňuje zadávat nabídky, respektive poptávky, na osobní směnu "
+"určitého obnosu peněz z jedné měny do druhéa na takové směně se případně s "
+"protějškem domluvit"
+
+#: web/templates/web/page/how-it-works.html:10
+msgid "Possible offer statuses"
+msgstr "Možné stavy nabídek"
+
+#: web/templates/web/page/terms.html:8
+msgid "To Be Determined."
+msgstr "Bude dodáno."
 
 #: web/templates/web/snippets/feedback_form.html:4
 msgid "Insert your feedback"
@@ -440,8 +459,8 @@ msgid "Offer status"
 msgstr "Status nabídky"
 
 #: web/templates/web/snippets/offer_basic_info.html:20
-#: web/templates/web/user/profile.html:77
-#: web/templates/web/user/profile.html:109
+#: web/templates/web/user/profile.html:80
+#: web/templates/web/user/profile.html:115
 msgid "Creation date"
 msgstr "Datum vytvoření"
 
@@ -483,37 +502,37 @@ msgid "Contact informations:"
 msgstr "Kontaktní informace:"
 
 #: web/templates/web/snippets/user_contact.html:6
-#: web/templates/web/snippets/user_contact.html:7
 #: web/templates/web/user/profile.html:17
 msgid "Email:"
 msgstr "Email:"
 
-#: web/templates/web/snippets/user_contact.html:8
+#: web/templates/web/snippets/user_contact.html:7
 #: web/templates/web/user/profile.html:18
 msgid "Phone:"
 msgstr "Telefon:"
 
-#: web/templates/web/snippets/users_feedback.html:5
+#: web/templates/web/snippets/users_feedback.html:6
 msgid "User's feedbacks"
 msgstr "Hodnocení uživatele"
 
-#: web/templates/web/snippets/users_feedback.html:17
+#: web/templates/web/snippets/users_feedback.html:21
 msgid "Rating:"
 msgstr "Hodnocení:"
 
-#: web/templates/web/snippets/users_feedback.html:18
+#: web/templates/web/snippets/users_feedback.html:22
 msgid "Comment:"
 msgstr "Komentář"
 
-#: web/templates/web/snippets/users_feedback.html:26
-#: web/templates/web/user/profile.html:146
+#: web/templates/web/snippets/users_feedback.html:30
+#: web/templates/web/user/profile.html:156
 msgid "No feedbacks yet."
 msgstr "Žádná hodnocení nebyla zadána."
 
-#: web/templates/web/user/access-denied.html:7
-#, fuzzy
-#| msgid "Access denied."
-msgid "Access denied"
+#: web/templates/web/user/access-denied.html:7 web/views/offer_status.py:20
+#: web/views/offer_status.py:31 web/views/offer_status.py:42
+#: web/views/offer_status.py:57 web/views/offer_status.py:67
+#: web/views/offer_status.py:87 web/views/offer_status.py:98
+msgid "Access denied."
 msgstr "Přístup odepřen."
 
 #: web/templates/web/user/access-denied.html:8
@@ -521,7 +540,7 @@ msgid "Login to continue"
 msgstr "Pro pokračování se přihlašte."
 
 #: web/templates/web/user/change-preferences.html:12
-#: web/templates/web/user/change-preferences.html:96
+#: web/templates/web/user/change-preferences.html:95
 msgid "Back to my profile"
 msgstr "Zpět na můj profil"
 
@@ -545,7 +564,7 @@ msgstr "Jazyk"
 msgid "Basic information about you"
 msgstr "Základní informace o vás"
 
-#: web/templates/web/user/change-preferences.html:76
+#: web/templates/web/user/change-preferences.html:75
 msgid "Phone"
 msgstr "Telefon"
 
@@ -565,19 +584,19 @@ msgstr "Změna údajů"
 msgid "Your actual offers"
 msgstr "Vaše aktuální nabídky"
 
-#: web/templates/web/user/profile.html:40
+#: web/templates/web/user/profile.html:43
 msgid "Waiting for you"
 msgstr "Čekající na vás"
 
-#: web/templates/web/user/profile.html:46
+#: web/templates/web/user/profile.html:49
 msgid "Waiting for other users"
 msgstr "Čekající na ostatní uživatele"
 
-#: web/templates/web/user/profile.html:122
+#: web/templates/web/user/profile.html:131
 msgid "Finished offers"
 msgstr "Dokončené nabídky"
 
-#: web/templates/web/user/profile.html:148
+#: web/templates/web/user/profile.html:158
 msgid "Insert feedback"
 msgstr "Vložit hodnocení"
 
@@ -591,32 +610,25 @@ msgstr "Uživatel je ověřený"
 msgid "Access denied. You do not have permission."
 msgstr "Nemá dostatečná práva pro přístup."
 
-#: web/views/offer.py:102
+#: web/views/offer.py:106
 msgid "Feedback was added."
 msgstr "Hodnocení bylo přidáno."
 
-#: web/views/offer.py:104
+#: web/views/offer.py:108
 msgid "Feedback process ERROR."
 msgstr "Nastala chyba při zpracování hodnocení."
 
-#: web/views/offer.py:129
+#: web/views/offer.py:133
 msgid "Offer was added."
 msgstr "Nabídka byla přidána."
 
-#: web/views/offer.py:131
+#: web/views/offer.py:135
 msgid "Offer process ERROR."
 msgstr "Nastala chyba při zpracování nabídky."
 
 #: web/views/offer_status.py:18
 msgid "Offer was deleted."
 msgstr "Nabídka byla smazána."
-
-#: web/views/offer_status.py:20 web/views/offer_status.py:31
-#: web/views/offer_status.py:42 web/views/offer_status.py:57
-#: web/views/offer_status.py:67 web/views/offer_status.py:87
-#: web/views/offer_status.py:98
-msgid "Access denied."
-msgstr "Přístup odepřen."
 
 #: web/views/offer_status.py:29
 msgid "Offer was accepted."
