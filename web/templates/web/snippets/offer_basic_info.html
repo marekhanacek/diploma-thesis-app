@@ -4,7 +4,7 @@
 {% if show_status %}
 <p>
     <span class="glyphicon glyphicon-leaf" data-toggle="tooltip" title="{% trans 'Offer status' %}"></span>
-    <span class="label label-status">{{ offer.status.title }}</span><br/>
+    <span class="label label-status">{% trans offer.status.title %}</span><br/>
 </p>
 {% endif %}
 <p>

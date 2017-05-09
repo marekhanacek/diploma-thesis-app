@@ -98,7 +98,7 @@
                                                 <a href="{% url 'offer_detail' offer.id %}" class="absolute-link"></a>
                                                 <h4>{{ offer|format_offer_currency_from }} {% trans 'to' %} {{ offer|format_offer_currency_to }}
                                                     <span
-                                                            class="label label-status">{{ offer.status.title }}</span>
+                                                            class="label label-status">{% trans offer.status.title %}</span>
                                                 </h4>
                                                 <p>
                                                     {% if other_user %}
