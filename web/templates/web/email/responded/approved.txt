@@ -1,12 +1,11 @@
 {% load i18n %}
 
 {% blocktrans %}
-User {{ user.get_full_name }} agree with offer for money exchange ({{ from }} to {{ to }}).
+User {{ other_user_name }} agree with offer for money exchange ({{ currency_from }} to {{ currency_to }}).
 
-Contact informations of {{ user.get_full_name}} are below:
-{{ other_user.get_full_name }}
-Tel: {{ other_user.get_profile.phone }}
-Email: {{ other_user.get_profile.email }}
+Contact informations of user are below:
+Tel: {{ other_user_phone }}
+Email: {{ other_user_email }}
 
 You can see these contact informations in your user profile on web exchange.com.
 

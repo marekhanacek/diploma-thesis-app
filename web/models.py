@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.db import models
+from django.utils.formats import number_format
 
 from dip import settings
 
@@ -68,6 +69,12 @@ class Offer(models.Model):
 
     def is_user_attached(self, user):
         return user == self.user_created or user == self.user_responded
+
+    def currency_from_formatted(self):
+        return self.currency_from.prefix + number_format(self.amount, 0) + self.currency_from.postfix
+
+    def currency_to_formatted(self):
+        return self.currency_to.prefix + number_format(self.get_total, 0) + self.currency_to.postfix
 
 
 class Feedback(models.Model):

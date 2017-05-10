@@ -12,12 +12,12 @@ register = template.Library()
 
 @register.filter
 def format_offer_currency_from(offer):
-    return offer.currency_from.prefix + number_format(offer.amount, 0) + offer.currency_from.postfix
+    return offer.currency_from_formatted()
 
 
 @register.filter
 def format_offer_currency_to(offer):
-    return offer.currency_to.prefix + number_format(offer.get_total, 0) + offer.currency_to.postfix
+    return offer.currency_to_formatted()
 
 
 @register.filter(is_safe=True)

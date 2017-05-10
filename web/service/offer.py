@@ -1,15 +1,16 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models.aggregates import Min, Max
 from django.db.models.expressions import F
 from django.db.models.fields import FloatField
 from django.db.models.functions.base import Cast
 from django.db.models.query_utils import Q
 import datetime
 from django.utils import timezone
+from django.utils.translation import ugettext as _
 
 from dip import settings
 from web.models import Offer, CurrencyRates, Feedback
 from web.service import gps_distance
+from web.service.mail import send_offer_mail
 
 
 def create_offer(lat, lng, radius, amount, comment, currency_from, currency_to, user_created,
@@ -47,7 +48,7 @@ def create_feedback(offer, user, comment, stars):
     else:
         other_user = offer.user_created
 
-    return Feedback.objects.create(
+    feedback = Feedback.objects.create(
         offer=offer,
         user_created=user,
         user_responded=other_user,
@@ -55,8 +56,19 @@ def create_feedback(offer, user, comment, stars):
         stars=stars,
     )
 
+    feedbacks_count = Feedback.objects.filter(offer=offer).count()
 
-# queries
+    send_offer_mail(
+        folder='both',
+        file='finished-other-feedback' if feedbacks_count < 2 else 'finished-both-feedbacks',
+        subject=_('Feedback was added'),
+        other_user=user,
+        user=other_user,
+        offer=offer
+    )
+
+    return feedback
+
 
 def get_sorted_offers(input_offer, sorting_strategy, currency_from=None, currency_to=None, amount_from=None,
                       amount_to=None, limit=None, user=None):
@@ -80,7 +92,7 @@ def get_base_offers(currency_from=None, currency_to=None, minus_amount=None, plu
     if currency_to:
         offers = offers.filter(currency_to_id=currency_to)
     if minus_amount and plus_amount:
-        offers = offers.filter(total__range=(minus_amount-1, plus_amount+1))
+        offers = offers.filter(total__range=(minus_amount - 1, plus_amount + 1))
     if user and user.is_authenticated():
         offers = offers.filter(~Q(user_created=user))
 

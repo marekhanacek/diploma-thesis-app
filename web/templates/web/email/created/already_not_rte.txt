@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% blocktrans %}
-User {{ user.get_full_name }} is already not interesting in your money exchange offer.
+User {{ other_user_name }} is already not interesting in your money exchange offer.
 
 Offer was marked as Awaiting acceptance. Now you can wait for other takers.
 

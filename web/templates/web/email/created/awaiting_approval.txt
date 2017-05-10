@@ -1,7 +1,8 @@
 {% load i18n %}
+{% load web_extras %}
 
 {% blocktrans %}
-User {{ user.get_full_name }} has accept your offer for money exchange ({{ from }} to {{ to }}).
+User {{ other_user_name }} has accept your offer for money exchange ({{ currency_from }} to {{ currency_to }}).
 
 You will see his/her contact information in your user profile after accepting user. Than you can change your money with this user.
 

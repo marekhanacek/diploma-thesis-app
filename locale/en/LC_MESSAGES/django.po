@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-09 20:13+0200\n"
+"POT-Creation-Date: 2017-05-10 12:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,38 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: web/service/offer.py:64
+msgid "Feedback was added"
+msgstr ""
+
+#: web/service/offer_status.py:31
+msgid "Offer was accepted"
+msgstr ""
+
+#: web/service/offer_status.py:50
+msgid "You were approved in offer"
+msgstr ""
+
+#: web/service/offer_status.py:66
+msgid "You were not approved in offer"
+msgstr ""
+
+#: web/service/offer_status.py:86
+msgid "User is already not interested in offer"
+msgstr ""
+
+#: web/service/offer_status.py:107
+msgid "Offer was canceled"
+msgstr ""
+
+#: web/service/offer_status.py:116
+msgid "Offer is awailable for other users"
+msgstr ""
+
+#: web/service/offer_status.py:140 web/service/offer_status.py:149
+msgid "Offer is complete"
+msgstr ""
 
 #: web/templates/web/base-map.html:52 web/templates/web/base.html:42
 #: web/templates/web/page/terms.html:7
@@ -44,7 +76,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"User %(user.get_full_name)s inserted feedback to money exchange offer.\n"
+"User %(other_user_name)s inserted feedback to money exchange offer.\n"
 "\n"
 "You can see this feedback in your user profile.\n"
 "\n"
@@ -56,7 +88,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"User %(user.get_full_name)s inserted feedback to money exchange offer.\n"
+"User %(other_user_name)s inserted feedback to money exchange offer.\n"
 "\n"
 "You can see this feedback in your user profile in 7 days or after that you "
 "insert your feedback.\n"
@@ -69,7 +101,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"User %(user.get_full_name)s marker offer for money exchange as Complete.\n"
+"User %(other_user_name)s marker offer for money exchange as Complete.\n"
 "\n"
 "Now, you can insert feedback on this user in your user profile on web "
 "exchange.com.\n"
@@ -83,8 +115,8 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"User %(user.get_full_name)s is already not interesting in your money "
-"exchange offer.\n"
+"User %(other_user_name)s is already not interesting in your money exchange "
+"offer.\n"
 "\n"
 "Offer was marked as Awaiting acceptance. Now you can wait for other takers.\n"
 "\n"
@@ -92,12 +124,12 @@ msgid ""
 "Exchange.com\n"
 msgstr ""
 
-#: web/templates/web/email/created/awaiting_approval.txt:3
+#: web/templates/web/email/created/awaiting_approval.txt:4
 #, python-format
 msgid ""
 "\n"
-"User %(user.get_full_name)s has accept your offer for money exchange "
-"(%(from)s to %(to)s).\n"
+"User %(other_user_name)s has accept your offer for money exchange "
+"(%(currency_from)s to %(currency_to)s).\n"
 "\n"
 "You will see his/her contact information in your user profile after "
 "accepting user. Than you can change your money with this user.\n"
@@ -110,7 +142,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"User %(user.get_full_name)s has canceled offer for money exchange.\n"
+"User %(other_user_name)s has canceled offer for money exchange.\n"
 "\n"
 "Take a look at other offers.\n"
 "\n"
@@ -122,13 +154,12 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"User %(user.get_full_name)s agree with offer for money exchange (%(from)s to "
-"%(to)s).\n"
+"User %(other_user_name)s agree with offer for money exchange "
+"(%(currency_from)s to %(currency_to)s).\n"
 "\n"
-"Contact informations of %(user.get_full_name)s are below:\n"
-"%(other_user.get_full_name)s\n"
-"Tel: %(other_user.get_profile.phone)s\n"
-"Email: %(other_user.get_profile.email)s\n"
+"Contact informations of user are below:\n"
+"Tel: %(other_user_phone)s\n"
+"Email: %(other_user_email)s\n"
 "\n"
 "You can see these contact informations in your user profile on web exchange."
 "com.\n"
@@ -137,12 +168,12 @@ msgid ""
 "Exchange.com\n"
 msgstr ""
 
-#: web/templates/web/email/responded/not_approved.txt:3
+#: web/templates/web/email/responded/not_approved.txt:4
 #, python-format
 msgid ""
 "\n"
-"User %(user.get_full_name)s not agree with offer for money exchange "
-"(%(from)s to %(to)s).\n"
+"User %(other_user_name)s not agree with offer for money exchange "
+"(%(currency_from)s to %(currency_to)s).\n"
 "\n"
 "If you are still looking for the best way how to change your money, you can "
 "search new offers, or offer your own offer on the web exchange.com.\n"
