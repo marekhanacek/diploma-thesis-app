@@ -1,3 +1,5 @@
+from smtplib import SMTPAuthenticationError
+
 from django.core.mail import send_mail as django_send_mail
 from django.template.loader import get_template
 
@@ -16,9 +18,12 @@ def send_offer_mail(folder, file, subject, user, other_user, offer):
         'currency_to': offer.currency_to_formatted(),
     }
     if ALLOW_MAIL_SENDING:
-        django_send_mail(
-            subject,
-            plaintext.render(context),
-            settings.EMAIL_HOST_USER,
-            [to_email]
-        )
+        try:
+            django_send_mail(
+                subject,
+                plaintext.render(context),
+                settings.EMAIL_HOST_USER,
+                [to_email]
+            )
+        except SMTPAuthenticationError:
+            pass
