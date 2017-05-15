@@ -4,11 +4,11 @@ from django.core.mail import send_mail as django_send_mail
 from django.template.loader import get_template
 
 from dip import settings
-from dip.settings import ALLOW_MAIL_SENDING
+from dip.settings import ALLOW_MAIL_SENDING, EMAIL_HOST_USER
 
 
 def send_offer_mail(folder, file, subject, user, other_user, offer):
-    to_email = "marekhanacek1@gmail.com"  # user.email
+    to_email = user.email if user.email else EMAIL_HOST_USER
     plaintext = get_template('web/email/' + folder + '/' + file + '.txt')
     context = {
         'other_user_name': other_user.get_full_name(),
