@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <h4>
                         <a href="{% url 'user_detail' feedback.user_created.id %}" class="map-ajax" data-history="true">
-                            {{ feedback.user_created.first_name }}
+                            {{ feedback.user_created.get_full_name }}
                         </a>
                     </h4>
                     <p>
