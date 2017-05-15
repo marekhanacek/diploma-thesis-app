@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-15 12:26+0200\n"
+"POT-Creation-Date: 2017-05-15 20:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -224,11 +224,11 @@ msgstr ""
 msgid "Change your address"
 msgstr ""
 
-#: web/templates/web/navbar.html:35
+#: web/templates/web/navbar.html:38
 msgid "Logout"
 msgstr ""
 
-#: web/templates/web/navbar.html:37
+#: web/templates/web/navbar.html:40
 msgid "Login"
 msgstr ""
 
@@ -417,6 +417,10 @@ msgstr ""
 msgid "Your feedback:"
 msgstr ""
 
+#: web/templates/web/snippets/feedbacks.html:13
+msgid "This feedback is not visible to other users"
+msgstr ""
+
 #: web/templates/web/snippets/history_with_user.html:5
 msgid "Your history with user"
 msgstr ""
@@ -571,23 +575,23 @@ msgstr ""
 msgid "User is verified"
 msgstr ""
 
-#: web/views/offer.py:71
+#: web/views/offer.py:72
 msgid "Access denied. You do not have permission."
 msgstr ""
 
-#: web/views/offer.py:106
+#: web/views/offer.py:107
 msgid "Feedback was added."
 msgstr ""
 
-#: web/views/offer.py:108
+#: web/views/offer.py:109
 msgid "Feedback process ERROR."
 msgstr ""
 
-#: web/views/offer.py:133
+#: web/views/offer.py:134
 msgid "Offer was added."
 msgstr ""
 
-#: web/views/offer.py:135
+#: web/views/offer.py:136
 msgid "Offer process ERROR."
 msgstr ""
 

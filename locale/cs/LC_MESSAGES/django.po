@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-15 12:26+0200\n"
+"POT-Creation-Date: 2017-05-15 20:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -292,11 +292,11 @@ msgstr "Zobrazit text"
 msgid "Change your address"
 msgstr "Změnit adresu"
 
-#: web/templates/web/navbar.html:35
+#: web/templates/web/navbar.html:38
 msgid "Logout"
 msgstr "Odhlásit se"
 
-#: web/templates/web/navbar.html:37
+#: web/templates/web/navbar.html:40
 msgid "Login"
 msgstr "Přihlásit se"
 
@@ -488,6 +488,10 @@ msgstr "Hodnocení této nabídky"
 msgid "Your feedback:"
 msgstr "Vaše hodnocení:"
 
+#: web/templates/web/snippets/feedbacks.html:13
+msgid "This feedback is not visible to other users"
+msgstr "Hodnocení prozatím není přístupné ostatním uživatelům"
+
 #: web/templates/web/snippets/history_with_user.html:5
 msgid "Your history with user"
 msgstr "Vaše historie s uživatelem"
@@ -642,23 +646,23 @@ msgstr "Vložit hodnocení"
 msgid "User is verified"
 msgstr "Uživatel je ověřený"
 
-#: web/views/offer.py:71
+#: web/views/offer.py:72
 msgid "Access denied. You do not have permission."
 msgstr "Přístup odepřen. Nemá dostatečná práva pro přístup."
 
-#: web/views/offer.py:106
+#: web/views/offer.py:107
 msgid "Feedback was added."
 msgstr "Hodnocení bylo přidáno."
 
-#: web/views/offer.py:108
+#: web/views/offer.py:109
 msgid "Feedback process ERROR."
 msgstr "Nastala chyba při zpracování hodnocení."
 
-#: web/views/offer.py:133
+#: web/views/offer.py:134
 msgid "Offer was added."
 msgstr "Nabídka byla přidána."
 
-#: web/views/offer.py:135
+#: web/views/offer.py:136
 msgid "Offer process ERROR."
 msgstr "Nastala chyba při zpracování nabídky."
 

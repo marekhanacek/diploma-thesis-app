@@ -10,7 +10,7 @@
                 <strong>{% trans 'Your feedback:' %}</strong>
                 {{ user_feedback.stars|print_stars }}<br>
                 {% if not user_feedback|is_feedback_visible %}
-                    This feedback is not visible to other users<br />
+                    {% trans 'This feedback is not visible to other users' %}<br />
                 {% endif %}
                 {{ user_feedback.comment }}
             </p>
