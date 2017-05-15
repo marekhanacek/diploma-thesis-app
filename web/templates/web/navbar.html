@@ -30,6 +30,9 @@
                 <a href="{% url 'user_profile' %}">
                     <img class="img-circle" src="{{ user.userprofile.profile_photo|thumbnail_url:'header_avatar' }}" />
                     {{ user.first_name }} {{ user.last_name }}
+                    {% if notifications > 0 %}
+                        <span class="badge">{{ notifications }}</span>
+                    {% endif %}
                 </a>
             </li>
             <li><a href="{% url 'logout' %}">{% trans 'Logout' %}</a></li>

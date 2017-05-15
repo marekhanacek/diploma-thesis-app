@@ -1,7 +1,11 @@
+from django.contrib.auth.models import User
+
 from dip import settings
+from web.service.offer import get_offers_waiting_for_user_reaction
 
 
 def template_variables(request):
+    marek = User.objects.get(pk=100)
     return {
         'STATUS_AWAITING_ACCEPTANCE': settings.STATUS_AWAITING_ACCEPTANCE,
         'STATUS_AWAITING_APPROVAL': settings.STATUS_AWAITING_APPROVAL,
@@ -19,5 +23,6 @@ def template_variables(request):
             'currency_to': request.session['input_offer']['currency_to'],
             'sort': request.session['input_offer']['sort'],
         },
-        'show_cookies': not bool(request.COOKIES.get('cookies-allowed'))
+        'show_cookies': not bool(request.COOKIES.get('cookies-allowed')),
+        'notifications': len(get_offers_waiting_for_user_reaction(marek))
     }

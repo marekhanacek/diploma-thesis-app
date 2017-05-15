@@ -100,6 +100,9 @@ def get_base_offers(currency_from=None, currency_to=None, minus_amount=None, plu
 
 
 def get_offers_waiting_for_user_reaction(user):
+    if not user.is_authenticated():
+        return []
+
     offers = Offer.objects.filter(~Q(status=4) & ~Q(status=5)).filter(
         Q(user_created=user) | Q(user_responded=user)
     )
