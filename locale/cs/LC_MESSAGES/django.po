@@ -490,7 +490,7 @@ msgstr "Vaše hodnocení:"
 
 #: web/templates/web/snippets/feedbacks.html:13
 msgid "This feedback is not visible to other users"
-msgstr "Hodnocení prozatím není přístupné ostatním uživatelům"
+msgstr "Toto hodnocení prozatím není přístupné ostatním uživatelům"
 
 #: web/templates/web/snippets/history_with_user.html:5
 msgid "Your history with user"
