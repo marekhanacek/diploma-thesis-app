@@ -62,6 +62,8 @@ class OfferViewSet(viewsets.ReadOnlyModelViewSet, mixins.CreateModelMixin):
             raise ParseError('Required parameter currency_from is missing.')
         if not currency_to:
             raise ParseError('Required parameter currency_to is missing.')
+        if currency_from == currency_to:
+            raise ParseError('Parameters currency_from and currency_to can not be equal.')
         if not lat:
             raise ParseError('Required parameter lat is missing.')
         if not lng:
