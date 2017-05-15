@@ -146,10 +146,10 @@ function App() {
         if (mapOffers != undefined) {
             $.each(mapOffers, function (key, data) {
                 var offer = new Offer(data.id, data.lat, data.lng, data.amountFrom, data.amountTo, data.detailUrl, data.user, data.userVerified);
-                that.normalMap.addOffer(offer, function(o) {
-                    $('#offers-box .offer-table tr[data-offer-id='+o.id+']').addClass('hover');
-                }, function(o) {
-                    $('#offers-box .offer-table tr[data-offer-id='+o.id+']').removeClass('hover');
+                that.normalMap.addOffer(offer, function (o) {
+                    $('#offers-box .offer-table tr[data-offer-id=' + o.id + ']').addClass('hover');
+                }, function (o) {
+                    $('#offers-box .offer-table tr[data-offer-id=' + o.id + ']').removeClass('hover');
                 });
             });
         }
@@ -218,8 +218,8 @@ function App() {
         var amount_from = $('#map-form-new-offer input[name="amount_from"]');
         var amount_to = $('#map-form-new-offer input[name="amount_to"]');
         $.ajax({
-            url: '/exchange-rate/'+currency_from.val()+'/'+currency_to.val(),
-            success: function(data) {
+            url: '/exchange-rate/' + currency_from.val() + '/' + currency_to.val(),
+            success: function (data) {
                 amount_to.val(amount_from.val() * data);
             }
         })

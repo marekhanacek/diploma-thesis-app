@@ -85,13 +85,13 @@ function Map(elementId) {
         });
 
         google.maps.event.addListener(offer.marker, 'mouseout', function () {
-            if(offerMouseOutCallback != undefined) {
+            if (offerMouseOutCallback != undefined) {
                 offerMouseOutCallback(offer);
             }
         });
 
         google.maps.event.addListener(offer.marker, 'mouseover', function () {
-            if(offerMouseOverCallback != undefined) {
+            if (offerMouseOverCallback != undefined) {
                 offerMouseOverCallback(offer);
             }
         });
@@ -297,6 +297,12 @@ function Map(elementId) {
         $.each(this.offers, function (id, offer) {
             bounds.extend(offer.marker.getPosition());
         });
+        $.each(this.lines, function (id, line) {
+            var points = line.getPath().getArray();
+            for (var n = 0; n < points.length; n++) {
+                bounds.extend(points[n]);
+            }
+        });
         this.map.fitBounds(bounds);
     };
 
@@ -313,7 +319,7 @@ function Map(elementId) {
             that.addCircle(circle.radius, circle.center);
         });
         settings['lines'].forEach(function (line) {
-            that.addLine(line.path);
+            that.addLine(line.getPath());
         });
         $.each(settings['offers'], function (id, offer) {
             that.addOffer(offer);
