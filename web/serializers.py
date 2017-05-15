@@ -107,7 +107,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'exchange_currency',
             'language',
             'basic_information',
-            'email',
             'phone',
             'address',
             'radius',
