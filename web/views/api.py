@@ -38,7 +38,7 @@ class OfferViewSet(viewsets.ReadOnlyModelViewSet, mixins.CreateModelMixin):
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
 
-    def list(self, request, currency_from, currency_to, *args, **kwargs):
+    def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_my_queryset())
 
         page = self.paginate_queryset(queryset)
