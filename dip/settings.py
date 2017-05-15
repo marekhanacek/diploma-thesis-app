@@ -185,11 +185,12 @@ STATUS_DELETED = 5
 
 # Email settings
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'marekhanacek1@gmail.com'
+EMAIL_FROM = 'hanacma3@fit.cvut.cz'
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'imap.fit.cvut.cz'
+EMAIL_HOST_USER = 'hanacma3'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 ALLOW_MAIL_SENDING = os.environ['EMAIL_ALLOW_MAIL_SENDING'] == 'TRUE'
 
 # Thumbnails settings

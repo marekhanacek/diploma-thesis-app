@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.db.models.query_utils import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.decorators import method_decorator

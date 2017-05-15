@@ -8,7 +8,7 @@ from dip.settings import ALLOW_MAIL_SENDING, EMAIL_HOST_USER
 
 
 def send_offer_mail(folder, file, subject, user, other_user, offer):
-    to_email = user.email if user.email else EMAIL_HOST_USER
+    to_email = user.email if user.email else EMAIL_FROM
     plaintext = get_template('web/email/' + folder + '/' + file + '.txt')
     context = {
         'other_user_name': other_user.get_full_name(),
@@ -22,7 +22,7 @@ def send_offer_mail(folder, file, subject, user, other_user, offer):
             django_send_mail(
                 subject,
                 plaintext.render(context),
-                settings.EMAIL_HOST_USER,
+                settings.EMAIL_FROM,
                 [to_email]
             )
         except SMTPAuthenticationError:
