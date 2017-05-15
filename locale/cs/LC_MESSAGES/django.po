@@ -334,7 +334,7 @@ msgstr "Poslední přihlášení:"
 #: web/templates/web/offer/detail.html:70
 #: web/templates/web/snippets/user_profile.html:15
 msgid "# of offers:"
-msgstr "Počet nabídek"
+msgstr "Počet nabídek:"
 
 #: web/templates/web/offer/list-ajax.html:6
 msgid "Offers"
@@ -486,7 +486,7 @@ msgstr "Hodnocení této nabídky"
 
 #: web/templates/web/snippets/feedbacks.html:10
 msgid "Your feedback:"
-msgstr "Váše hodnocení"
+msgstr "Vaše hodnocení:"
 
 #: web/templates/web/snippets/history_with_user.html:5
 msgid "Your history with user"
@@ -559,7 +559,7 @@ msgstr "Hodnocení:"
 
 #: web/templates/web/snippets/users_feedback.html:22
 msgid "Comment:"
-msgstr "Komentář"
+msgstr "Komentář:"
 
 #: web/templates/web/snippets/users_feedback.html:30
 #: web/templates/web/user/profile.html:156
@@ -608,11 +608,11 @@ msgstr "Telefon"
 
 #: web/templates/web/user/profile.html:19
 msgid "Address:"
-msgstr "Adresa"
+msgstr "Adresa:"
 
 #: web/templates/web/user/profile.html:20
 msgid "Searching radius:"
-msgstr "Rádius pro vyhledávání"
+msgstr "Rádius pro vyhledávání:"
 
 #: web/templates/web/user/profile.html:24
 msgid "Change preferences"
