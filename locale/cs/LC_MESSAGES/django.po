@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 12:45+0200\n"
+"POT-Creation-Date: 2017-05-15 12:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -476,9 +476,17 @@ msgstr "Vložte hodnocení"
 msgid "Rating"
 msgstr "Hodnocení"
 
+#: web/templates/web/snippets/feedback_form.html:22
+msgid "Save feedback"
+msgstr "Uložit hodnocení"
+
 #: web/templates/web/snippets/feedbacks.html:6
 msgid "Feedbacks of this offer"
 msgstr "Hodnocení této nabídky"
+
+#: web/templates/web/snippets/feedbacks.html:10
+msgid "Your feedback:"
+msgstr "Váše hodnocení"
 
 #: web/templates/web/snippets/history_with_user.html:5
 msgid "Your history with user"
