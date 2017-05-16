@@ -68,7 +68,7 @@
                                                 <p>
                                                     {% if other_user %}
                                                         <span class="glyphicon glyphicon-user"></span>
-                                                        <a href="{% url 'user_detail' offer.user_created.id %}"
+                                                        <a href="{% url 'user_detail' other_user.id %}"
                                                            class="relative">
                                                             {{ other_user.get_full_name }} <?php stars(4); ?>
                                                         </a> |
