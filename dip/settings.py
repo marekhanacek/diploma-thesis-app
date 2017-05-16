@@ -185,12 +185,13 @@ STATUS_DELETED = 5
 
 # Email settings
 
-EMAIL_FROM = 'hanacma3@fit.cvut.cz'
-EMAIL_USE_SSL = True
-EMAIL_HOST = 'imap.fit.cvut.cz'
-EMAIL_HOST_USER = 'hanacma3'
+EMAIL_FROM = os.environ['EMAIL_FROM']
+EMAIL_USE_SSL = os.environ['EMAIL_USE_SSL'] == 'TRUE'
+EMAIL_USE_TLS = os.environ['EMAIL_USE_TLS'] == 'TRUE'
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-EMAIL_PORT = 465
+EMAIL_PORT = int(os.environ['EMAIL_PORT'])
 ALLOW_MAIL_SENDING = os.environ['EMAIL_ALLOW_MAIL_SENDING'] == 'TRUE'
 
 # Thumbnails settings
