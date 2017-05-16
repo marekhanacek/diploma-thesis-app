@@ -6,5 +6,5 @@
     <h1>
         {% trans 'User rating' %}
     </h1>
-    <p><span class="glyphicon glyphicon-star icon-my-star"></span> {{ stars }} / 5,0</p>
+    <p><span class="glyphicon glyphicon-star icon-my-star"></span> {{ stars|stringformat:".1f" }} / 5.0</p>
 </div>

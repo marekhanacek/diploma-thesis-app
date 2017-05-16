@@ -23,7 +23,6 @@ export DATABASE_PASS=*******
 export DATABASE_HOST=localhost
 export SOCIAL_AUTH_FACEBOOK_KEY={facebook_app_key}
 export SOCIAL_AUTH_FACEBOOK_SECRET={facebook_app_secret}
-export STATIC_ROOT=/var/www/MI-DIP/dipweb/static/
 export DJANGO_DEBUG=TRUE
 # email settings
 export EMAIL_ALLOW_MAIL_SENDING=TRUE
