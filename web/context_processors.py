@@ -5,7 +5,6 @@ from web.service.offer import get_offers_waiting_for_user_reaction
 
 
 def template_variables(request):
-    marek = User.objects.get(pk=100)
     return {
         'STATUS_AWAITING_ACCEPTANCE': settings.STATUS_AWAITING_ACCEPTANCE,
         'STATUS_AWAITING_APPROVAL': settings.STATUS_AWAITING_APPROVAL,
@@ -24,5 +23,5 @@ def template_variables(request):
             'sort': request.session['input_offer']['sort'],
         },
         'show_cookies': not bool(request.COOKIES.get('cookies-allowed')),
-        'notifications': len(get_offers_waiting_for_user_reaction(marek))
+        'notifications': len(get_offers_waiting_for_user_reaction(request.user))
     }
